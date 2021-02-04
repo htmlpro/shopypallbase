@@ -2,7 +2,21 @@
 	position: absolute;
     margin: 7px;
 }
-#example1_filter .dropdown{
+#example1_filter .saveViewDropDown{
+	display: inline-block;	
+}
+#example1_filter .saveViewDropDown .btn-default.dropdown-toggle{
+	margin-top: -4px;
+}
+#example1_filter .saveViewDropDown .saveViewDropDownBody{
+	width: 220px;
+	box-shadow: var(--p-modal-shadow,0 10px 10px 0 rgba(32,42,53,.2),0 2px 16px 0 rgba(32,42,54,.08));
+	padding: 10px;
+}
+#example1_filter .saveViewDropDown label{
+	width: 100% !important;
+}
+#example1_filter .sortDropdown{
 	float: right;
     margin-top: 18px;
 }
