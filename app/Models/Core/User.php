@@ -84,6 +84,6 @@ class User extends Authenticatable
     }
 
 	public function savedOrderViews(){
-		return $this->hasMany("App\Models\Core\SavedOrderView");
+		return $this->hasMany("App\Models\Core\SavedOrderView", "user", "id");
 	}
 }

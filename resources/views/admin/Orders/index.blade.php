@@ -42,7 +42,7 @@
 									
 								</div>
                                 <div class="col-xs-12">
-                                    <table id="example1" class="table table-bordered table-striped yajra-datatable">
+                                    <table id="example1" class="table table-bordered table-striped yajra-datatable" data-savedviews='{{ $listingOrders["savedViews"] }}'>
                                         <thead>
                                         <tr>
                                             <th>{{ trans('labels.ID') }}</th>

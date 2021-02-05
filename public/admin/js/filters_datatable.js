@@ -30,7 +30,16 @@ jQuery(function ($) {
 				label = ['ID', 'Customers', 'Sources', 'Total Price', 'Dated', 'Statuses'];
 				if(idx != 0 && idx != 3 && idx != 4 && idx != 6){ //Skip ID, Date, Price & Action column
 					console.log(column);
-					var select = $('<label><select id="filter-'+label[idx-1]+'" class="form-control form-control-sm"><option value="">'+label[idx]+'</option></select></label>')
+					var select = $('<div class="dropdown filterDropdown-'+label[idx]+'">'
+								  +'<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu-f'+idx+'" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
+									+label[idx]+
+									+'<span class="caret"></span>'
+								  +'</button>'
+								  +'<ul class="dropdown-menu sort-menu" aria-labelledby="dropdownMenu2">'
+									+'<li class="dropdown-header">'+label[idx]+'</li>'
+								  +'</ul>'
+								+'</div>')
+					//var select = $('<label><select id="filter-'+label[idx]+'" class="form-control form-control-sm"><option value="">'+label[idx]+'</option></select></label>')
 						.appendTo( $("#example1_filter") )
 						.on( 'change', 'select', function () {
 							var val = $.fn.dataTable.util.escapeRegex(
@@ -42,10 +51,10 @@ jQuery(function ($) {
 						} );
 	 
 					column.data().unique().sort().each( function ( d, j ) {
-						select.find('select').append( '<option value="'+d+'">'+d+'</option>' )
+						select.find('ul').append( '<li value="'+d+'"><label class="radio-inline"><input type="checkbox" name="optradio" data-column="3" data-direction="desc" value="1">'+d+'</label></li>' )
 					} );
 
-					//Status Buttons Tabs 
+					//Status Buttons Tabs & Saved Views
 					if(idx == 5){
 						var btnGroup = $('<div class="btn-group" role="group" aria-label="..."><button type="button" class="btn btn-default active" data-value="">All</button></div>')
 							.appendTo($("#filter-btn-row"))
@@ -65,6 +74,12 @@ jQuery(function ($) {
 						column.data().unique().sort().each( function ( d, j ) {
 							btnGroup.append( '<button type="button" class="btn btn-default" data-value="'+d+'">'+d+'</button>' );
 						} );
+						
+						var savedViews = $('.yajra-datatable').data("savedviews");
+						//console.log(savedViews);
+						$.each( savedViews, function(i, v){
+							btnGroup.append( '<button type="button" class="btn btn-default" data-value="'+v.selected_filters+'">'+v.view_name+'</button>' );
+						});
 					}
 				}
             } );
