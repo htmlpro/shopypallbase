@@ -632,7 +632,7 @@
             <hr class="edit_hr">
             <span>
                 <button class="archive__button" data-toggle="modal" data-target="#archiveModal">Archive product</button>
-                <button class="delete__button" data-toggle="modal" data-target="#deleteModal">Delete product</button>
+                <button class="delete__button" id="delete-btn" onclick="prevent" data-toggle="modal" data-target="#deleteModal">Delete product</button>
             </span>
             <button class="btn btn-success" type="submit" style="float: right;">{{ trans('labels.Save_And_Continue') }}</button>
         {!! Form::close() !!}
@@ -750,23 +750,26 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="exampleModalLongTitle">Delete Dress Collection Linnea Danling?
+                            <h4 class="modal-title" id="exampleModalLongTitle">Delete {{$description_data['products_name']}}?
                             </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true"><i class="fa fa-times"
                                         style="font-size:27px;font-weight:normal;" aria-hidden="true"></i></span>
                             </button>
                         </div>
+                        {!! Form::open(array('url' =>'admin/products/delete', 'name'=>'deleteProduct', 'id'=>'deleteProduct', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
+                        <input type="hidden" name="products_id" value="<?=$result['product'][0]->products_id ?>">
+                        {!! Form::hidden('action',  'delete', array('class'=>'form-control')) !!}
+                        {{-- {!! Form::hidden('id', $result['product'][0]->products_id, array('class'=>'form-control', 'id'=>'id')) !!} --}}
                         <div class="modal-body">
-                            <p>Are you sure you want to delete the product Dress Collection Linnea Danling? This can’t
-                                be undone.</p>
+                            <p>{{ trans('labels.DeleteThisProductDiloge') }}?</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" style="font-weight: bold;"
-                                data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-danger" style="font-weight: bold;">Delete
-                                product</button>
+                                data-dismiss="modal">{{ trans('labels.Close') }}</button>
+                            <button type="submit"  class="btn btn-danger" style="font-weight: bold;">{{ trans('labels.DeleteProduct') }}</button>
                         </div>
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
@@ -978,7 +981,9 @@
 
 <script type="text/javascript">
 $(function() {
-
+    document.getElementById("delete-btn").addEventListener("click", function(event){
+    event.preventDefault()
+    });
     //for multiple languages
     @foreach($result['languages'] as $languages)
     // Replace the <textarea id="editor1"> with a CKEditor

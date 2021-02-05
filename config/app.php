@@ -171,6 +171,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
 
         App\Providers\RouteServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -243,7 +244,7 @@ return [
         'Image' => 'Folklore\Image\Facades\Image',
         'Madzipper' => Madnest\Madzipper\Madzipper::class,
         'PaytmWallet' => Anand\LaravelPaytmWallet\Facades\PaytmWallet::class,
-
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
 
     ],

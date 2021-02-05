@@ -9,7 +9,7 @@ use App\Models\Core\Setting;
 use App\Models\Core\Languages;
 use App\Models\Core\Manufacturers;
 use App\Models\Core\Categories;
-use App\Models\Core\Products;
+// use App\Models\Core\Products;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\AdminControllers\SiteSettingController;
@@ -22,7 +22,7 @@ class Products extends Model
 {
 
     use Sortable;
-    public $sortable =['products_id','updated_at'];
+    public $sortable =['products_id','updated_at','created_at'];
     public $sortableAs =['categories_name','products_name'];
 
 	public function paginator($request){
@@ -35,7 +35,65 @@ class Products extends Model
         $categories_id = $request->categories_id;
         $product  = $request->product;
         $results = array();
-        $data = $this->sortable(['products_id'=>'DESC'])
+        // dd($request->all());
+
+        if (isset($_REQUEST['sort_by']) and !empty($_REQUEST['sort_by'])) {
+            switch ($_REQUEST['sort_by']) {
+                case 'prod_title_asce':
+                    $sorter = 'products_name';
+                    $order = 'ASC';
+                    break;
+                
+                case 'prod_title_desc':
+                    $sorter = 'products_name';
+                    $order = 'DESC';
+                    break;
+                
+                case 'created_asce':
+                    $sorter = 'products_date_added';
+                    $order = 'ASC';
+                    break;
+                
+                case 'created_desc':
+                    $sorter = 'products_date_added';
+                    $order = 'DESC';
+                    break;
+                
+                case 'updated_asce':
+                    $sorter = 'productupdate';
+                    $order = 'ASC';
+                    break;
+                
+                case 'updated_desc':
+                    $sorter = 'productupdate';
+                    $order = 'DESC';
+                    break;
+                
+                case 'category_asce':
+                    $sorter = 'categories_name';
+                    $order = 'ASC';
+                    break;
+                
+                case 'category_desc':
+                    $sorter = 'categories_name';
+                    $order = 'DESC';
+                    break;
+                
+                default:
+                    $sorter = 'products_id';
+                    $order = 'DESC';
+                    break;
+            }
+
+
+        } else {
+            $sorter = 'products_id';
+            $order = 'DESC';
+        }
+        
+
+
+        $data = $this->sortable([$sorter => $order])
             ->leftJoin('products_description', 'products_description.products_id', '=', 'products.products_id')
             ->LeftJoin('manufacturers', function ($join) {
                 $join->on('manufacturers.manufacturers_id', '=', 'products.manufacturers_id');
@@ -53,18 +111,100 @@ class Products extends Model
                     });
             });
 
+            $data->leftJoin('products_to_categories', 'products.products_id', '=', 'products_to_categories.products_id')
+                ->leftJoin('categories', 'categories.categories_id', '=', 'products_to_categories.categories_id')
+                ->leftJoin('categories_description', 'categories.categories_id', '=', 'categories_description.categories_id');
+
+            $data->select('products.*', 'products_description.*', 'specials.specials_id', 'manufacturers.*',
+            'specials.products_id as special_products_id', 'specials.specials_new_products_price as specials_products_price',
+            'specials.specials_date_added as specials_date_added', 'specials.specials_last_modified as specials_last_modified',
+            'specials.expires_date', 'image_categories.path as path', 'products.updated_at as productupdate', 'categories_description.categories_id',
+            'categories_description.categories_name')
+                ->where('products_description.language_id', '=', $language_id)
+                ->where('categories_description.language_id', '=', $language_id);
+
+            if (isset($_REQUEST['categories_id']) and !empty($_REQUEST['categories_id'])) {
+                // if (!empty(session('categories_id'))) {
+                //     $cat_array = explode(',', session('categories_id'));
+                //     $data->whereIn('products_to_categories.categories_id', '=', $cat_array);
+                // }
+
+                // $data->where('products_to_categories.categories_id', '=', $_REQUEST['categories_id']);
+
+                if (isset($_REQUEST['product']) and !empty($_REQUEST['product'])) {
+                    $data->where('products_name', 'like', '%' . $_REQUEST['product'] . '%');
+                }
+
+                // if (isset($_REQUEST['sort_by']) and !empty($_REQUEST['sort_by'])) {
+                //     if ($_REQUEST['sort_by'] == 'prod_title_asce') {
+                //         $products = $data->orderBy('products_description.products_name', 'DESC')->where('categories_status', '1')->paginate($commonsetting['pagination']);
+
+                //     } else {
+                //         $products = $data->orderBy('products.products_id', 'DESC')->where('categories_status', '1')->paginate($commonsetting['pagination']);
+
+                //     }
+                    
+                // }
+                // else
+                // {
+                    $products = $data->orderBy('products.products_id', 'DESC')->where('categories_status', '1')->paginate($commonsetting['pagination']);
+                // }
+
+                // $products = $data->orderBy('products.products_id', 'DESC')
+                // ->where('categories_status', '1')->paginate($commonsetting['pagination']);
+
+            } else {
+
+                if (!empty(session('categories_id'))) {
+                    $cat_array = explode(',', session('categories_id'));
+                    $data->whereIn('products_to_categories.categories_id', $cat_array);
+                }
+                $products = $data->orderBy('products.products_id', 'DESC')
+                ->where('categories_status', '1')
+                ->where('is_current', '1')
+                ->groupBy('products.products_id')->paginate($commonsetting['pagination']);
+            }
+            // dd($products);
+            return $products;
+    }
+
+    public function getter(){
+        $setting = new Setting();
+        $myVarsetting = new SiteSettingController($setting);
+        $commonsetting = $myVarsetting->commonsetting();
+        $myVaralter = new AlertController($setting);
+
+        $language_id = '1';
+        $categories_id = '';
+        $product  = '';
+        $results = array();
+        $data = $this->sortable(['products_id'=>'ASC'])
+            ->leftJoin('products_description', 'products_description.products_id', '=', 'products.products_id')
+            ->LeftJoin('manufacturers', function ($join) {
+                $join->on('manufacturers.manufacturers_id', '=', 'products.manufacturers_id');
+            })
+            ->LeftJoin('specials', function ($join) {
+                $join->on('specials.products_id', '=', 'products.products_id')->where('status', '=', '1');
+            })
+            ->LeftJoin('image_categories', function ($join) {
+                $join->on('image_categories.image_id', '=', 'products.products_image')
+                    ->where(function ($query) {
+                        $query->where('image_categories.image_type', '=', 'THUMBNAIL')
+                            ->where('image_categories.image_type', '!=', 'THUMBNAIL')
+                            ->orWhere('image_categories.image_type', '=', 'ACTUAL');
+                    });
+            });
+
+    //  if (isset($_REQUEST['categories_id']) and !empty($_REQUEST['categories_id']) or !empty(session('categories_id'))) {
 
             $data->leftJoin('products_to_categories', 'products.products_id', '=', 'products_to_categories.products_id')
                 ->leftJoin('categories', 'categories.categories_id', '=', 'products_to_categories.categories_id')
                 ->leftJoin('categories_description', 'categories.categories_id', '=', 'categories_description.categories_id');
 
+    //  }
 
-
-        $data->select('products.*', 'products_description.*', 'specials.specials_id', 'manufacturers.*',
-        'specials.products_id as special_products_id', 'specials.specials_new_products_price as specials_products_price',
-        'specials.specials_date_added as specials_date_added', 'specials.specials_last_modified as specials_last_modified',
-        'specials.expires_date', 'image_categories.path as path', 'products.updated_at as productupdate', 'categories_description.categories_id',
-        'categories_description.categories_name')
+        $data->select('products.*', 'products_description.*', 'specials.specials_id', 'manufacturers.*', 'specials.products_id as special_products_id', 'specials.specials_new_products_price as specials_products_price', 'specials.specials_date_added as specials_date_added', 'specials.specials_last_modified as specials_last_modified', 'specials.expires_date', 'image_categories.path as path',
+        'products.updated_at as productupdate', 'categories_description.categories_id', 'categories_description.categories_name')
             ->where('products_description.language_id', '=', $language_id)
             ->where('categories_description.language_id', '=', $language_id);
 
@@ -80,8 +220,7 @@ class Products extends Model
                 $data->where('products_name', 'like', '%' . $_REQUEST['product'] . '%');
             }
 
-            $products = $data->orderBy('products.products_id', 'DESC')
-            ->where('categories_status', '1')->paginate($commonsetting['pagination']);
+            $products = $data->orderBy('products.products_id', 'DESC')->paginate($commonsetting['pagination']);
 
         } else {
 
@@ -90,85 +229,16 @@ class Products extends Model
                 $data->whereIn('products_to_categories.categories_id', $cat_array);
             }
             $products = $data->orderBy('products.products_id', 'DESC')
-            ->where('categories_status', '1')
-            ->where('is_current', '1')
             ->groupBy('products.products_id')->paginate($commonsetting['pagination']);
         }
 
         return $products;
     }
 
-  public function getter(){
-              $setting = new Setting();
-              $myVarsetting = new SiteSettingController($setting);
-              $commonsetting = $myVarsetting->commonsetting();
-              $myVaralter = new AlertController($setting);
-
-              $language_id = '1';
-              $categories_id = '';
-              $product  = '';
-              $results = array();
-              $data = $this->sortable(['products_id'=>'ASC'])
-                  ->leftJoin('products_description', 'products_description.products_id', '=', 'products.products_id')
-                  ->LeftJoin('manufacturers', function ($join) {
-                      $join->on('manufacturers.manufacturers_id', '=', 'products.manufacturers_id');
-                  })
-                  ->LeftJoin('specials', function ($join) {
-                      $join->on('specials.products_id', '=', 'products.products_id')->where('status', '=', '1');
-                  })
-                  ->LeftJoin('image_categories', function ($join) {
-                      $join->on('image_categories.image_id', '=', 'products.products_image')
-                          ->where(function ($query) {
-                              $query->where('image_categories.image_type', '=', 'THUMBNAIL')
-                                  ->where('image_categories.image_type', '!=', 'THUMBNAIL')
-                                  ->orWhere('image_categories.image_type', '=', 'ACTUAL');
-                          });
-                  });
-
-            //  if (isset($_REQUEST['categories_id']) and !empty($_REQUEST['categories_id']) or !empty(session('categories_id'))) {
-
-                  $data->leftJoin('products_to_categories', 'products.products_id', '=', 'products_to_categories.products_id')
-                      ->leftJoin('categories', 'categories.categories_id', '=', 'products_to_categories.categories_id')
-                      ->leftJoin('categories_description', 'categories.categories_id', '=', 'categories_description.categories_id');
-
-            //  }
-
-              $data->select('products.*', 'products_description.*', 'specials.specials_id', 'manufacturers.*', 'specials.products_id as special_products_id', 'specials.specials_new_products_price as specials_products_price', 'specials.specials_date_added as specials_date_added', 'specials.specials_last_modified as specials_last_modified', 'specials.expires_date', 'image_categories.path as path',
-              'products.updated_at as productupdate', 'categories_description.categories_id', 'categories_description.categories_name')
-                  ->where('products_description.language_id', '=', $language_id)
-                  ->where('categories_description.language_id', '=', $language_id);
-
-              if (isset($_REQUEST['categories_id']) and !empty($_REQUEST['categories_id'])) {
-                  if (!empty(session('categories_id'))) {
-                      $cat_array = explode(',', session('categories_id'));
-                      $data->whereIn('products_to_categories.categories_id', '=', $cat_array);
-                  }
-
-                  $data->where('products_to_categories.categories_id', '=', $_REQUEST['categories_id']);
-
-                  if (isset($_REQUEST['product']) and !empty($_REQUEST['product'])) {
-                      $data->where('products_name', 'like', '%' . $_REQUEST['product'] . '%');
-                  }
-
-                  $products = $data->orderBy('products.products_id', 'DESC')->paginate($commonsetting['pagination']);
-
-              } else {
-
-                  if (!empty(session('categories_id'))) {
-                      $cat_array = explode(',', session('categories_id'));
-                      $data->whereIn('products_to_categories.categories_id', $cat_array);
-                  }
-                  $products = $data->orderBy('products.products_id', 'DESC')
-                  ->groupBy('products.products_id')->paginate($commonsetting['pagination']);
-              }
-
-              return $products;
-          }
-
   public function insert($request){
     $language_id      =   '1';
     $date_added	= date('Y-m-d h:i:s');
-
+    // dd($request);
     $setting = new Setting();
     $myVarsetting = new SiteSettingController($setting);
     $myVaralter = new AlertController($setting);
@@ -723,6 +793,7 @@ class Products extends Model
     $myVarsetting = new SiteSettingController($setting);
     $myVaralter = new AlertController($setting);
     $products_id = $request->products_id;
+    
     $categories = DB::table('products_to_categories')->where('products_id', $products_id)->delete();
     $categories = DB::table('products')->where('products_id', $products_id)->delete();
     $categories = DB::table('specials')->where('products_id', $products_id)->delete();

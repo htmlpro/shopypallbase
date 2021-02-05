@@ -1,6 +1,6 @@
 @extends('admin.layout')
 @section('content')
-<div class="content-wrapper">
+<div class="content-wrapper container">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1> {{ trans('labels.Products') }} <small>{{ trans('labels.ListingAllProducts') }}...</small> </h1>
@@ -11,7 +11,7 @@
         </ol>
     </section>
     <!-- Main content -->
-    <section class="content">
+    <section class="content" style="max-width: 106rem; margin-left: 0;">
 
         <div class="">
             <h3 class="products___title">Products</h3>
@@ -34,8 +34,19 @@
                 <div class="searc_______option">
                     <div class="form-group">
                         <div class="icon-addon addon-md">
-                            <input type="text" placeholder="Filter products" class="form-control" id="email">
-                            <label for="email" class="glyphicon glyphicon-search" rel="tooltip" title="email"></label>
+                            <form action="{{url('admin/products/display')}}" method="get">
+                                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                <input type="hidden" name="categories_id" value="null">
+
+                                <input type="text" placeholder="Filter products" class="form-control" style="width: 60% !important;" name="product" id="parameter" @if(isset($product)) value="{{$product}}" @endif>
+
+                                <span><button id="submit" type="submit" class="btn btn-sm btn-default float right" style="height:34px;margin-left: -1px;">Search</button></span>
+
+                                @if(isset($product,$categories_id)) 
+                                <a class="btn btn-default " href="{{url('admin/products/display')}}"> x </a>
+                                @endif
+                                <label for="email" class="glyphicon glyphicon-search" rel="tooltip" title="email"></label>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -83,19 +94,24 @@
 
                     </div>
                 </div>
-                <a href="#" class="btn btn-primary btn___disable disabled" tabindex="-1" aria-disabled="true"
-                    role="button" data-bs-toggle="button"><i class="fa fa-star" aria-hidden="true"></i> Saved</a>
-                <select class="sort____bn">
-                    <option value="0" class="option___cs"><i class="fa fa-arrow-down" aria-hidden="true"></i> sort
-                    </option>
+                <a href="#" class="btn btn-primary btn___disable disabled" tabindex="-1" aria-disabled="true" role="button" data-bs-toggle="button"><i class="fa fa-star" aria-hidden="true"></i> Saved</a>
+                <form action="{{url('admin/products/display')}}" method="get">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+                    {{-- <input type="hidden" name="categories_id" value="null"> --}}
+                    <select class="sort____bn" name="sort_by" style="height: 34px; width: 177px;" onchange="this.form.submit()">
+                        <option value="0" class="option___cs"><i class="fa fa-arrow-down" aria-hidden="true"></i> sort
+                        </option>
 
-                    <option value="1">A to Z</option>
-                    <option value="1">1 to 10</option>
-                    <option value="1">A to Z</option>
-                    <option value="1">1 to 10</option>
-                    </option>
-
-                </select>
+                        <option value="prod_title_asce">Product Title (A to Z)</option>
+                        <option value="prod_title_desc">Product Title (Z to A)</option>
+                        <option value="created_asce">Created (Oldest First)</option>
+                        <option value="created_desc">Created (Newest First)</option>
+                        <option value="updated_asce">Updated (Oldest First)</option>
+                        <option value="updated_desc">Updated (Newest First)</option>
+                        <option value="category_desc">Product Type (A to Z)</option>
+                        <option value="category_asce">Product Type (Z to A)</option>
+                    </select>
+                </form>
 
             </div>
 
@@ -112,10 +128,10 @@
                         <th>
                             Product
                         </th>
-                        <th>@sortablelink('categories_name', trans('labels.Category') )</th>
-                        <th>@sortablelink('products_name', trans('labels.Name') )</th>
+                        <th>{{trans('labels.Category')}}</th>
+                        <th>{{trans('labels.Name') }}</th>
                         <th>{{ trans('labels.Additional info') }}</th>
-                        <th>@sortablelink('created_at', trans('labels.ModifiedDate') )</th>
+                        <th>{{trans('labels.ModifiedDate')}}</th>
 
                     </tr>
                 </thead>
@@ -182,7 +198,11 @@
                                     @endif
                                 @endif
                             </td>
-                            <td>{{ $product->productupdate }}</td>
+                                <?php 
+                                    $date = date_create($product->productupdate);
+                                    $update_date = date_format($date,"d-M-Y");
+                                ?>
+                            <td>{{ $update_date }}</td>
                         </tr>
                         @endforeach
                     @else
@@ -194,7 +214,29 @@
             </table>
 
             <div class="w-100 last__result">
-                <p>Showing 1 to 1 of 1 entries</p>
+                @php
+                    if($results['products']->total()>0){
+                        $fromrecord = ($results['products']->currentpage()-1)*$results['products']->perpage()+1;
+                    }else{
+                        $fromrecord = 0;
+                    }
+
+                    if($results['products']->total() < $results['products']->currentpage()*$results['products']->perpage()){
+                        $torecord = $results['products']->total();
+                    }else{
+                        $torecord = $results['products']->currentpage()*$results['products']->perpage();
+                    }
+                @endphp
+                
+                {{-- <div class="col-xs-12 col-md-6" style="padding:30px 15px; border-radius:5px;"> --}}
+                    <div>Showing {{$fromrecord}} to {{$torecord}}
+                        of  {{$results['products']->total()}} entries
+                    </div>
+                {{-- </div> --}}
+                <div class="col-xs-12 col-md-6 text-right">
+                    {{$results['products']->links()}}
+                </div>
+          </div>
             </div><br />
         </div>
 </div>
@@ -302,10 +344,14 @@
                 <hr />
                 <p>Learn more about <a href=""> exporting products to CSV file </a>or the <a href="">Bulk editor</a></p>
             </div>
+            <form action="{{url('admin/products/export')}}" method="GET">
+                @csrf
+            
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success">Export products</button>
+                <button type="submit" class="btn btn-success">Export products</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
