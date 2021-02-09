@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminControllers;
 
 use App\Exports\ProductExports;
+use App\Imports\ProductImport;
 use App\Http\Controllers\AdminControllers\AlertController;
 use App\Http\Controllers\AdminControllers\SiteSettingController;
 use App\Http\Controllers\Controller;
@@ -41,6 +42,16 @@ class ProductController extends Controller
     public function export(){
         // return Excel::download(new ProductExports, 'ProductExport.xlsx');
         return (new ProductExports)->download('products.csv', \Maatwebsite\Excel\Excel::CSV);
+        // return (new ProductExport)->download('products.csv', \Maatwebsite\Excel\Excel::CSV);
+    }
+
+
+    public function import(Request $request){
+        // dd($request->all());
+        // return Excel::download(new ProductExports, 'ProductExport.xlsx');
+        Excel::import(new ProductImport, request()->file('ProductImport'));
+        return redirect()->back();
+        // return (new ProductExports)->download('products.csv', \Maatwebsite\Excel\Excel::CSV);
         // return (new ProductExport)->download('products.csv', \Maatwebsite\Excel\Excel::CSV);
     }
 
@@ -243,6 +254,7 @@ class ProductController extends Controller
         
        
         $result = $this->products->updaterecord($request);
+        $this->productExport->updateProduct($request);
         $products_id = $request->id;
         if ($request->products_type == 1) {
             return redirect('admin/products/attach/attribute/display/' . $products_id);

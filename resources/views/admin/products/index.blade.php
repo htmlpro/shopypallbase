@@ -253,29 +253,34 @@
                             aria-hidden="true"></i></span>
                 </button>
             </div>
-            <div class="modal-body">
 
+        <form action="{{url('admin/products/import')}}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="modal-body">
                 <p>Download a <a href="">sample CSV template</a> to see an example of the format required.</p>
-                <div class="Modal____sty">
+                <div class="Modal____sty text-center" >
                     <i class="fa fa-arrow-circle-up" style="font-size:50px;padding-top:6%;" aria-hidden="true"></i>
-                    <button>Add file</button>
-                    <p style="padding-bottom:5%;">or drop file to upload</p>
+                    {{-- <button> --}}
+                        <input type="file" name="ProductImport" style="margin-left: 71px;">
+                    {{-- </button> --}}
+                    {{-- <p style="padding-bottom:5%;">or drop file to upload</p> --}}
                 </div>
-                <hr />
+                {{-- <hr />
                 <div class="form-check" style="">
                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                     <label class="form-check-label" for="flexCheckDefault">
                         <p style="font-weight:normal; margin-left:8px;"> Overwrite any current products that have the
                             same handle. <a href="">learn more</a></p>
                     </label>
-                </div>
+                </div> --}}
             </div>
             <div class="modal-footer">
 
                 <button type="button" class="btn btn-secondary" style="font-weight: bold;"
                     data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-secondary" style="font-weight: bold;">Upload and continue</button>
+                <button type="submit" class="btn btn-secondary" style="font-weight: bold;">Upload and continue</button>
             </div>
+        </form>
         </div>
     </div>
 </div>
