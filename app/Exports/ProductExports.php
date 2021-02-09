@@ -6,7 +6,6 @@ use App\Models\Core\ProductExport;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\Exportable;
-
 use PhpOffice\PhpSpreadsheet\Cell\Cell;
 // use Maatwebsite\Excel\Concerns\ToModel;
 use PhpOffice\PhpSpreadsheet\Cell\DataType;
@@ -55,6 +54,20 @@ class ProductExports extends DefaultValueBinder  implements FromCollection,  Wit
 			'products_weight',
 			'products_weight_unit',
 			'products_model',
+            'isFlash',
+            'flash_sale_products_price',
+            'flash_created_at',
+            'flash_start_date',
+            'flash_start_time',
+            'date_status_change',
+            'flash_end_time',
+            'flash_status',
+            'isSpecial',
+            'specials_new_products_price',
+            'expires_date',
+            'status',
+            'flash_expires_date',
+            'specials_last_modified',
 			'image_id',
 			'products_video_link',
 			'products_name_1',
@@ -67,6 +80,4 @@ class ProductExports extends DefaultValueBinder  implements FromCollection,  Wit
 			'updated_at',
         ];
     }
-
-   
 }

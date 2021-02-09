@@ -28,6 +28,19 @@ class CreateProductExportsTable extends Migration
             $table->string('products_weight', 191)->nullable();
             $table->string('products_weight_unit', 191)->nullable();
             $table->string('products_model', 191);
+
+            $table->string('isFlash', 191)->default('no');
+            $table->integer('flash_sale_products_price')->nullable();
+            $table->date('flash_start_date')->nullable();
+            $table->time('flash_start_time')->nullable();
+            $table->date('flash_expires_date')->nullable();
+            $table->time('flash_end_time')->nullable();
+            $table->boolean('flash_status')->default(0);
+            $table->string('isSpecial', 191)->default('no');
+            $table->integer('specials_new_products_price')->nullable();
+            $table->date('expires_date')->nullable();
+            $table->boolean('status')->default(0);
+
 			$table->text('image_id')->nullable();
 			$table->text('products_video_link')->nullable();
             $table->string('products_name_1', 64);

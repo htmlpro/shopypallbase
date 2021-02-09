@@ -234,6 +234,7 @@ class ProductController extends Controller
 
     public function update(Request $request)
     {
+        // dd($request->all());
         $startdate = strtotime($request->flash_start_date);
         $expiredate = strtotime($request->flash_expires_date);
         $startdate = $request->flash_start_date;
@@ -291,6 +292,7 @@ class ProductController extends Controller
 
     public function insert(Request $request)
     {
+        // dd($request->all());
         $startdate = strtotime($request->flash_start_date);
         $expiredate = strtotime($request->flash_expires_date);
         $startdate = $request->flash_start_date;

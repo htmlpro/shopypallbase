@@ -269,7 +269,7 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-12 mx-auto edit_page__main1">
                     <h4>COLLECTIONS</h4>
-                    <div class="searc_______option" style="width:97%;">
+                    <div class="searc_______option mb-3" style="width:97%;padding-left: 14px;padding-right: 9px;">
                         <div class="form-group">
                             <div class="icon-addon addon-md">
                                 <input type="text" placeholder="search for collections" class="form-control" id="email">
@@ -474,6 +474,148 @@
                         <option value="gm" @if($result['product'][0]->products_weight_unit=='gm') selected @endif>Gm</option>
                         
                     </select>
+                </div>
+            </div>
+
+            <div class="row ">
+                <div class="col-lg-12 col-md-12 col-12 mx-auto edit_page_main_2">
+                    <span style="display:flex;">
+                        <p>Varients</p>
+                        <a href="" class="add_varient-cs">Add varients</a>
+                        <select class="form-select draft___prod122" aria-label="Default select example">
+                            <option selected>More options</option>
+                            <option value="1">edit option</option>
+                            <option value="2">reorder varient</option>
+
+                        </select>
+                    </span>
+                    <br />
+                    <span style="display:flex;">
+                        <p>Select</p>
+                        <a href="#" style="margin-left:11px;">All</a>
+                        <a href="#" style="margin-left:11px;">None</a>
+                        <a href="#" style="margin-left:11px;">red</a>
+                    </span>
+
+                    <div style="overflow-x:auto;">
+                        <table style="border-collapse: collapse; border-spacing: 0;width: 113%;" class="table-hover">
+                            <tr>
+                                <th style="text-align: left;padding: 8px;">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+
+                                    </div>
+                                </th>
+                                <th style="text-align: left;padding: 8px;"></th>
+                                <th style="text-align: left;padding: 8px;">Color</th>
+                                <th style="text-align: left;padding: 8px;">Price</th>
+                                <th style="text-align: left;padding: 8px;">Quantity</th>
+                                <th style="text-align: left;padding: 8px;margin-left:12px;">SKU</th>
+
+                            </tr>
+
+                            <tr>
+                                <hr />
+                                <td style="text-align: left;padding: 8px;">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+
+                                    </div>
+                                </td>
+                                <td style="text-align: left;padding: 8px;">
+                                    <button class="images___button">
+                                        <img src="https://images.unsplash.com/photo-1611223178400-a1e2b0f8bcab?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=375&q=80"
+                                            alt="" class="edit__product____img" />
+                                    </button>
+                                </td>
+                                <td style="text-align: left;padding: 8px;">
+                                    <div class="mb-3" style="width:102%">
+
+                                        <input type="text" class="form-control " id="exampleFormControlInput1"
+                                            placeholder="colors">
+                                    </div>
+                                </td>
+                                <td style="text-align: left;padding: 8px;">
+                                    <div class="mb-3" style="width:100%">
+
+                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                            placeholder="PKR.0.00">
+                                    </div>
+                                </td>
+                                <td style="text-align: left;padding: 8px;">
+                                    <div class="mb-3" style="width:102%">
+
+                                        <input type="number" class="form-control" id="exampleFormControlInput1"
+                                            placeholder="">
+                                    </div>
+                                </td>
+                                <td style="text-align: left; padding: 8px;">
+                                    <div class="mb-3" style="width:102%">
+
+                                        <input type="text" class="form-control" id="exampleFormControlInput1">
+                                    </div>
+                                </td>
+                                <td style="text-align: left;padding: 8px;">
+                                    <div class="btn-grouppp" style="width:100%">
+                                        <button style="width:100%">Edit</button>
+                                        <button style="width:100%" data-toggle="modal" data-target="#deleteModaltable">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;padding: 8px;">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+
+                                    </div>
+                                </td>
+                                <td style="text-align: left;padding: 8px;">
+                                    <button class="images___button">
+                                        <img src="https://images.unsplash.com/photo-1611223178400-a1e2b0f8bcab?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=375&q=80"
+                                            alt="" class="edit__product____img" />
+                                    </button>
+                                </td>
+                                <td style="text-align: left;padding: 8px;">
+                                    <div class="mb-3" style="width:102%">
+
+                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                            placeholder="colors">
+                                    </div>
+                                </td>
+                                <td style="text-align: left;padding: 8px;">
+                                    <div class="mb-3" style="width:100%">
+
+                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                            placeholder="PKR.0.00">
+                                    </div>
+                                </td>
+                                <td style="text-align: left;padding: 8px;">
+                                    <div class="mb-3" style="width:102%">
+
+                                        <input type="number" class="form-control" id="exampleFormControlInput1"
+                                            placeholder="">
+                                    </div>
+                                </td>
+                                <td style="text-align: left;padding: 8px;">
+                                    <div class="mb-3" style="width:102%">
+
+                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                            placeholder="">
+                                    </div>
+                                </td>
+                                <td style="text-align: left;padding: 8px;">
+                                    <div class="btn-grouppp" style="width:100%">
+                                        <button style="width:100%">Edit</button>
+                                        <button style="width:100%" data-toggle="modal" data-target="#deleteModaltable">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
     
