@@ -216,4 +216,10 @@ class OrdersController extends Controller
         return redirect()->back()->with('message', Lang::get("labels.Orders successfully assigned to the delivery boy"));
     }
 
+	public function addOrder(Request $request)
+    {
+		$title = array('pageTitle' => Lang::get("labels.NewOrder"));
+		$result['commonContent'] = $this->Setting->commonContent();
+        return view("admin.Orders.addorder", $title)->with('result', $result);
+    }
 }

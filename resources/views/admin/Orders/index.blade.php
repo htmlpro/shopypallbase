@@ -21,6 +21,9 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">{{ trans('labels.ListingAllOrders') }} </h3>
+							<div class="box-tools pull-right">
+                                <a href="addorder" type="button" class="btn btn-block btn-primary">New Order</a>
+                            </div>
                         </div>
 
                         <!-- /.box-header -->
