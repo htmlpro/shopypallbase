@@ -71,14 +71,14 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-12 first____secc">
-                    <select class="form-control" name="manufacturers_id">
+                    {{-- <select class="form-control" name="manufacturers_id">
                         <option value="">{{ trans('labels.ChooseManufacturers') }}</option>
                         @foreach ($result['manufacturer'] as $manufacturer)
                         <option value="{{ $manufacturer->id }}">{{ $manufacturer->name }}</option>
                         @endforeach
                     </select><span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
                         {{ trans('labels.ChooseManufacturerText') }}.</span>
-                    <hr class="w-100" />
+                    <hr class="w-100" /> --}}
                     <p>SALES CHANNELS AND APPS</p>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>

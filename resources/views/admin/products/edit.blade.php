@@ -151,7 +151,7 @@
                         {{-- <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="types..."> --}}
                     </div>
     
-                    <br>
+                    {{-- <br>
                     
                     <h5>{{ trans('labels.Manufacturers') }}</h5>
                     <select class="form-select draft___prod" name="manufacturers_id" aria-label="Default select example">
@@ -164,7 +164,7 @@
                             @endforeach
                     </select>
                     <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
-                        {{ trans('labels.ChooseManufacturerText') }}.</span>
+                        {{ trans('labels.ChooseManufacturerText') }}.</span> --}}
                     <br>
     
                     <h5>{{ trans('labels.TaxClass') }}</h5>

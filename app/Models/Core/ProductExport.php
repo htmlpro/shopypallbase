@@ -34,8 +34,8 @@ class ProductExport extends Model
 		{
 			$flash_start_date = 0;
 			$flash_expires_date = 0;
-			$starttime = 0;
-			$expiretime =0;
+			$flashStartTime = 0;
+			$flashEndTime =0;
 		}
 
 		if($request->isSpecial == 'no'){

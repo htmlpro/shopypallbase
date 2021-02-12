@@ -30,7 +30,7 @@ class ProductImport implements ToCollection, WithHeadingRow
             }
 
             $language_id      =   '1';
-            $date_added	= date('Y-m-d h:i:s');
+            $date_added	= strtotime(date('Y-m-d h:i:s'));
             // dd($request);
             $setting = new Setting();
             $myVarsetting = new SiteSettingController($setting);
@@ -80,11 +80,28 @@ class ProductImport implements ToCollection, WithHeadingRow
                 'is_current'         => 1
             ]);
 
+            $prodName_1 = '';
+            $prodName_2 = '';
+            $prodDesc_1 = '';
+            $prodDesc_2 = '';
+            $prodUrl_2 = '';
+            $prodUrl_1 = '';
+
             $i = 1;
-            foreach($languages as $languages_data){
+            foreach($languages as $languages_data){ 
                 $req_products_name = $row['products_name_'.$i] ;
                 $req_products_url =  $row['products_url_'.$i];
                 $req_products_description = $row['products_description_'.$i];
+
+                if ($i == 1) {
+                    $prodName_1 = $req_products_name;
+                    $prodDesc_1 = $req_products_description;
+                    $prodUrl_1 = $req_products_url;
+                } else if ($i == 2){
+                    $prodName_2 = $req_products_name;
+                    $prodDesc_2 = $req_products_description;
+                    $prodUrl_2 = $req_products_url;
+                }
                 DB::table('products_description')->insert([
                     'products_name' => $req_products_name,
                     'language_id' => $languages_data->languages_id,
@@ -114,6 +131,9 @@ class ProductImport implements ToCollection, WithHeadingRow
                     'flash_expires_date' => $flash_expires_date,
                     'flash_status' => $row['flash_status']
                 ]);
+            }else{
+                $flash_start_date = 0000;
+                $flash_expires_date = 0000;
             }
 
             //special product
@@ -143,69 +163,81 @@ class ProductImport implements ToCollection, WithHeadingRow
             ]);
 
             
-            // if ( $row['products_type'] == null) {
-            //     $row['products_type'] = 0;
-            // }
+            if ( $row['products_type'] == null) {
+                $row['products_type'] = 0;
+            }
 
-            // if ( $row['tax_class_id'] == null) {
-            //     $row['tax_class_id'] = 0;
-            // }
+            if ( $row['tax_class_id'] == null) {
+                $row['tax_class_id'] = 0;
+            }
 
-            // if ( $row['flash_created_at'] == null) {
-            //     $row['flash_created_at'] = $row['created_at'];
-            // }
+            if ( $row['flash_created_at'] == null) {
+                $row['flash_created_at'] = strtotime($row['created_at']);
+            }
 
-            // if ( $row['flash_expires_date'] == null) {
-            //     $row['flash_expires_date'] = $flash_start_date;
-            // }
+            if ( $row['flash_start_date'] == null) {
+                $row['flash_start_date'] = $flash_start_date;
+            }
 
-            // if ( $row['expires_date'] == null) {
-            //     $row['expires_date'] = 0;
-            // }
+            if ( $row['flash_start_time'] == null) {
+                $row['flash_start_time'] = 000;
+            }
 
-            // if ( $row['status'] == null) {
-            //     $row['status'] = 0;
-            // }
+            if ( $row['flash_expires_date'] == null) {
+                $row['flash_expires_date'] = $flash_expires_date;
+            }
+
+            if ( $row['expires_date'] == null) {
+                $row['expires_date'] = 0;
+            }
+
+            if ( $row['status'] == null) {
+                $row['status'] = 0;
+            }
+
+            if ( $row['isspecial'] == null) {
+                $row['isspecial'] = 0;
+            }
             
 
-            // ProductExport::create([
-            //     'products_type' => $row['products_type'],
-            //     'products_id' => $row['products_id'],
-            //     'product_category_id' => 0,
-            //     'is_feature' => $row['is_feature'],
-            //     'products_status' => $row['products_status'],
-            //     'products_price' => $row['products_price'],
-            //     'tax_class_id' => $row['tax_class_id'],
-            //     'products_min_order' => $row['products_min_order'],
-            //     'products_max_stock' => $row['products_max_stock'],
-            //     'products_weight' => $row['products_weight'],
-            //     'products_weight_unit' => $row['products_weight_unit'],
-            //     'products_model' => $row['products_model'],
+            ProductExport::create([
+                'products_type' => $row['products_type'],
+                'products_id' => $row['products_id'],
+                'product_category_id' => $row['product_category_id'],
+                'is_feature' => $row['is_feature'],
+                'products_status' => $row['products_status'],
+                'products_price' => $row['products_price'],
+                'tax_class_id' => $row['tax_class_id'],
+                'products_min_order' => $row['products_min_order'],
+                'products_max_stock' => $row['products_max_stock'],
+                'products_weight' => $row['products_weight'],
+                'products_weight_unit' => $row['products_weight_unit'],
+                'products_model' => $row['products_model'],
     
-            //     'isFlash' => $row['isflash'],
-            //     'flash_sale_products_price' => $row['flash_sale_products_price'],
-            //     'flash_created_at' => $row['flash_created_at'],
-            //     'flash_start_date' => $row['flash_start_date'],
-            //     'flash_start_time' => $row['flash_start_time'],
-            //     'flash_expires_date' => $row['flash_expires_date'],
-            //     'flash_end_time' => $row['flash_end_time'],
-            //     'flash_status' => $row['flash_status'],
-            //     'isSpecial' => $row['isspecial'],
-            //     'specials_new_products_price' => $row['specials_new_products_price'],
-            //     'expires_date' => $row['expires_date'],
-            //     'date_status_change' => $row['date_status_change'],
-            //     'specials_last_modified' => $row['specials_last_modified'],
-            //     'status' => $row['status'],
+                'isFlash' => $row['isflash'],
+                'flash_sale_products_price' => $row['flash_sale_products_price'],
+                'flash_created_at' => $row['flash_created_at'],
+                'flash_start_date' => $row['flash_start_date'],
+                'flash_start_time' => $row['flash_start_time'],
+                'flash_expires_date' => $row['flash_expires_date'],
+                'flash_end_time' => $row['flash_end_time'],
+                'flash_status' => $row['flash_status'],
+                'isSpecial' => $row['isspecial'],
+                'specials_new_products_price' => $row['specials_new_products_price'],
+                'expires_date' => $row['expires_date'],
+                'date_status_change' => $date_added,
+                'specials_last_modified' => $date_added,
+                'status' => $row['status'],
     
-            //     'image_id' => $row['image_id'],
-            //     'products_video_link' => $row['products_video_link'],
-            //     'products_name_1' => $row['products_name_1'],
-            //     'products_url_1' => $row['products_url_1'],
-            //     'products_description_1' => $row['products_description_1'],
-            //     'products_name_2' => $row['products_name_2'],
-            //     'products_url_2' => $row['products_url_2'],
-            //     'products_description_2' => $row['products_description_2'],
-            // ]);
+                'image_id' => $uploadImage,
+                'products_video_link' => $row['products_video_link'],
+                'products_name_1' => $prodName_1,
+                'products_url_1' => $prodUrl_1,
+                'products_description_1' => $prodDesc_1,
+                'products_name_2' => $prodName_2,
+                'products_url_2' => $prodUrl_2,
+                'products_description_2' => $prodDesc_2,
+            ]);
             
         }
     }
