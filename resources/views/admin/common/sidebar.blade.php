@@ -77,7 +77,7 @@
       <?php
             if($result['commonContent']['roles']!= null and $result['commonContent']['roles']->reports_view == 1){
           ?>
-        <li class="treeview {{ Request::is('admin/maxstock') ? 'active' : '' }} {{ Request::is('admin/minstock') ? 'active' : '' }} {{ Request::is('admin/inventoryreport') ? 'active' : '' }} {{ Request::is('admin/salesreport') ? 'active' : '' }} {{ Request::is('admin/couponreport') ? 'active' : '' }} {{ Request::is('admin/customers-orders-report') ? 'active' : '' }} {{ Request::is('admin/outofstock') ? 'active' : '' }} {{ Request::is('admin/statsproductspurchased') ? 'active' : '' }} {{ Request::is('admin/statsproductsliked') ? 'active' : '' }} {{ Request::is('admin/lowinstock') ? 'active' : '' }}">
+        <li class="treeview {{ Request::is('admin/maxstock') ? 'active' : '' }} {{ Request::is('admin/minstock') ? 'active' : '' }} {{ Request::is('admin/inventoryreport') ? 'active' : '' }} {{ Request::is('admin/salesreport') ? 'active' : '' }} {{ Request::is('admin/couponreport') ? 'active' : '' }} {{ Request::is('admin/customers-orders-report') ? 'active' : '' }} {{ Request::is('admin/outofstock') ? 'active' : '' }} {{ Request::is('admin/statsproductspurchased') ? 'active' : '' }} {{ Request::is('admin/statsproductsliked') ? 'active' : '' }} {{ Request::is('admin/lowinstock') ? 'active' : '' }} {{ Request::is('admin/facebook-pixel') ? 'active' : '' }} {{ Request::is('admin/google-code') ? 'active' : '' }}">
           <a href="#">
             <i class="fa fa-file-text-o" aria-hidden="true"></i>
             <span>{{ trans('labels.link_reports') }}</span> <i class="fa fa-angle-left pull-right"></i>
@@ -96,7 +96,8 @@
 
             <li class="{{ Request::is('admin/couponreport') ? 'active' : '' }}"><a href="{{ URL::to('admin/couponreport')}}"><i class="fa fa-circle-o"></i> {{ trans('labels.Coupon Report') }}</a></li>
             <li class="{{ Request::is('admin/salesreport') ? 'active' : '' }}"><a href="{{ URL::to('admin/salesreport')}}"><i class="fa fa-circle-o"></i> {{ trans('labels.Sales Report') }}</a></li>
-            
+            <li class="{{ Request::is('admin/facebook-pixel') ? 'active' : '' }}"><a href="{{ URL::to('admin/facebook-pixel')}}"><i class="fa fa-circle-o"></i> Facebook Pixel</a></li>
+            <li class="{{ Request::is('admin/google-code') ? 'active' : '' }}"><a href="{{ URL::to('admin/google-code')}}"><i class="fa fa-circle-o"></i> Google Code</a></li>
           </ul>
         </li>
       <?php } ?>
