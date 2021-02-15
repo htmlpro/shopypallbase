@@ -1,0 +1,142 @@
+
+.bg-style{
+	background-color: var(--p-surface, #fff);
+    border-radius: var(--p-border-radius-wide, 3px);
+    -webkit-box-shadow: var(--p-card-shadow, 0 0 0 1px rgba(63,63,68,0.05), 0 1px 3px 0 rgba(63,63,68,0.15));
+    box-shadow: var(--p-card-shadow, 0 0 0 1px rgba(63,63,68,0.05), 0 1px 3px 0 rgba(63,63,68,0.15));
+}
+.customesearch .has-search .form-control-feedback {
+    right: initial;
+    left: 0;
+    color: #ccc;
+}
+
+.customesearch .has-search .form-control {
+	padding-right: 12px;
+    padding-left: 34px;
+    max-width: 77.5%;
+    display: inline-block;
+}
+.customesearch .has-search .form-control-feedback{
+	color: #a2a2a2;
+}
+.form-control{
+	border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.search_customerMain .has-search .form-control{
+	max-width: 100%;
+}
+
+
+
+/* Global "table" column settings */
+.product-image { float: left; width: 15%; }
+.product-details { float: left; width: 30%; }
+.product-price { float: left; width: 12%; }
+.product-quantity { float: left; width: auto; }
+.product-removal { float: left; width: 9%; }
+.product-line-price { float: left; width: 12%; text-align: right; }
+
+
+/* This is used as the traditional .clearfix class */
+.group:before,
+.group:after {
+    content: '';
+    display: table;
+} 
+.group:after {
+    clear: both;
+}
+.group {
+    zoom: 1;
+}
+
+
+/* Apply clearfix in a few places */
+.shopping-cart, .column-labels, .product, .totals-item {
+  @extend .group;
+}
+
+
+/* Apply dollar signs */
+.product .product-price:before, .product .product-line-price:before, .totals-value:before {
+  content: '$';
+}
+
+
+
+
+
+/* Product entries */
+.product {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  overflow: hidden;
+
+  }
+
+  .product-image {
+    text-align: center;
+	}
+    .product-image img {
+      width: 50px;
+    }
+  
+  
+  .product-details  .product-title {
+      margin-right: 20px;
+    }
+    .product-details .product-description {
+      margin: 5px 20px 5px 0;
+      line-height: 1.4em;
+    }
+
+  
+  .product-quantity input {
+		max-width: 90%;
+    }
+
+  
+  .remove-product {
+    border: 0;
+    padding: 4px 8px;
+    background-color: #c66;
+    color: #fff;
+    font-family: $font-bold;
+    font-size: 12px;
+    border-radius: 3px;
+  }
+  
+  .remove-product:hover {
+    background-color: #a44;
+  }
+
+
+
+/* Totals section */
+.totals .totals-item {
+    float: right;
+    clear: both;
+    width: 100%;
+    margin-bottom: 10px;
+}
+    
+   .totals .totals-item label {
+      float: left;
+      clear: both;
+      width: 79%;
+      text-align: right;
+    }
+    
+   .totals .totals-item .totals-value {
+      float: right;
+      width: 21%;
+      text-align: right;
+    }

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Lang;
 use App\Models\Core\Order;
+use App\Models\Core\User;
 use DataTables;
 
 class OrdersController extends Controller
@@ -45,7 +46,9 @@ class OrdersController extends Controller
 			$ordersData['orders'] = $this->Order->paginator();
 			$ordersData['message'] = $message;
 			$ordersData['errorMessage'] = $errorMessage;
-			$ordersData['currency'] = $this->myVarsetting->getSetting(); 
+			$ordersData['currency'] = $this->myVarsetting->getSetting();
+			$ordersData['savedViews'] = User::find(1)->savedOrderViews;
+			//print_r($ordersData['savedViews']);
 			$result['commonContent'] = $this->Setting->commonContent();
 			return view("admin.Orders.index", $title)->with('listingOrders', $ordersData)->with('result', $result);
 		}
@@ -213,4 +216,10 @@ class OrdersController extends Controller
         return redirect()->back()->with('message', Lang::get("labels.Orders successfully assigned to the delivery boy"));
     }
 
+	public function addOrder(Request $request)
+    {
+		$title = array('pageTitle' => Lang::get("labels.NewOrder"));
+		$result['commonContent'] = $this->Setting->commonContent();
+        return view("admin.Orders.addorder", $title)->with('result', $result);
+    }
 }

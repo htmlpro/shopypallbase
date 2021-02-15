@@ -368,6 +368,9 @@ Route::group(['middleware' => ['installer']], function () {
         Route::post('/updateOrderStatus', 'SiteSettingController@updateOrderStatus')->middleware('edit_order');
         Route::post('/deleteOrderStatus', 'SiteSettingController@deleteOrderStatus')->middleware('edit_order');
         Route::post('/assignorders', 'OrdersController@assignorders')->middleware('edit_order');
+		
+		Route::get('/addorder', 'OrdersController@addOrder')->middleware('edit_order');
+		Route::resource('/savedorderviews', SavedOrderViewController::class);
 
     });
 
@@ -606,5 +609,5 @@ Route::group(['middleware' => ['installer']], function () {
         });
 
       });
-
+	
 });

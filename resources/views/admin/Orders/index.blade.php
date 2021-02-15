@@ -21,6 +21,9 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">{{ trans('labels.ListingAllOrders') }} </h3>
+							<div class="box-tools pull-right">
+                                <a href="addorder" type="button" class="btn btn-block btn-primary">New Order</a>
+                            </div>
                         </div>
 
                         <!-- /.box-header -->
@@ -42,7 +45,7 @@
 									
 								</div>
                                 <div class="col-xs-12">
-                                    <table id="example1" class="table table-bordered table-striped yajra-datatable">
+                                    <table id="example1" class="table table-bordered table-striped yajra-datatable" data-savedviews='{{ $listingOrders["savedViews"] }}'>
                                         <thead>
                                         <tr>
                                             <th>{{ trans('labels.ID') }}</th>
@@ -241,6 +244,30 @@
 				  </div>
 				</div>
 			</aside>
+			
+			<div class="dropdown-menu sort-menu" aria-labelledby="dropdownSaveView">
+				<div class="card">
+					<div class="card-header" id="orderDate">
+					  <h2 class="mb-0">
+						<button class="btn btn-default collapsed" type="button" data-toggle="collapse" data-target="#collapseOrderDate" aria-expanded="false" aria-controls="collapseTwo">
+						  Order Date
+						  <span class="caret"></span>
+						</button>
+					  </h2>
+					</div>
+					<div id="collapseOrderDate" class="collapse" aria-labelledby="orderDate" data-parent="#accordionMoreFilters">
+					  <div class="card-body">
+						<ul class="" >
+							<li><label class="radio-inline"><input type="radio" name="optradio">Today</label></li>
+							<li><label class="radio-inline"><input type="radio" name="optradio">Last 7 Days</label></li>
+							<li><label class="radio-inline"><input type="radio" name="optradio">Last 30 Days</label></li>
+							<li><label class="radio-inline"><input type="radio" name="optradio">Last 90 Days</label></li>
+							<li><label class="radio-inline"><input type="radio" name="optradio">Last 12 Months</label></li>
+						</ul>
+					  </div>
+					</div>
+				</div>
+			</div>
             <!-- Main row -->
 
             <!-- /.row -->

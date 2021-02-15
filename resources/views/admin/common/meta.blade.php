@@ -56,6 +56,8 @@
   <!-- Filer & Datatables -->
   <link rel="stylesheet" href="{!! asset('admin/css/filters_datatable.css') !!} ">
 
+  <link rel="stylesheet" href="{!! asset('admin/css/order.css') !!} ">
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
