@@ -159,6 +159,8 @@ Route::group(['middleware' => ['installer']], function () {
 
     Route::group(['prefix' => 'admin/products', 'middleware' => 'auth', 'namespace' => 'AdminControllers'], function () {
         Route::get('/display', 'ProductController@display')->middleware('view_product');
+        Route::get('/export', 'ProductController@export')->middleware('view_product');
+        Route::post('/import', 'ProductController@import')->middleware('view_product');
         Route::get('/add', 'ProductController@add')->middleware('add_product');
         Route::post('/add', 'ProductController@insert')->middleware('add_product');
         Route::get('/edit/{id}', 'ProductController@edit')->middleware('edit_product');

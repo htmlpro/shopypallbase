@@ -20,6 +20,7 @@
         "laravel/socialite": "^4.1",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^6.0.3",
+        "maatwebsite/excel": "^3.1",
         "madnest/madzipper": "^1.0",
         "orangehill/iseed": "^2.6",
         "php-http/guzzle6-adapter": "^2.0",
@@ -28,6 +29,7 @@
         "spatie/db-dumper": "^2.14",
         "vectorcoder/laravel-installer": "dev-master",
         "yajra/laravel-datatables-oracle": "~9.0"
+
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

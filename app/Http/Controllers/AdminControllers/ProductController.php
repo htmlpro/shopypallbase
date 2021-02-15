@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\AdminControllers;
 
+use App\Exports\ProductExports;
+use App\Imports\ProductImport;
 use App\Http\Controllers\AdminControllers\AlertController;
 use App\Http\Controllers\AdminControllers\SiteSettingController;
 use App\Http\Controllers\Controller;
@@ -9,17 +11,19 @@ use App\Models\Core\Categories;
 use App\Models\Core\Images;
 use App\Models\Core\Languages;
 use App\Models\Core\Manufacturers;
+use App\Models\Core\ProductExport;
 use App\Models\Core\Products;
 use App\Models\Core\Reviews;
 use App\Models\Core\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Lang;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
 
-    public function __construct(Products $products, Languages $language, Images $images, Categories $category, Setting $setting,
+    public function __construct(ProductExport $productExport,Products $products, Languages $language, Images $images, Categories $category, Setting $setting,
         Manufacturers $manufacturer, Reviews $reviews) {
         $this->category = $category;
         $this->reviews = $reviews;
@@ -27,10 +31,28 @@ class ProductController extends Controller
         $this->images = $images;
         $this->manufacturer = $manufacturer;
         $this->products = $products;
+        $this->productExport = $productExport;
         $this->myVarsetting = new SiteSettingController($setting);
         $this->myVaralter = new AlertController($setting);
         $this->Setting = $setting;
 
+    }
+
+
+    public function export(){
+        // return Excel::download(new ProductExports, 'ProductExport.xlsx');
+        return (new ProductExports)->download('products.csv', \Maatwebsite\Excel\Excel::CSV);
+        // return (new ProductExport)->download('products.csv', \Maatwebsite\Excel\Excel::CSV);
+    }
+
+
+    public function import(Request $request){
+        // dd($request->all());
+        // return Excel::download(new ProductExports, 'ProductExport.xlsx');
+        Excel::import(new ProductImport, request()->file('ProductImport'));
+        return redirect()->back();
+        // return (new ProductExports)->download('products.csv', \Maatwebsite\Excel\Excel::CSV);
+        // return (new ProductExport)->download('products.csv', \Maatwebsite\Excel\Excel::CSV);
     }
 
     public function reviews(Request $request)
@@ -78,6 +100,7 @@ class ProductController extends Controller
 
     public function display(Request $request)
     {
+        // dd($request);
         $language_id = '1';
         $categories_id = $request->categories_id;
         $product = $request->product;
@@ -86,6 +109,7 @@ class ProductController extends Controller
         $products = $this->products->paginator($request);
         // dd($products);
         $results['products'] = $products;
+
         $results['currency'] = $this->myVarsetting->getSetting();
         $results['units'] = $this->myVarsetting->getUnits();
         $results['subCategories'] = $subCategories;
@@ -210,6 +234,7 @@ class ProductController extends Controller
 
     public function update(Request $request)
     {
+        // dd($request->all());
         $startdate = strtotime($request->flash_start_date);
         $expiredate = strtotime($request->flash_expires_date);
         $startdate = $request->flash_start_date;
@@ -230,6 +255,7 @@ class ProductController extends Controller
         
        
         $result = $this->products->updaterecord($request);
+        $this->productExport->updateProduct($request);
         $products_id = $request->id;
         if ($request->products_type == 1) {
             return redirect('admin/products/attach/attribute/display/' . $products_id);
@@ -241,12 +267,32 @@ class ProductController extends Controller
     public function delete(Request $request)
     {
         $this->products->deleterecord($request);
-        return redirect()->back()->withErrors([Lang::get("labels.ProducthasbeendeletedMessage")]);
+        
+        $this->productExport->deleteProd($request->products_id);
+        $language_id = '1';
+        $categories_id = '';
+        $product = '';
+        $title = array('pageTitle' => Lang::get("labels.Products"));
+        $subCategories = $this->category->allcategories($language_id);
+        $products = $this->products->paginator($request);
+        // dd($products);
+        $results['products'] = $products;
+
+        $results['currency'] = $this->myVarsetting->getSetting();
+        $results['units'] = $this->myVarsetting->getUnits();
+        $results['subCategories'] = $subCategories;
+        $currentTime = array('currentTime' => time());
+        $result['commonContent'] = $this->Setting->commonContent();
+        // dd($results);
+        return view("admin.products.index", $title)->with('result', $result)->with('results', $results)->with('categories_id', $categories_id)->with('product', $product);
+        
+        // return redirect()->back()->withErrors([Lang::get("labels.ProducthasbeendeletedMessage")]);
 
     }
 
     public function insert(Request $request)
     {
+        // dd($request->all());
         $startdate = strtotime($request->flash_start_date);
         $expiredate = strtotime($request->flash_expires_date);
         $startdate = $request->flash_start_date;
@@ -267,7 +313,10 @@ class ProductController extends Controller
         
         $title = array('pageTitle' => Lang::get("labels.AddAttributes"));
         $language_id = '1';
+        
         $products_id = $this->products->insert($request);
+        // dd($products_id);
+        $this->productExport->insert($request,$products_id);
         $result['data'] = array('products_id' => $products_id, 'language_id' => $language_id);
         $alertSetting = $this->myVaralter->newProductNotification($products_id);
         if ($request->products_type == 1) {
