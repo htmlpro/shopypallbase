@@ -402,6 +402,10 @@ Route::group(['middleware' => ['installer']], function () {
 
         
         Route::get('/salesreport', 'ReportsController@salesreport')->middleware('report');
+        Route::get('/facebook-pixel', 'ReportsController@facebook_pixel');
+        Route::post('/save-facebook-pixel', 'ReportsController@save_facebook_pixel')->name('save-facebook-pixel');
+        Route::get('/google-code', 'ReportsController@google_code');
+        Route::post('/save-google-code', 'ReportsController@save_google_code')->name('save-google-code');
         // Route::get('/customer-orders-print', 'ReportsController@customerOrdersPrint')->middleware('report');
         
         Route::get('/inventoryreport', 'ReportsController@inventoryreport')->middleware('report');

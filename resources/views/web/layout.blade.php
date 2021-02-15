@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
-@include('web.common.meta')
+    @include('web.common.meta')
+    @php
+      $analytic = \App\Models\Core\Analytics::first();
 
+    @endphp
+    @if($analytic)
+      {!! ($analytic->facebook_pixel) ? $analytic->facebook_pixel : '' !!}
+      <br/>
+      {!! ($analytic->gtag) ? $analytic->gtag : '' !!}
+    @endif
   </head>
     <!-- dir="rtl" -->
     <body class="animation-s<?php  echo $final_theme['transitions']; if(!empty(session('direction')) and session('direction')=='rtl') print ' bodyrtl';?> ">
