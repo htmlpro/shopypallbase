@@ -28,12 +28,144 @@
                                 <div class="search_productMain customesearch">
                                      <div class="form-group has-feedback has-search">
                                         <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                                        <input type="text" class="form-control" placeholder="Search">
+                                        <input type="text" class="form-control" placeholder="Search" data-toggle="modal" data-target="#ordermodel">
                                          <button type="submit" class="btn btn-primary pull-right">Browse products</button>
                                     </div>
                                 </div>
 
+                                <!-- Modal -->
+                                  <div class="modal fade" id="ordermodel" role="dialog">
+                                    <div class="modal-dialog">
+                                    
+                                      <!-- Modal content-->
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                          <h4 class="modal-title">Select products</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                             <div class="search_productMain customesearch">
+                                                 <div class="form-group has-feedback has-search">
+                                                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                                    <input type="text" class="form-control" style="max-width: 100%;" placeholder="Search" >
+                                                </div>
+                                                <ul class="list-group search-filter">
+                                                    <li class="list-group-item">
+                                                        <a href="list-group-item list-group-item-action"> All products
+                                                        <i class="fa fa-angle-right pull-right"></i></a>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <a href="list-group-item list-group-item-action"> Popular products
+                                                        <i class="fa fa-angle-right pull-right"></i></a>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <a href="list-group-item list-group-item-action"> Collections
+                                                        <i class="fa fa-angle-right pull-right"></i></a>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <a href="list-group-item list-group-item-action"> Product Type
+                                                        <i class="fa fa-angle-right pull-right"></i></a>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <a href="list-group-item list-group-item-action"> Tags
+                                                        <i class="fa fa-angle-right pull-right"></i></a>
+                                                    </li>
+                                                </ul>
 
+                                                <div class="serachproductlist">
+                                                    <div class="list-group">
+                                                      <input type="checkbox" name="CheckBoxInputName" value="Value1" id="CheckBox1" />
+                                                      <label class="list-group-item" for="CheckBox1">
+                                                          <div class="pdlistMain">
+                                                              <div class="pdtitlMain">
+                                                                  <span class="pd_img">
+                                                                      <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
+                                                                  </span>
+                                                                  <span class="pd_title">product title</span>
+                                                              </div>
+                                                              <div class="pdpricMain">
+                                                                  <span class="pd_stock">in Stock 100</span>
+                                                                  <span class="pd_price pull-right">$10</span>
+                                                              </div>
+                                                          </div>
+                                                      </label>
+
+                                                       <input type="checkbox" name="CheckBoxInputName" value="Value2" id="CheckBox2" />
+                                                      <label class="list-group-item" for="CheckBox2">
+                                                          <div class="pdlistMain">
+                                                              <div class="pdtitlMain">
+                                                                  <span class="pd_img">
+                                                                      <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
+                                                                  </span>
+                                                                  <span class="pd_title">product title</span>
+                                                              </div>
+                                                              <div class="pdpricMain">
+                                                                  <span class="pd_stock">in Stock 100</span>
+                                                                  <span class="pd_price pull-right">$10</span>
+                                                              </div>
+                                                          </div>
+                                                      </label>
+
+                                                       <input type="checkbox" name="CheckBoxInputName" value="Value3" id="CheckBox3" />
+                                                      <label class="list-group-item" for="CheckBox3">
+                                                          <div class="pdlistMain">
+                                                              <div class="pdtitlMain">
+                                                                  <span class="pd_img">
+                                                                      <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
+                                                                  </span>
+                                                                  <span class="pd_title">product title</span>
+                                                              </div>
+                                                              <div class="pdpricMain">
+                                                                  <span class="pd_stock">in Stock 100</span>
+                                                                  <span class="pd_price pull-right">$10</span>
+                                                              </div>
+                                                          </div>
+                                                      </label>
+
+                                                       <input type="checkbox" name="CheckBoxInputName" value="Value4" id="CheckBox4" />
+                                                      <label class="list-group-item" for="CheckBox4">
+                                                          <div class="pdlistMain">
+                                                              <div class="pdtitlMain">
+                                                                  <span class="pd_img">
+                                                                      <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
+                                                                  </span>
+                                                                  <span class="pd_title">product title</span>
+                                                              </div>
+                                                              <div class="pdpricMain">
+                                                                  <span class="pd_stock">in Stock 100</span>
+                                                                  <span class="pd_price pull-right">$10</span>
+                                                              </div>
+                                                          </div>
+                                                      </label>
+
+                                                       <input type="checkbox" name="CheckBoxInputName" value="Value5" id="CheckBox5" />
+                                                      <label class="list-group-item" for="CheckBox5">
+                                                          <div class="pdlistMain">
+                                                              <div class="pdtitlMain">
+                                                                  <span class="pd_img">
+                                                                      <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
+                                                                  </span>
+                                                                  <span class="pd_title">product title</span>
+                                                              </div>
+                                                              <div class="pdpricMain">
+                                                                  <span class="pd_stock">in Stock 100</span>
+                                                                  <span class="pd_price pull-right">$10</span>
+                                                              </div>
+                                                          </div>
+                                                      </label>
+                                                      
+                                                    
+                                                    </div>
+                                                </div>
+                                             </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                      </div>
+                                      
+                                    </div>
+                                  </div>
 
 
                                 <div class="shopping-cart">
@@ -63,24 +195,27 @@
 
                                   <div class="totals">
                                     <div class="totals-item">
+                                      <label>Add discount</label>
+                                      <div class="totals-value" id="cart-discount">0.00</div>
+                                    </div>
+                                    <div class="totals-item">
                                       <label>Subtotal</label>
                                       <div class="totals-value" id="cart-subtotal">71.97</div>
                                     </div>
-                                    <div class="totals-item">
-                                      <label>Tax (5%)</label>
-                                      <div class="totals-value" id="cart-tax">3.60</div>
-                                    </div>
-                                    <div class="totals-item">
-                                      <label>Shipping</label>
+                                     <div class="totals-item">
+                                      <label>Add shipping</label>
                                       <div class="totals-value" id="cart-shipping">15.00</div>
                                     </div>
+                                    <div class="totals-item">
+                                      <label>Taxes</label>
+                                      <div class="totals-value" id="cart-tax">3.60</div>
+                                    </div>
+                                   
                                     <div class="totals-item totals-item-total">
-                                      <label>Grand Total</label>
+                                      <label>Total</label>
                                       <div class="totals-value" id="cart-total">90.57</div>
                                     </div>
                                   </div>
-                                      
-                                      <button class="btn btn-primary pull-right">Checkout</button>
 
                                 </div>
 
@@ -96,7 +231,7 @@
                 <div class="col-md-4">
                     <div class="box-body">
                             <div class="row">
-                                <div class="col-xs-12 bg-style">
+                                <div class="col-xs-12 bg-style orderdetailMain">
                                     <h3>Find or create a customer</h3>
                                        <div class="search_customerMain customesearch">
                                              <div class="form-group has-feedback has-search">
