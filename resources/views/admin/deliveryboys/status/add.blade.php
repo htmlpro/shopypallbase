@@ -49,7 +49,7 @@
 
                                             <div class="form-group" hidden>
                                                 <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Status Type') }}</label>
-                                                <div class="col-sm-10 col-md-4">
+                                                <div class="col-sm-10 col-md-4 boxq">
                                                     <select name="role_id" class="form-control" >
                                                         <option value="2"  selected>{{ trans('labels.General') }}</option>
                                                     </select>
@@ -62,7 +62,7 @@
 
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.StatusName') }} ({{ $languages->name }})</label>
-                                                    <div class="col-sm-10 col-md-4">
+                                                    <div class="col-sm-10 col-md-4 boxq">
                                                         <input type="text" name="OrdersStatus_<?=$languages->languages_id?>" class="form-control field-validate"  >
                                                         <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.textRequiredFieldMessage') }} ({{ $languages->name }}).</span>
                                                         <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
@@ -72,7 +72,7 @@
 
                                             <!-- /.box-body -->
                                             <div class="box-footer text-right">
-                                                <div class="col-sm-offset-2 col-md-offset-3 col-sm-10 col-md-4">
+                                                <div class="col-sm-offset-2 col-md-offset-3 col-sm-10 col-md-4 boxq">
                                                     <button type="submit" class="btn btn-primary">{{ trans('labels.Submit') }}</button>
                                                     <a href="display" type="button" class="btn btn-default">{{ trans('labels.back') }}</a>
                                                 </div>

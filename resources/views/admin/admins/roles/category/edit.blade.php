@@ -52,7 +52,7 @@
                             <input type="hidden" name="categories_role_id" value="{{$result['data'][0]->categories_role_id}}">       
                              <div class="form-group">
                                   <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ChooseAdmin') }}</label>
-                                  <div class="col-sm-10 col-md-4">
+                                  <div class="col-sm-10 col-md-4 boxq">
                                   
                                       <select class="form-control field-validate" name="admin_id" disabled>
                                           @foreach($result['admins'] as $admins)
@@ -72,7 +72,7 @@
                                 @endphp
                               <div class="form-group">
                                   <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Categories') }}</label>
-                                  <div class="col-sm-10 col-md-4">
+                                  <div class="col-sm-10 col-md-4 boxq">
                                         <ul class="list-group list-group-root well">    
                                           @foreach ($result['categories'] as $categories)                                    
                                           <li href="#" class="list-group-item"><label style="width:100%"><input @if(in_array($categories->id,$cat_array)) checked @endif id="categories_<?=$categories->id?>" type="checkbox" class=" required_one categories" name="categories[]" value="{{ $categories->id }}" > {{ $categories->name }}</label></li>

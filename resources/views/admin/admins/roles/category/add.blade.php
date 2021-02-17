@@ -51,7 +51,7 @@
                             {!! Form::open(array('url' =>'admin/addnewcategoriesroles', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                              <div class="form-group">
                                   <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ChooseAdmin') }}</label>
-                                  <div class="col-sm-10 col-md-4">
+                                  <div class="col-sm-10 col-md-4 boxq">
                                   
                                       <select class="form-control field-validate" name="admin_id">
                                           <option value="">{{ trans('labels.ChooseAdmin') }}</option> 
@@ -68,7 +68,7 @@
                                 
                               <div class="form-group">
                                   <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Categories') }}</label>
-                                  <div class="col-sm-10 col-md-4">
+                                  <div class="col-sm-10 col-md-4 boxq">
                                         <ul class="list-group list-group-root well">    
                                           @foreach ($result['categories'] as $categories)                                    
                                           <li href="#" class="list-group-item"><label style="width:100%"><input id="categories_<?=$categories->id?>" type="checkbox" class=" required_one categories" name="categories[]" value="{{ $categories->id }}" > {{ $categories->name }}</label></li>
