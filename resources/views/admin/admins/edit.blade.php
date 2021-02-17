@@ -51,7 +51,7 @@
                             {!! Form::hidden('myid', $result['myid'], array('id'=>'myid')) !!}
                             <div class="form-group">
                                   <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.AdminType') }} </label>
-                                  <div class="col-sm-10 col-md-4">
+                                  <div class="col-sm-10 col-md-4 boxq">
                                     <select class="form-control" name="adminType">
                                     @foreach($result['adminTypes'] as $adminType)
                                           <option value="{{$adminType->user_types_id}}" @if($result['admins'][0]->role_id==$adminType->user_types_id) selected @endif>{{$adminType->user_types_name}}</option>
@@ -66,7 +66,7 @@
                             <hr>
                                 <div class="form-group">
                                   <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.FirstName') }} </label>
-                                  <div class="col-sm-10 col-md-4">
+                                  <div class="col-sm-10 col-md-4 boxq">
                                     {!! Form::text('first_name',  $result['admins'][0]->first_name, array('class'=>'form-control field-validate', 'id'=>'first_name')) !!}
                                     <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.FirstNameText') }}</span>
                                     <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="form-group">
                                   <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.LastName') }} </label>
-                                  <div class="col-sm-10 col-md-4">
+                                  <div class="col-sm-10 col-md-4 boxq">
                                     {!! Form::text('last_name',  $result['admins'][0]->last_name, array('class'=>'form-control field-validate', 'id'=>'last_name')) !!}
                                     <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.lastNameText') }}</span>
                                     <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
@@ -82,7 +82,7 @@
                                 </div>
                                 <div class="form-group">
                                   <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Telephone') }}</label>
-                                  <div class="col-sm-10 col-md-4">
+                                  <div class="col-sm-10 col-md-4 boxq">
                                     {!! Form::text('phone',  $result['admins'][0]->phone, array('class'=>'form-control', 'id'=>'phone')) !!}
                                    <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
                                    {{ trans('labels.TelephoneText') }}</span>
@@ -94,7 +94,7 @@
 
                                 <div class="form-group">
                                   <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.EmailAddress') }} </label>
-                                  <div class="col-sm-10 col-md-4">
+                                  <div class="col-sm-10 col-md-4 boxq">
                                      {!! Form::text('email',  $result['admins'][0]->email, array('class'=>'form-control email-validate', 'id'=>'email')) !!}
                                      <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
                                      {{ trans('labels.EmailText') }}</span>
@@ -104,14 +104,14 @@
 
                                 <div class="form-group">
                                   <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.changePassword') }}</label>
-                                  <div class="col-sm-10 col-md-4">
+                                  <div class="col-sm-10 col-md-4 boxq">
                                     {!! Form::checkbox('changePassword', 'yes', null, ['class' => '', 'id'=>'change-passowrd']) !!}
                                   </div>
                                 </div>
 
                                 <div class="form-group">
                                   <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Password') }}</label>
-                                  <div class="col-sm-10 col-md-4">
+                                  <div class="col-sm-10 col-md-4 boxq">
                                     {!! Form::password('password', array('class'=>'form-control', 'id'=>'password')) !!}
                 	                <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
                                    {{ trans('labels.PasswordText') }}</span>
@@ -120,7 +120,7 @@
                                 </div>
                                 <div class="form-group">
                                   <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Status') }} </label>
-                                  <div class="col-sm-10 col-md-4">
+                                  <div class="col-sm-10 col-md-4 boxq">
                                     <select class="form-control" name="isActive">
                                           <option value="1" @if($result['admins'][0]->status==1) selected @endif>{{ trans('labels.Active') }}</option>
                                           <option value="0" @if($result['admins'][0]->status==0) selected @endif>{{ trans('labels.Inactive') }}</option>

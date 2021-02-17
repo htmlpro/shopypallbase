@@ -45,7 +45,7 @@
                                             {!! Form::open(array('url' =>'admin/banners/insert', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                                             <div class="form-group">
                                                 <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Language') }}</label>
-                                                <div class="col-sm-10 col-md-4">
+                                                <div class="col-sm-10 col-md-4 boxq">
                                                     <select class="form-control" name="languages_id">
                                                         @foreach($result['languages'] as $language)
                                                             <option value="{{$language->languages_id}}">{{ $language->name }}</option>
@@ -58,7 +58,7 @@
                                               
                                             <div class="form-group">
                                                 <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Title') }} </label>
-                                                <div class="col-sm-10 col-md-4">
+                                                <div class="col-sm-10 col-md-4 boxq">
                                                     {!! Form::text('banners_title', '', array('class'=>'form-control field-validate','id'=>'banners_title')) !!}
                                                     <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.BannerTitletext') }}</span>
                                                 </div>
@@ -66,7 +66,7 @@
 
                                             <div class="form-group" id="imageIcone">
                                                 <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Image') }}</label>
-                                                <div class="col-sm-10 col-md-4">
+                                                <div class="col-sm-10 col-md-4 boxq">
                                                     <!-- Modal -->
                                                     <div class="modal fade embed-images" id="ModalmanufacturedICone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                                         <div class="modal-dialog" role="document">
@@ -112,7 +112,7 @@
 
                                             <div class="form-group">
                                                 <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Type') }}</label>
-                                                <div class="col-sm-10 col-md-4">
+                                                <div class="col-sm-10 col-md-4 boxq">
                                                     <select class="form-control" name="type" id="bannerType" onchange="bannerstypes()">
                                                         <option value="category">{{ trans('labels.Show Categegoires') }}</option>
                                                         <option value="product">{{ trans('labels.Product') }}</option>
@@ -134,7 +134,7 @@
 
                                             <div class="form-group categoryContent">
                                                 <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Categories') }}</label>
-                                                <div class="col-sm-10 col-md-4">
+                                                <div class="col-sm-10 col-md-4 boxq">
                                                     <select class="form-control" name="categories_id" id="categories_id">
                                                         @foreach($result['categories'] as $category)
                                                             <option value="{{ $category->id}}">{{ $category->name}}</option>
@@ -147,7 +147,7 @@
 
                                             <div class="form-group productContent" style="display: none">
                                                 <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Products') }}</label>
-                                                <div class="col-sm-10 col-md-4">
+                                                <div class="col-sm-10 col-md-4 boxq">
                                                     <select class="form-control" name="products_id" id="products_id">
                                                         @foreach($result['products'] as $products_data)
                                                             <option value="{{ $products_data->products_id }}">{{ $products_data->products_name }}</option>
@@ -162,7 +162,7 @@
 
                                             <div class="form-group">
                                                 <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ExpiryDate') }}</label>
-                                                <div class="col-sm-10 col-md-4">
+                                                <div class="col-sm-10 col-md-4 boxq">
                                                     <input readonly class="form-control datepicker field-validate" type="text" name="expires_date" value="">
                                                     <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
                                     {{ trans('labels.ExpiryDateBanner') }}</span>
@@ -171,7 +171,7 @@
 
                                             <div class="form-group">
                                                 <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Status') }}</label>
-                                                <div class="col-sm-10 col-md-4">
+                                                <div class="col-sm-10 col-md-4 boxq">
                                                     <select class="form-control" name="status">
                                                         <option value="1">{{ trans('labels.Active') }}</option>
                                                         <option value="0">{{ trans('labels.InActive') }}</option>

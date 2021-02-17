@@ -44,7 +44,7 @@
 												Add Global site tag
 											</label>
 											<div class="col-sm-10 col-md-8">
-												<textarea name="gtag" class="form-control form-validate" placeholder="Insert Global site tag here.." rows="6">{{$analytics->gtag}}</textarea>
+												<textarea name="gtag" class="form-control form-validate" placeholder="Insert Global site tag here.." rows="6">{{($analytics) ? $analytics->gtag : ''}}</textarea>
 											</div>
 										</div>
 

@@ -51,7 +51,7 @@
                             {!! Form::hidden('user_types_id',  $result['user_types'][0]->user_types_id, array('class'=>'form-control', 'id'=>'user_types_id')) !!}
                                 <div class="form-group">
                                   <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.AdminTypeName') }} </label>
-                                  <div class="col-sm-10 col-md-4">
+                                  <div class="col-sm-10 col-md-4 boxq">
                                     {!! Form::text('user_types_name',  $result['user_types'][0]->user_types_name, array('class'=>'form-control field-validate', 'id'=>'user_types_name')) !!}
                                     <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.AdminTypeNameText') }}</span>
                                     <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
@@ -60,7 +60,7 @@
                                 
                                 <div class="form-group">
                                   <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Status') }} </label>
-                                  <div class="col-sm-10 col-md-4">
+                                  <div class="col-sm-10 col-md-4 boxq">
                                     <select class="form-control" name="isActive">
                                           <option value="1" @if($result['user_types'][0]->isActive==1) selected @endif>{{ trans('labels.Active') }}</option>
                                           <option value="0" @if($result['user_types'][0]->isActive==0) selected @endif>{{ trans('labels.Inactive') }}</option>
