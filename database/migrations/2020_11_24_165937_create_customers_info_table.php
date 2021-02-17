@@ -13,7 +13,7 @@ class CreateCustomersInfoTable extends Migration {
 	 */
 	public function up()
 	{
-		\Illuminate\Support\Facades\DB::statement('SET SESSION sql_require_primary_key=0');
+		//\Illuminate\Support\Facades\DB::statement('SET SESSION sql_require_primary_key=0');
 		Schema::create('customers_info', function(Blueprint $table)
 		{
 			$table->integer('customers_info_id')->primary();
