@@ -43,7 +43,7 @@
 												Add Facebook Pixel
 											</label>
 											<div class="col-sm-10 col-md-8">
-												<textarea name="facebook_pixel" class="form-control form-validate" placeholder="Insert Facebook Pixcel here.." rows="6">{{$analytics->facebook_pixel}}</textarea>
+												<textarea name="facebook_pixel" class="form-control form-validate" placeholder="Insert Facebook Pixcel here.." rows="6">{{($analytics) ? $analytics->facebook_pixel:''}}</textarea>
 											</div>
 										</div>
 										

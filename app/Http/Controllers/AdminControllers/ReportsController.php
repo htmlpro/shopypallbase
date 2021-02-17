@@ -26,12 +26,12 @@ use App\Models\Core\DeliveryBoys;
 
 class ReportsController extends Controller
 {
-  public function __construct(Reports $reports, Setting $setting, Customers $customers, Products $products,Currency $currency) {
+  public function __construct(Reports $reports, Setting $setting, Customers $customers, Products $products,Currency $currency,DeliveryBoys $deliveryBoys) {
     $this->reports = $reports;
     $this->myVarsetting = new SiteSettingController($setting);
     $this->myVaralter = new AlertController($setting);
     $this->Setting = $setting;
-        //$this->DeliveryBoys = $deliveryBoys;
+    $this->DeliveryBoys = $deliveryBoys;
     $this->Customers = $customers;
     $this->Currency = $currency;
     $this->Products = $products;
