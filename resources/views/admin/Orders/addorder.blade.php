@@ -47,7 +47,7 @@
                                              <div class="search_productMain customesearch">
                                                  <div class="form-group has-feedback has-search">
                                                     <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                                                    <input type="text" class="form-control" style="max-width: 100%;" placeholder="Search" >
+                                                    <input type="text" class="form-control" onkeyup="serchfunction()" style="max-width: 100%;" placeholder="Search" >
                                                 </div>
                                                 <ul class="list-group search-filter">
                                                     <li class="list-group-item">
@@ -74,7 +74,7 @@
 
                                                 <div class="serachproductlist">
                                                     <div class="list-group">
-                                                      <input type="checkbox" name="CheckBoxInputName" value="Value1" id="CheckBox1" />
+                                                      <!-- <input type="checkbox" name="CheckBoxInputName" value="Value1" id="CheckBox1" />
                                                       <label class="list-group-item" for="CheckBox1">
                                                           <div class="pdlistMain">
                                                               <div class="pdtitlMain">
@@ -153,7 +153,7 @@
                                                               </div>
                                                           </div>
                                                       </label>
-                                                      
+                                                       -->
                                                     
                                                     </div>
                                                 </div>
@@ -232,14 +232,55 @@
                     <div class="box-body">
                             <div class="row">
                                 <div class="col-xs-12 bg-style orderdetailMain">
-                                    <h3>Find or create a customer</h3>
+                                    <div class="sc_Main">
+                                        <h3>Find or create a customer</h3>
                                        <div class="search_customerMain customesearch">
                                              <div class="form-group has-feedback has-search">
                                                 <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                                                <input type="text" class="form-control" placeholder="Search">
+                                                <input type="text" class="form-control dropdown-toggle" placeholder="Search" data-toggle="dropdown" aria-haspopup="true">
+                                                <div class="dropdown-menu customerlist  bg-style">
+                                                    <a class="dropdown-item addnewcustomer" data-toggle="modal" data-target="#createuser" href="#"><i class="fa fa-plus" aria-hidden="true"></i> Create a new customer</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item detailsbox" href="#">
+                                                        <p>Test Account</p>
+                                                        <p class="ct_email">test@test.com</p>
+                                                    </a>
+                                                   <a class="dropdown-item detailsbox" href="#">
+                                                        <p>Test Account</p>
+                                                        <p class="ct_email">test@test.com</p>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
-                                   
+                                    </div>
+                                    <div class="ct_viewmain">
+                                        <div class="ct_header">
+                                            <h3>Customer<i class="fa fa-times pull-right" aria-hidden="true"></i></h3>
+                                            <div class="image_and_orders">
+                                                <div class="pull-left">
+                                                    <img width="75" src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png">
+                                                </div>
+                                                <div class="ordercount pull-right">
+                                                    <i class="fa fa-pie-chart" aria-hidden="true"></i> No orders
+                                                </div>
+                                            </div>
+                                            <div class="ct_info">
+                                                    <p>Test Account</p>
+                                                    <p>test@test.com <a href="#" class="pull-right">Edit</a></p>
+                                            </div>
+                                            <div class="ct_shipping">
+                                                <h3>SHIPPING ADDRESS <a href="#" class="pull-right">Edit</a></h3>
+                                                <p>Test Account</p>
+                                                <p>139 Hunza</p>
+                                                <p>LHr Pakistan</p>
+                                            </div>
+
+                                             <div class="ct_billing">
+                                                <h3>SHIPPING ADDRESS <a href="#" class="pull-right">Edit</a> </h3>
+                                                <p>Same as shipping address</p>
+                                            </div>
+                                        </div>
+                                    </div> 
                                 </div>
                             </div>
                     </div>
@@ -247,134 +288,299 @@
             </div>
 
 
+            <div class="modal fade" id="createuser" role="dialog">
+              <div class="modal-dialog">
+              
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Create a new customer</h4>
+                  </div>
+                  <div class="modal-body">
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title"><i class="fa fa-arrow-left back__arrow" aria-hidden="true"></i> {{ trans('labels.AddOrder') }} </h3>
-                    </div>
-
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                @if(session()->has('message.level'))
-                                    <div class="alert alert-{{ session('message.level') }} alert-dismissible" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    {!! session('message.content') !!}
-                                    </div>
-                                @endif
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="box box-info">
-                                    <!-- form start -->
-                                    <div class="box-body">
-                                        @if( count($errors) > 0)
-                                        @foreach($errors->all() as $error)
-                                        <div class="alert alert-danger" role="alert">
-                                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                            <span class="sr-only">{{ trans('labels.Error') }}:</span>
-                                            {{ $error }}
-                                        </div>
-                                        @endforeach
-                                        @endif
-
-                                        {!! Form::open(array('url' =>'admin/orders/add', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
-
-                                        <div class="row">
-                                            <div class="col-xs-12 col-md-7">
-												<div class="card">
-													<div class="card-header" id="orderDate">
-													  <h2 class="mb-0">
-														  Order Details
-													  </h2>
-													</div>
-													<div id="collapseOrderDate" class="collapse" aria-labelledby="orderDate" data-parent="#accordionMoreFilters">
-													  <div class="card-body">
-														<ul class="" >
-															<li><label class="radio-inline"><input type="radio" name="optradio">Today</label></li>
-															<li><label class="radio-inline"><input type="radio" name="optradio">Last 7 Days</label></li>
-															<li><label class="radio-inline"><input type="radio" name="optradio">Last 30 Days</label></li>
-															<li><label class="radio-inline"><input type="radio" name="optradio">Last 90 Days</label></li>
-															<li><label class="radio-inline"><input type="radio" name="optradio">Last 12 Months</label></li>
-														</ul>
-													  </div>
-													</div>
-												</div>
-                                                <div class="form-group">
-                                                    <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Product Type') }}<span style="color:red;">*</span></label>
-                                                    <div class="col-sm-10 col-md-8">
-                                                        <select class="form-control field-validate prodcust-type" name="products_type" onChange="prodcust_type();">
-                                                            <option value="">{{ trans('labels.Choose Type') }}</option>
-                                                            <option value="0">{{ trans('labels.Simple') }}</option>
-                                                            <option value="1">{{ trans('labels.Variable') }}</option>
-                                                            <option value="2">{{ trans('labels.External') }}</option>
-                                                        </select>
-														<span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
-                                                            {{ trans('labels.Product Type Text') }}.
-														</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-md-5">
-												<div class="card">
-													<div class="card-header" id="orderDate">
-													  <h2 class="mb-0">
-														  Find or create a customer
-													  </h2>
-													</div>
-													<div id="collapseOrderDate" class="collapse" aria-labelledby="orderDate" data-parent="#accordionMoreFilters">
-													  <div class="card-body">
-														<ul class="" >
-															<li><label class="radio-inline"><input type="radio" name="optradio">Today</label></li>
-															<li><label class="radio-inline"><input type="radio" name="optradio">Last 7 Days</label></li>
-															<li><label class="radio-inline"><input type="radio" name="optradio">Last 30 Days</label></li>
-															<li><label class="radio-inline"><input type="radio" name="optradio">Last 90 Days</label></li>
-															<li><label class="radio-inline"><input type="radio" name="optradio">Last 12 Months</label></li>
-														</ul>
-													  </div>
-													</div>
-												</div>
-												
-                                                <div class="form-group">
-                                                    <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Manufacturers') }} </label>
-                                                    <div class="col-sm-10 col-md-8">
-                                                        <select class="form-control" name="manufacturers_id">
-                                                            <option value="">{{ trans('labels.ChooseManufacturers') }}</option>
-                                                        </select><span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
-                                                            {{ trans('labels.ChooseManufacturerText') }}.</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <hr>
-                                        <hr>
-                                        <!-- /.box-body -->
-                                        <div class="box-footer text-center">
-                                            <button type="submit" class="btn btn-primary pull-right">
-                                                <span>{{ trans('labels.Save_And_Continue') }}</span>
-                                                <i class="fa fa-angle-right 2x"></i>
-                                            </button>
-                                        </div>
-                                        <!-- /.box-footer -->
-                                        {!! Form::close() !!}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-                <!-- /.box -->
-            </div>
-            <!-- /.col -->
+                     <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="first">First Name</label>
+          <input type="text" class="form-control" placeholder="" id="first">
         </div>
+      </div>
+      <!--  col-md-6   -->
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="last">Last Name</label>
+          <input type="text" class="form-control" placeholder="" id="last">
+        </div>
+      </div>
+      <!--  col-md-6   -->
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" class="form-control" id="email" placeholder="email">
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="company">Company</label>
+          <input type="text" class="form-control" placeholder="" id="company">
+        </div>
+
+      </div>
+      <!--  col-md-6   -->
+
+      <div class="col-md-6">
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" class="form-control" id="phone" placeholder="phone">
+        </div>
+      </div>
+      <!--  col-md-6   -->
+    </div>
+    <!--  row   -->
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="company">Address</label>
+          <input type="text" class="form-control" placeholder="" id="company">
+        </div>
+
+      </div>
+      <!--  col-md-6   -->
+
+      <div class="col-md-6">
+
+        <div class="form-group">
+          <label for="phone">Apartment, suite, etc. (optional)</label>
+          <input type="tel" class="form-control" id="phone" placeholder="phone">
+        </div>
+      </div>
+      <!--  col-md-6   -->
+    </div>
+    <!--  row   -->
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="company">City</label>
+          <input type="text" class="form-control" placeholder="" id="company">
+        </div>
+
+      </div>
+      <!--  col-md-6   -->
+
+      <div class="col-md-6">
+
+        <div class="form-group">
+          <label for="phone">Country/Region</label>
+          <input type="tel" class="form-control" id="phone" placeholder="phone">
+        </div>
+      </div>
+      <!--  col-md-6   -->
+    </div>
+    <!--  row   -->
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="company">State/territory</label>
+                <select class="form-control custom-select" id="exampleSt">
+                      <option class="text-white bg-warning">
+                        Pick a state
+                      </option>
+                      <option value="AL">
+                        Alabama
+                      </option>
+                      <option value="AK">
+                        Alaska
+                      </option>
+                      <option value="AZ">
+                        Arizona
+                      </option>
+                      <option value="AR">
+                        Arkansas
+                      </option>
+                      <option value="CA">
+                        California
+                      </option>
+                      <option value="CO">
+                        Colorado
+                      </option>
+                      <option value="CT">
+                        Connecticut
+                      </option>
+                      <option value="DE">
+                        Delaware
+                      </option>
+                      <option value="DC">
+                        District Of Columbia
+                      </option>
+                      <option value="FL">
+                        Florida
+                      </option>
+                      <option value="GA">
+                        Georgia
+                      </option>
+                      <option value="HI">
+                        Hawaii
+                      </option>
+                      <option value="ID">
+                        Idaho
+                      </option>
+                      <option value="IL">
+                        Illinois
+                      </option>
+                      <option value="IN">
+                        Indiana
+                      </option>
+                      <option value="IA">
+                        Iowa
+                      </option>
+                      <option value="KS">
+                        Kansas
+                      </option>
+                      <option value="KY">
+                        Kentucky
+                      </option>
+                      <option value="LA">
+                        Louisiana
+                      </option>
+                      <option value="ME">
+                        Maine
+                      </option>
+                      <option value="MD">
+                        Maryland
+                      </option>
+                      <option value="MA">
+                        Massachusetts
+                      </option>
+                      <option value="MI">
+                        Michigan
+                      </option>
+                      <option value="MN">
+                        Minnesota
+                      </option>
+                      <option value="MS">
+                        Mississippi
+                      </option>
+                      <option value="MO">
+                        Missouri
+                      </option>
+                      <option value="MT">
+                        Montana
+                      </option>
+                      <option value="NE">
+                        Nebraska
+                      </option>
+                      <option value="NV">
+                        Nevada
+                      </option>
+                      <option value="NH">
+                        New Hampshire
+                      </option>
+                      <option value="NJ">
+                        New Jersey
+                      </option>
+                      <option value="NM">
+                        New Mexico
+                      </option>
+                      <option value="NY">
+                        New York
+                      </option>
+                      <option value="NC">
+                        North Carolina
+                      </option>
+                      <option value="ND">
+                        North Dakota
+                      </option>
+                      <option value="OH">
+                        Ohio
+                      </option>
+                      <option value="OK">
+                        Oklahoma
+                      </option>
+                      <option value="OR">
+                        Oregon
+                      </option>
+                      <option value="PA">
+                        Pennsylvania
+                      </option>
+                      <option value="RI">
+                        Rhode Island
+                      </option>
+                      <option value="SC">
+                        South Carolina
+                      </option>
+                      <option value="SD">
+                        South Dakota
+                      </option>
+                      <option value="TN">
+                        Tennessee
+                      </option>
+                      <option value="TX">
+                        Texas
+                      </option>
+                      <option value="UT">
+                        Utah
+                      </option>
+                      <option value="VT">
+                        Vermont
+                      </option>
+                      <option value="VA">
+                        Virginia
+                      </option>
+                      <option value="WA">
+                        Washington
+                      </option>
+                      <option value="WV">
+                        West Virginia
+                      </option>
+                      <option value="WI">
+                        Wisconsin
+                      </option>
+                      <option value="WY">
+                        Wyoming
+                      </option>
+                    </select>
+        </div>
+
+      </div>
+      <!--  col-md-6   -->
+
+      <div class="col-md-6">
+
+        <div class="form-group">
+          <label for="phone">ZIP/Postal code</label>
+          <input type="tel" class="form-control" id="phone" placeholder="phone">
+        </div>
+      </div>
+      <!--  col-md-6   -->
+    </div>
+    <!--  row   -->
+
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Save customer</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+      
         <!-- /.row -->
 
         <!-- Main row -->

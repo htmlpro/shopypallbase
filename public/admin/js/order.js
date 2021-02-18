@@ -75,3 +75,79 @@ function removeItem(removeButton)
     recalculateCart();
   });
 }
+
+
+
+
+
+function serchfunction()
+{
+
+   $('.search-filter').hide();
+    $('.serachproductlist').show();
+
+     var serchresult = [
+      {
+        id: 1,
+        name: 'product 1',
+        image: 'https://s.cdpn.io/3/dingo-dog-bones.jpg',
+        stock: 50,
+        price: 100
+      },
+      {
+       id: 2,
+        name: 'product 2',
+        image: 'https://s.cdpn.io/3/dingo-dog-bones.jpg',
+        stock: 50,
+        price: 75
+      },
+      {
+       id: 3,
+        name: 'product 3',
+        image: 'https://s.cdpn.io/3/dingo-dog-bones.jpg',
+        stock: 20,
+        price: 80
+      },
+      {
+       id: 4,
+        name: 'product 4',
+        image: 'https://s.cdpn.io/3/dingo-dog-bones.jpg',
+        stock: 10,
+        price: 30
+      }
+     ];
+     var htmllist = '';
+     $.each(serchresult, function(i,e){
+        console.log(e.name);
+        htmllist += ' <input type="checkbox" name="CheckBoxInputName" value="'+e.id+'" id="CheckBox'+e.id+'" />\n\
+              <label class="list-group-item" for="CheckBox'+e.id+'">\n\
+                  <div class="pdlistMain">\n\
+                      <div class="pdtitlMain">\n\
+                          <span class="pd_img">\n\
+                              <img src="'+e.image+'">\n\
+                          </span>\n\
+                          <span class="pd_title">'+e.name+'</span>\n\
+                      </div>\n\
+                      <div class="pdpricMain">\n\
+                          <span class="pd_stock">in Stock '+e.stock+'</span>\n\
+                          <span class="pd_price pull-right">$'+e.price+'</span>\n\
+                      </div>\n\
+                  </div>\n\
+              </label>';
+     });
+
+     $('.serachproductlist .list-group').html(htmllist);
+}
+
+
+$(document ).ready(function(){
+  $('.search-filter > li').click(function(){
+      serchfunction();
+  });
+
+  $('.detailsbox').click(function(){
+      $('.customerlist').fadeOut();
+      $('.ct_viewmain').fadeIn();
+  });
+
+});

@@ -118,6 +118,44 @@
     background-color: #a44;
   }
 
+  .customerlist{
+    width: 100%;
+    padding: 15px;
+    margin-top:10px;
+  }
+  .customerlist > a.dropdown-item{
+    color: #202223;
+    padding:10px 15px;
+    display: block;
+    border-radius: 3px;
+    transition: all 0.5s;
+  }
+  .customerlist > a.dropdown-item:hover{
+    background-color:#f7f7f7;
+
+  }
+  .customerlist > a.addnewcustomer{
+    padding:10px;
+    font-size: 16px;
+  }
+  .customerlist > a.addnewcustomer i{
+    font-weight: normal;
+    font-size: 12px;
+    margin-right: 5px;
+  }
+  .customerlist .dropdown-divider{
+        height: 1px;
+    background-color: #eee;
+    margin: 5px -15px;
+  }
+  .customerlist > a.dropdown-item p{
+    margin-bottom: 0px;
+  }
+  .customerlist > a.dropdown-item p.ct_email{
+    margin-top:5px;
+    font-size: 13px;
+    color:#8e8e8e;
+  }
 
 
 /* Totals section */
@@ -142,6 +180,9 @@
     }
     .search-filter li{
       cursor: pointer;
+    }
+    .search-filter li > a{
+      color:#111;
     }
 
 
@@ -223,4 +264,43 @@
 }
 .pd_img img{
       max-width: 25px;
+}
+.serachproductlist{
+  display: none;
+}
+
+
+/**** customer info ***/
+
+
+.image_and_orders{
+  overflow: hidden;
+  margin-top:20px;
+  margin-bottom: 10px;
+}
+.image_and_orders .ordercount{
+  margin-top:25px;
+}
+.ct_viewmain h3{
+  font-size: 16px;
+  font-weight: 600;
+}
+.ct_viewmain h3 i{
+  font-size: 14px;
+  font-weight: 400;
+}
+.ct_viewmain p{
+  color:#8e8e8e;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+.ct_viewmain h3 a{
+  font-weight: normal;
+  font-size: 14px;
+}
+.ct_header{
+  padding: 5px 10px;
+}
+.ct_viewmain{
+  display: none;
 }
