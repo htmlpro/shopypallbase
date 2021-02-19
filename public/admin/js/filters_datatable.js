@@ -4,6 +4,7 @@ jQuery(function ($) {
     var dTable = $('.yajra-datatable').DataTable({
         processing: true,
         serverSide: true,
+		"search": {regex: true}, 
 		"dom": '<"length col-md-1"l><"filters col-md-11"f>tp<"clear">',
         ajax: "/admin/orders/display",
         columns: [
@@ -45,16 +46,22 @@ jQuery(function ($) {
 							var val = $.fn.dataTable.util.escapeRegex(
 									$(this).val()
 								);
+							var allVals = "";
+							$.each($("input[name='cloumscb-"+idx+"']:checked"), function(){
+								allVals += ($(this).val())+"|";
+							});
+							allVals = allVals.slice(0, -1);
+							console.log(allVals);
 							if(this.checked) {
 								column
-									.search( val ? '^'+val+'$' : '', true, false )
-									.draw();
+									.search( allVals ? '^'+allVals+'$' : '', true, false )
+									.draw();									
 								//Show the current selection pill:
 								$("#example1_wrapper .filters").append('<span class="badge" data-value="'+val+'">'+val+'</span>');
 								$(".saveViewDropDown .selected_filters").append('<span class="badge" data-value="'+val+'">'+val+'</span>');
 							}else {
 								column
-									.search( '', true, false )
+									.search( allVals ? '^'+allVals+'$' : '', true, false )
 									.draw();
 								$("#example1_wrapper .filters").find('span[data-value="'+val+'"]').remove();
 								$(".saveViewDropDown .selected_filters").find('span[data-value="'+val+'"]').remove();
@@ -62,7 +69,7 @@ jQuery(function ($) {
 						} );
 	 
 					column.data().unique().sort().each( function ( d, j ) {
-						select.find('ul').append( '<li value="'+d+'"><label class="radio-inline"><input type="checkbox" name="optradio" data-column="3" data-direction="desc" value="'+d+'">'+d+'</label></li>' )
+						select.find('ul').append( '<li value="'+d+'"><label class="radio-inline"><input type="checkbox" name="cloumscb-'+idx+'" data-column="3" data-direction="desc" value="'+d+'">'+d+'</label></li>' )
 					} );
 
 					//Status Buttons Tabs & Saved Views
@@ -212,4 +219,25 @@ jQuery(function ($) {
 			return $('input[type=radio]:checked', td).val();
 		} );
 	};
+	
+	$("#example1_filter input[type='search']").on("keyup", function () {
+		var query = $(this).val();
+		if(query==""){
+			$("#example1_wrapper .filters span.query").remove();
+			$(".saveViewDropDown .selected_filters span.query").remove();
+		}else {
+			var search_badge1 = $("#example1_wrapper .filters span.query");
+			var search_badge2 = $(".saveViewDropDown .selected_filters span.query");
+			if(search_badge1.length == 0){
+				$("#example1_wrapper .filters").append('<span class="badge query" data-value="'+query+'">"'+query+'"</span>');
+			}else {
+				search_badge1.html('"'+query+'"');
+			}
+			if(search_badge2.length == 0){
+				$(".saveViewDropDown .selected_filters").append('<span class="badge query" data-value="'+query+'">"'+query+'"</span>');
+			}else {
+				search_badge2.html('"'+query+'"');
+			}
+		}
+    });
 });
