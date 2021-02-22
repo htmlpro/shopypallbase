@@ -13,7 +13,112 @@
 
   <!-- Main content -->
   <section class="content">
-    <div class="row">
+  <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-3 total-box">
+            <div class="box box-danger border-top-none card transition">
+
+              <!-- /.box-header -->
+              <div class="box-body padding-0">
+                <h3>Total Sales</h3>
+                <h4>{{count($result['completed_orders'])}}</h4>
+                <hr/>
+                <p>Last 30 Days <a class="float-right" href="{{ URL::to('admin/orders/display')}}">View Report</a></p>
+                <!-- /.users-list -->
+              </div>
+              <!-- /.box-body -->
+
+            </div>
+          </div>
+          <div class="col-md-3 total-box">
+            <div class="box box-danger border-top-none card transition">
+
+              <!-- /.box-header -->
+              <div class="box-body padding-0">
+                <h3>Sale Amount</h3>
+                <h4>
+                  @if(count($result['total_sales_currency_wise']) > 0)
+                  @foreach($result['total_sales_currency_wise'] as $key => $sales)
+                  $ {{ number_format($sales->sale,2) }} 
+
+                  @if($key !== count($result['total_sales_currency_wise']))
+                  <br />
+                  @endif
+                  @endforeach
+                  @else
+                  0
+                  @endif
+                </h4>
+                <hr/>
+                <p>Last 30 Days <a class="float-right" href="{{ URL::to('admin/orders/display')}}">View Report</a></p>
+                <!-- /.users-list -->
+              </div>
+              <!-- /.box-body -->
+
+            </div>
+          </div>
+          <div class="col-md-3 total-box">
+            <div class="box box-danger border-top-none card transition">
+
+              <!-- /.box-header -->
+              <div class="box-body padding-0">
+                <h3>Sale Amount</h3>
+                <h4>
+                  @if(count($result['total_sales_currency_wise']) > 0)
+                  @foreach($result['total_sales_currency_wise'] as $key => $sales)
+                  $ {{ number_format($sales->sale,2) }} 
+
+                  @if($key !== count($result['total_sales_currency_wise']))
+                  <br />
+                  @endif
+                  @endforeach
+                  @else
+                  0
+                  @endif
+                </h4>
+                <hr/>
+                <p>Last 30 Days <a class="float-right" href="{{ URL::to('admin/orders/display')}}">View Report</a></p>
+                <!-- /.users-list -->
+              </div>
+              <!-- /.box-body -->
+
+            </div>
+          </div>
+          <div class="col-md-3 total-box">
+            <div class="box box-danger border-top-none card transition">
+
+              <!-- /.box-header -->
+              <div class="box-body padding-0">
+                <h3>Sale Amount</h3>
+                <h4>
+                  @if(count($result['total_sales_currency_wise']) > 0)
+                  @foreach($result['total_sales_currency_wise'] as $key => $sales)
+                  $ {{ number_format($sales->sale,2) }} 
+
+                  @if($key !== count($result['total_sales_currency_wise']))
+                  <br />
+                  @endif
+                  @endforeach
+                  @else
+                  0
+                  @endif
+                </h4>
+                <hr/>
+                <p>Last 30 Days <a class="float-right" href="{{ URL::to('admin/orders/display')}}">View Report</a></p>
+                <!-- /.users-list -->
+              </div>
+              <!-- /.box-body -->
+
+            </div>
+          </div>
+        </div>
+
+        
+      </div>
+
+    </div>
+    <div class="row margin-mines">
       <div class="col-md-7">
         <div class="row">
           <div class="col-md-6">
@@ -211,7 +316,7 @@
     
     
 
-    <div class="row">
+    <div class="row margin-three">
       <div class="col-sm-12">
         <div class="nav-tabs-custom">
           <div class="box-header with-border">
