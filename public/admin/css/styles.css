@@ -332,6 +332,7 @@ left: 6%;
     font-weight: 500;
     font-size: 22px;
     color: #181c32;
+    display: none;
 }
 
 .login-box-body input {
