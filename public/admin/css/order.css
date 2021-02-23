@@ -169,7 +169,7 @@
    .totals .totals-item label {
       float: left;
       clear: both;
-      width: 79%;
+      width: 60%;
       text-align: right;
     }
     
@@ -303,4 +303,10 @@
 }
 .ct_viewmain{
   display: none;
+}
+h3 > span.pull-right > a{
+  font-size: 16px;
+}
+.search_productMain{
+  margin-top:25px;
 }

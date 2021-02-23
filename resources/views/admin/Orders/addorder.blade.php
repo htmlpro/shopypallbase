@@ -24,7 +24,7 @@
                     <div class="box-body">
                         <div class="row">
                             <div class="col-xs-12 bg-style">
-                                <h3>Order details</h3>
+                                <h3>Order details<span class="pull-right"><a href="#" data-toggle="modal" data-target="#customItem">Add custom item</a></span></h3>
                                 <div class="search_productMain customesearch">
                                      <div class="form-group has-feedback has-search">
                                         <span class="glyphicon glyphicon-search form-control-feedback"></span>
@@ -191,11 +191,16 @@
 
 
 
-                                 
-
-                                  <div class="totals">
+                                 <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                      <label for="notes">Notes</label>
+                                      <input type="text" class="form-control" placeholder="" id="notes">
+                                    </div>
+                                  </div>
+                                  <div class="totals col-md-6">
                                     <div class="totals-item">
-                                      <label>Add discount</label>
+                                      <label><a href="#" data-toggle="modal" data-target="#addDiscount"> Add discount</a></label>
                                       <div class="totals-value" id="cart-discount">0.00</div>
                                     </div>
                                     <div class="totals-item">
@@ -203,11 +208,11 @@
                                       <div class="totals-value" id="cart-subtotal">71.97</div>
                                     </div>
                                      <div class="totals-item">
-                                      <label>Add shipping</label>
+                                      <label><a href="#" data-toggle="modal" data-target="#addShipping"> Add shipping</a></label>
                                       <div class="totals-value" id="cart-shipping">15.00</div>
                                     </div>
                                     <div class="totals-item">
-                                      <label>Taxes</label>
+                                      <label><a href="#" data-toggle="modal" data-target="#addtaxes"> Taxes</a></label>
                                       <div class="totals-value" id="cart-tax">3.60</div>
                                     </div>
                                    
@@ -216,7 +221,7 @@
                                       <div class="totals-value" id="cart-total">90.57</div>
                                     </div>
                                   </div>
-
+                                </div>
                                 </div>
 
 
@@ -300,31 +305,27 @@
                   <div class="modal-body">
 
                      <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="first">First Name</label>
-          <input type="text" class="form-control" placeholder="" id="first">
-        </div>
-      </div>
-      <!--  col-md-6   -->
-
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="last">Last Name</label>
-          <input type="text" class="form-control" placeholder="" id="last">
-        </div>
-      </div>
-      <!--  col-md-6   -->
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-
-        <div class="form-group">
-          <label for="email">Email address</label>
-          <input type="email" class="form-control" id="email" placeholder="email">
-        </div>
-      </div>
-    </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="first">First Name</label>
+                          <input type="text" class="form-control" placeholder="" id="first">
+                        </div>
+                      </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="last">Last Name</label>
+                            <input type="text" class="form-control" placeholder="" id="last">
+                          </div>
+                        </div>
+                       </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="email">
+                          </div>
+                        </div>
+                      </div>
 
 
 
@@ -578,6 +579,171 @@
               </div>
             </div>
 
+
+
+
+            <div class="modal fade" id="customItem" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add custom item</h4>
+                  </div>
+                  <div class="modal-body">
+                     <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="company">Line item name</label>
+                            <input type="text" class="form-control" placeholder="" id="company">
+                          </div>
+                      </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="priceitem">Price per item</label>
+                      <input type="tel" class="form-control" id="priceitem" placeholder="Price">
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="qty">Quantity</label>
+                      <input type="number" class="form-control" id="qty" value="1">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <label class="checkbox-inline">
+                      <input type="checkbox" value="">Item is taxable
+                    </label>
+                  </div>
+                </div>
+                 <div class="row">
+                  <div class="col-md-12">
+                    <label class="checkbox-inline">
+                      <input type="checkbox" value="">Item requires shipping
+                    </label>
+                  </div>
+                </div>
+                  </div>
+                   <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Save inline item</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="modal fade" id="addDiscount" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Discount</h4>
+                  </div>
+                  <div class="modal-body">
+                     <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label for="company">Discount this order by</label>
+                            <input type="text" class="form-control" placeholder="" id="adDiscount">
+                          </div>
+                      </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="priceitem">Reason</label>
+                      <input type="tel" class="form-control" id="Reason" placeholder="">
+                    </div>
+                  </div>
+                </div>
+               
+               
+                  </div>
+                   <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Apply</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+             <div class="modal fade" id="addtaxes" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Taxes are automatically calculated.</h4>
+                  </div>
+                  <div class="modal-body">
+                     <div class="row">
+                        <div class="col-md-12">
+                          <label class="checkbox-inline">
+                            <input type="checkbox" value="">Charge taxes
+                          </label>
+                        </div>
+                      </div>
+               
+               
+                  </div>
+                   <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Apply</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+             <div class="modal fade" id="addShipping" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                 
+                  <div class="modal-body">
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div class="alert alert-warning" role="alert">
+                      <strong>NOT SEEING ALL YOUR RATES?</strong> </br>
+                      Add a customer with a complete shipping address to select from calculated shipping rates
+                    </div>
+                     <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="radio">
+                              <label><input type="radio" name="optradio" checked>Free shipping</label>
+                            </div>
+                            <div class="radio">
+                              <label><input type="radio" name="optradio">Custom</label>
+                            </div>
+                          </div>
+                      </div>
+                  <div class="col-md-8">
+                    <div class="form-group">
+                      <input type="tel" class="form-control"id="customrate" placeholder="Custom rate name">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <input type="tel" class="form-control" id="shippingcoust" placeholder="Cost">
+                    </div>
+                  </div>
+                </div>
+               
+               
+                  </div>
+                   <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Apply</button>
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
       
