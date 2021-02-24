@@ -38,7 +38,7 @@
                             <div class="col-xs-12">
                                 <div class="box box-info">
                                     <!-- form start -->
-                                    <div class="box-body">
+                                    <div class="box-body form-newq">
                                         @if( count($errors) > 0)
                                         @foreach($errors->all() as $error)
                                         <div class="alert alert-danger" role="alert">
@@ -54,7 +54,7 @@
                                         <div class="row">
                                             <div class="col-xs-12 col-md-6">
                                                 <div class="form-group">
-                                                    <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Product Type') }}<span style="color:red;">*</span></label>
+                                                    <label for="name" class="col-sm-2 col-md-3 control-label qq">{{ trans('labels.Product Type') }}<span style="color:red;">*</span></label>
                                                     <div class="col-sm-10 col-md-8">
                                                         <select class="form-control field-validate prodcust-type" name="products_type" onChange="prodcust_type();">
                                                             <option value="">{{ trans('labels.Choose Type') }}</option>
@@ -497,7 +497,7 @@
                             </div>
                         </div>
                      
-                         <div class="row">
+                         <div class="row margin-0">
                              <div class="col-lg-8 col-md-8 col-12 first____sec">
                                  <div class="row">
                              <div class="form-group">

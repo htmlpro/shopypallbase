@@ -15,14 +15,14 @@
   <section class="content">
     <div class="row">
       <div class="col-md-3">
-        <div class="box box-danger border-top-none card transition">
+        <div class="box box-danger border-top-none card transition total-price">
 
           <!-- /.box-header -->
-          <div class="box-body padding-0">
-            <div class="col-md-6">
-              icon
+          <div class="box-body padding-0 p-zeero">
+            <div>
+              <div class="icon1"><i class="fa fa-heart-o" aria-hidden="true"></i></div>
             </div>
-            <div class="col-md-6">
+            <div class="">
               <h3>
                 @if(count($result['total_sales_currency_wise']) > 0)
                 @foreach($result['total_sales_currency_wise'] as $key => $sales)
@@ -46,12 +46,12 @@
         </div>
       </div>
       <div class="col-md-3">
-        <div class="box box-danger border-top-none card transition">
-          <div class="box-body padding-0">
-            <div class="col-md-6">
-              icon
+        <div class="box box-danger border-top-none card transition total-price">
+          <div class="box-body padding-0 p-zeero">
+            <div>
+              <div class="icon2"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
             </div>
-            <div class="col-md-6">
+            <div>
               <h3>
                 {{count($result['completed_orders'])}}
               </h3>
@@ -62,12 +62,12 @@
         </div>
       </div>
       <div class="col-md-3">
-        <div class="box box-danger border-top-none card transition">
-          <div class="box-body padding-0">
-            <div class="col-md-6">
-              icon
+        <div class="box box-danger border-top-none card transition total-price">
+          <div class="box-body padding-0 p-zeero">
+            <div>
+            <div class="icon3"><i class="fa fa-bar-chart" aria-hidden="true"></i></div>
             </div>
-            <div class="col-md-6">
+            <div>
               <h3>
                 0.58%
               </h3>
@@ -78,12 +78,12 @@
         </div>
       </div>
       <div class="col-md-3">
-        <div class="box box-danger border-top-none card transition">
-          <div class="box-body padding-0">
-            <div class="col-md-6">
-              icon
+        <div class="box box-danger border-top-none card transition total-price">
+          <div class="box-body padding-0 p-zeero">
+            <div class="">
+            <div class="icon4"><i class="fa fa-eye" aria-hidden="true"></i></div>
             </div>
-            <div class="col-md-6">
+            <div>
               <h3>
                 78.41k
               </h3>
@@ -251,7 +251,7 @@
             <table class="table table-hover dt-responsive" cellspacing="0" width="100%">
 
                 <thead>
-                  <tr>
+                  <tr class="first">
 
                     <th>{{ trans('labels.OrderID') }}</th>
                     <th>{{ trans('labels.CustomerName') }}</th>
@@ -320,7 +320,7 @@
             <table class="table table-hover dt-responsive" cellspacing="0" width="100%">
 
                 <thead>
-                  <tr>
+                  <tr class="first">
 
                     <th>{{ trans('labels.OrderID') }}</th>
                     <th>{{ trans('labels.CustomerName') }}</th>
