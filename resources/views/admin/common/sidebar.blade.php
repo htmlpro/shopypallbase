@@ -90,6 +90,7 @@
              <li class="{{ Request::is('admin/minstock') ? 'active' : '' }} "><a href="{{ URL::to('admin/minstock')}}"><i class="fa fa-circle-o"></i> {{ trans('labels.Min Stock Report') }}</a></li>
             <li class="{{ Request::is('admin/maxstock') ? 'active' : '' }} "><a href="{{ URL::to('admin/maxstock')}}"><i class="fa fa-circle-o"></i> {{ trans('labels.Max Stock Report') }}</a></li> 
             @endif
+            <li class="{{ Request::is('admin/analytics-dashboard') ? 'active' : '' }} "><a href="{{ URL::to('admin/analytics-dashboard')}}"><i class="fa fa-circle-o"></i> Dashboard</a></li>
             <li class="{{ Request::is('admin/customers-orders-report') ? 'active' : '' }} "><a href="{{ URL::to('admin/customers-orders-report')}}"><i class="fa fa-circle-o"></i> {{ trans('labels.link_customer_orders_total') }}</a></li>
             
             <!-- <li class="{{ Request::is('admin/statsproductsliked') ? 'active' : '' }}"><a href="{{ URL::to('admin/statsproductsliked')}}"><i class="fa fa-circle-o"></i> {{ trans('labels.link_products_liked') }}</a></li> -->

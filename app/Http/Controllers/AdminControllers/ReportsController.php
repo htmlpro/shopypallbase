@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\AdminControllers;
 
 use App;
+use App\Models\Core\User;
 use App\Http\Controllers\AdminControllers\SiteSettingController;
 use App\Http\Controllers\Controller;
 use App\Models\Core\Setting;
@@ -10,6 +11,9 @@ use App\Models\Core\Customers;
 use App\Models\Core\Currency;
 use App\Models\Core\Products;
 use App\Models\Core\Analytics;
+use App\Models\Core\Languages;
+use App\Models\Admin\Admin;
+use App\Models\Core\Order;
 
 //for password encryption or hash protected
 use DB;
@@ -861,4 +865,187 @@ class ReportsController extends Controller
     return redirect()->back()->with('result', $result)->with('update', 'Analytics updated successfully!');
   }
 
+  public function analytics_dashboard()
+  {
+    $title        =   array('pageTitle' => Lang::get("labels.title_dashboard"));
+    $language_id      =   '1';
+
+    $result       =   array();
+
+
+    $orders = DB::table('orders')->orderBy('created_at', 'DESC')
+    ->where('customers_id', '!=', '')->paginate(40);
+ 
+    $pending_orders = array();
+    $cancelled_orders = array();
+    $completed_orders = array();
+    $refunded_orders = array();
+    $inprocess = array();
+    $total_orders = array();
+    foreach ($orders as $orders_data) {
+
+      $orders_status_history = DB::table('orders_status_history')
+      ->LeftJoin('orders_status', 'orders_status.orders_status_id', '=', 'orders_status_history.orders_status_id')
+      ->select('orders_status_history.orders_id','orders_status_history.orders_status_id')
+      ->where('orders_id', '=', $orders_data->orders_id)
+      ->where('orders_status.role_id', '<=', 2)
+      ->orderby('orders_status_history.date_added', 'DESC')->limit(1)->first();
+
+      $total_orders[] = $orders_status_history->orders_id;
+      if($orders_status_history->orders_status_id == '1')
+        $pending_orders [] = $orders_status_history->orders_id;
+      elseif($orders_status_history->orders_status_id == '2')
+        $completed_orders [] = $orders_status_history->orders_id;
+      elseif($orders_status_history->orders_status_id == '3')
+        $cancelled_orders [] = $orders_status_history->orders_id;
+      elseif($orders_status_history->orders_status_id == '4')
+        $refunded_orders [] = $orders_status_history->orders_id;
+      else
+        $inprocess[] = $orders_status_history->orders_id;
+
+    }
+    
+    $result['pending_orders'] = $pending_orders  ? $pending_orders : [];
+    $result['completed_orders'] = $completed_orders ? $completed_orders : [];
+    $result['cancelled_orders'] = $cancelled_orders ? $cancelled_orders : [];
+    $result['refunded_orders'] = $refunded_orders ? $refunded_orders : [];
+    $result['inprocess'] = $inprocess ? $inprocess : [];
+    $result['total_orders'] = $total_orders ? $total_orders : [];
+
+
+    // dd($pending_orders,'-',$cancelled_orders,'-',$completed_orders,'-',$refunded_orders);
+    //recently order placed
+    $orders = DB::table('orders')
+    ->LeftJoin('currencies', 'currencies.code', '=', 'orders.currency')
+    ->where('customers_id','!=','')
+    ->orderBy('date_purchased','DESC')
+    ->get();
+    $total_sales_currency_wise = Order::select(DB::raw('SUM(order_price) as sale,currency'))->whereIn('orders_id',$completed_orders)->get();
+    $result['total_sales_currency_wise'] = $total_sales_currency_wise;
+    // $index = 0;
+    $purchased_price = 0;
+    $sold_cost = 0;
+    
+    foreach($orders as $key =>  $orders_data){
+
+      $orders_status_history = DB::table('orders_status_history')
+      ->LeftJoin('orders_status', 'orders_status.orders_status_id', '=', 'orders_status_history.orders_status_id')
+      ->LeftJoin('orders_status_description', 'orders_status_description.orders_status_id', '=', 'orders_status.orders_status_id')
+      ->select('orders_status_description.orders_status_name', 'orders_status_description.orders_status_id')
+      ->where('orders_id', '=', $orders_data->orders_id)
+      ->where('orders_status_description.language_id', '=', $language_id)
+      ->where('orders_status.role_id','=',2)->orderby('orders_status_history.date_added', 'DESC')->first();
+      if($orders_status_history){
+
+        $orders[$key]->orders_status_id = $orders_status_history->orders_status_id;
+        $orders[$key]->orders_status = $orders_status_history->orders_status_name;
+        $orders_products = DB::table('orders_products')
+        ->select('final_price', DB::raw('SUM(final_price) as total_price') ,'products_id','products_quantity' )
+        ->where('orders_id', '=' ,$orders_data->orders_id)
+        ->groupBy('final_price')
+        ->get();
+
+
+        if(count($orders_products)>0 and !empty($orders_products[0]->total_price)){
+          $orders[$key]->total_price = $orders_products[0]->total_price;
+        }else{
+          $orders[$key]->total_price = 0;
+        }
+
+        if($orders_status_history->orders_status_id != 3 and $orders_status_history->orders_status_id != 4){
+          foreach($orders_products as $orders_product){
+            $sold_cost += $orders_product->total_price;
+            $single_stock = DB::table('inventory')->where('products_id',$orders_product->products_id)->where('stock_type','in')->sum('stock');
+            if($single_stock>0){
+              $single_product_purchase_price = $single_stock;
+            }else{
+              $single_product_purchase_price = 0;
+            }
+
+          } 
+        } 
+      } else {
+        $orders[$key]->orders_status_id = "";
+        $orders[$key]->orders_status = "";
+        $orders[$key]->total_price = 0;
+      }
+    }
+
+
+    $result['profit'] = number_format($sold_cost,2);
+    $result['orders'] = $orders->chunk(10);
+
+      //add to cart orders
+    $cart = DB::table('customers_basket')->get();
+
+    $result['cart'] = count($cart);
+
+      //Rencently added products
+    $recentProducts = DB::table('products')
+    ->LeftJoin('image_categories', function ($join) {
+      $join->on('image_categories.image_id', '=', 'products.products_image')
+      ->where(function ($query) {
+        $query->where('image_categories.image_type', '=', 'THUMBNAIL')
+        ->where('image_categories.image_type', '!=', 'THUMBNAIL')
+        ->orWhere('image_categories.image_type', '=', 'ACTUAL');
+      });
+    })
+    ->leftJoin('products_description','products_description.products_id','=','products.products_id')
+    ->select('products.*', 'products_description.*', 'image_categories.path as products_image')
+    ->where('products_description.language_id','=', $language_id)
+    ->orderBy('products.products_id', 'DESC')
+    ->paginate(8);
+
+    $result['recentProducts'] = $recentProducts;
+
+      //products
+    $products = DB::table('products')
+    ->leftJoin('products_description','products_description.products_id','=','products.products_id')
+    ->where('products_description.language_id','=', $language_id)
+    ->orderBy('products.products_id', 'DESC')
+    ->get();
+
+
+      //low products & out of stock
+    $lowLimit = 0;
+    $outOfStock = 0;
+      //$total_money = 0;
+    $products_ids = array();
+    $products_ids = DB::table('inventory')
+    ->leftjoin('products_description', 'products_description.products_id' ,'=' ,'inventory.products_id')
+    ->leftjoin('products', 'products.products_id' ,'=' ,'inventory.products_id')
+    ->select('products.products_type','products_description.products_id', 'products_description.products_name')
+    ->where('products_description.language_id', 1)
+    ->where('products.products_type','!=', 1)
+    ->groupby('inventory.products_id')
+    ->havingRaw("SUM(IF(stock_type = 'in', stock, 0)) - SUM(IF(stock_type = 'out', stock, 0)) <= 0")->pluck('products_id');
+
+//    $variableProduct = DB::select(DB::raw("SELECT inventory_detail.*,products_description.products_name , products_attributes.options_id,products_options_values_descriptions.options_values_name, SUM(CASE WHEN stock_type = 'in' THEN stock ELSE 0 END) AS instocksum,SUM(CASE WHEN stock_type = 'out' THEN stock ELSE 0 END) AS outstocksum,(SUM(CASE WHEN stock_type = 'in' THEN stock ELSE 0 END)-SUM(CASE WHEN stock_type = 'out' THEN stock ELSE 0 END)) as finalstock FROM `inventory` LEFT JOIN inventory_detail on inventory.inventory_ref_id = inventory_detail.inventory_ref_id LEFT JOIN products_attributes ON products_attributes.products_attributes_id = inventory_detail.attribute_id LEFT JOIN products_options_values_descriptions ON products_options_values_descriptions.products_options_values_descriptions_id = products_attributes.options_values_id LEFT JOIN products_description ON products_description.products_id = inventory_detail.products_id GROUP by attribute_id DESC"));
+    $out_of_stock_variable_product = array();
+    $variableProduct = [];
+    foreach($variableProduct as $vproduct){
+      if($vproduct->finalstock <= 0){
+        $products_ids[] =$vproduct->products_id;
+
+      }
+    }
+
+    $notInsertedinInentory = DB::select(DB::raw('SELECT products.products_id,products_description.products_name FROM `products` LEFT JOIN products_description ON products_description.products_id = products.products_id WHERE products_description.language_id = 1 AND products.products_id NOT IN (SELECT products_id FROM inventory GROUP BY products_id)'));
+    foreach($notInsertedinInentory as $vproduct){
+      $products_ids[] =$vproduct->products_id;
+    }
+    $result['lowLimit'] = $lowLimit;
+    $result['outOfStock'] = count($products_ids);
+    $result['totalProducts'] = count($products);
+    
+    $users = array();     
+
+      $result['customers'] = User::where('role_id','=',2)->get();//->chunk(21);
+      $result['totalCustomers'] = count(User::where('role_id','=',2)->get());
+
+
+      $result['commonContent'] = $this->Setting->commonContent();
+
+      return view("admin.reports.dashboard",$title)->with('result', $result);
+  }
 }

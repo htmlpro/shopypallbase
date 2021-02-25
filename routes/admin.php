@@ -384,6 +384,7 @@ Route::group(['middleware' => ['installer']], function () {
 
     Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'AdminControllers'], function () {
 
+        Route::get('/analytics-dashboard', 'ReportsController@analytics_dashboard')->middleware('report');
         Route::get('/customers-orders-report', 'ReportsController@statsCustomers')->middleware('report');
         Route::get('/customer-orders-print', 'ReportsController@customerOrdersPrint')->middleware('report');
         Route::get('/statsproductspurchased', 'ReportsController@statsProductsPurchased')->middleware('report');
