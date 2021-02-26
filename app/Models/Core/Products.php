@@ -22,6 +22,7 @@ class Products extends Model
 {
 
     use Sortable;
+	protected  $primaryKey = 'products_id';
     public $sortable =['products_id','updated_at'];
     public $sortableAs =['categories_name','products_name'];
 

@@ -1,84 +1,3 @@
-/* Set rates + misc */
-var taxRate = 0.05;
-var shippingRate = 15.00; 
-var fadeTime = 300;
-
-
-/* Assign actions */
-$('.orderdetailMain .product-quantity input').change( function() {
-  updateQuantity(this);
-});
-
-$('.orderdetailMain .product-removal button').click( function() {
-  removeItem(this);
-});
-
-
-/* Recalculate cart */
-function recalculateCart()
-{
-  var subtotal = 0;
-  
-  /* Sum up row totals */
-  $('.orderdetailMain .product').each(function () {
-    subtotal += parseFloat($(this).children('.orderdetailMain .product-line-price').text());
-  });
-  
-  /* Calculate totals */
-  var tax = subtotal * taxRate;
-  var shipping = (subtotal > 0 ? shippingRate : 0);
-  var total = subtotal + tax + shipping;
-  
-  /* Update totals display */
-  $('.orderdetailMain .totals-value').fadeOut(fadeTime, function() {
-    $('.orderdetailMain #cart-subtotal').html(subtotal.toFixed(2));
-    $('.orderdetailMain #cart-tax').html(tax.toFixed(2));
-    $('.orderdetailMain #cart-shipping').html(shipping.toFixed(2));
-    $('.orderdetailMain #cart-total').html(total.toFixed(2));
-    if(total == 0){
-      $('.orderdetailMain .checkout').fadeOut(fadeTime);
-    }else{
-      $('.orderdetailMain .checkout').fadeIn(fadeTime);
-    }
-    $('.orderdetailMain .totals-value').fadeIn(fadeTime);
-  });
-}
-
-
-/* Update quantity */
-function updateQuantity(quantityInput)
-{
-  /* Calculate line price */
-  var productRow = $(quantityInput).parent().parent();
-  var price = parseFloat(productRow.children('.orderdetailMain .product-price').text());
-  var quantity = $(quantityInput).val();
-  var linePrice = price * quantity;
-  
-  /* Update line price display and recalc cart totals */
-  productRow.children('.orderdetailMain .product-line-price').each(function () {
-    $(this).fadeOut(fadeTime, function() {
-      $(this).text(linePrice.toFixed(2));
-      recalculateCart();
-      $(this).fadeIn(fadeTime);
-    });
-  });  
-}
-
-
-/* Remove item from cart */
-function removeItem(removeButton)
-{
-  /* Remove row from DOM and recalc cart total */
-  var productRow = $(removeButton).parent().parent();
-  productRow.slideUp(fadeTime, function() {
-    productRow.remove();
-    recalculateCart();
-  });
-}
-
-
-
-
 
 function serchfunction()
 {
@@ -117,10 +36,12 @@ function serchfunction()
       }
      ];
      var htmllist = '';
-     $.each(serchresult, function(i,e){
+	 searchresult = $("input[name=prodcuts_json]").val();
+	 searchresult = JSON.parse(searchresult);
+     $.each(searchresult, function(i,e){
         console.log(e.name);
-        htmllist += ' <input type="checkbox" name="CheckBoxInputName" value="'+e.id+'" id="CheckBox'+e.id+'" />\n\
-              <label class="list-group-item" for="CheckBox'+e.id+'">\n\
+        htmllist += ' <input type="checkbox" name="CheckBoxInputName" value="'+e.products_id+'" id="CheckBox'+e.products_id+'" />\n\
+              <label class="list-group-item" for="CheckBox'+e.products_id+'">\n\
                   <div class="pdlistMain">\n\
                       <div class="pdtitlMain">\n\
                           <span class="pd_img">\n\
@@ -140,6 +61,9 @@ function serchfunction()
 }
 
 
+
+
+
 $(document ).ready(function(){
   $('.search-filter > li').click(function(){
       serchfunction();
@@ -147,7 +71,140 @@ $(document ).ready(function(){
 
   $('.detailsbox').click(function(){
       $('.customerlist').fadeOut();
+      $('.orderdetailMain > .sc_Main h3').hide();
+      $('.orderdetailMain > .sc_Main .customesearch').hide();
+	  //Fill in customer data
+	  customer = $(this).data("customer");
+	  console.log(customer);
+	  $('.ct_viewmain .ct_info .customer_id').val(customer.id);
+	  console.log(JSON.stringify(customer));
+	  $('.ct_viewmain .ct_info .customer_data').val(JSON.stringify(customer));
+	  $('.ct_viewmain .ct_info .ct_name').text(customer.first_name +' '+customer.last_name);
+	  $('.ct_viewmain .ct_info .ct_email').text(customer.email);
+	  if(customer.avatar) //set profile image
+		  $('.ct_viewmain .image_and_orders img').attr("src", customer.avatar);
+		  
+	if(customer.entry_firstname || customer.entry_lastname || customer.entry_street_address )
+		customer_address = '<p>'+customer.entry_firstname+' '+customer.entry_lastname+'</p>'
+						+'<p>'+customer.entry_street_address+'</p>'
+						+'<p>'+customer.entry_suburb+', '+customer.entry_city+'</p>';
+	else customer_address = "Address Not Found!";
+	$('.ct_viewmain .ct_shipping div').html(customer_address);
+	
       $('.ct_viewmain').fadeIn();
   });
+
+    $('.ct_header i.fa-times').click(function(){
+		$('.ct_viewmain .ct_info .customer_id').val("");
+		$('.ct_viewmain .ct_info .customer_data').val('');
+      $('.ct_viewmain').hide();
+      $('.customerlist').removeAttr("style");
+      $('.orderdetailMain > .sc_Main h3').fadeIn();
+      $('.orderdetailMain > .sc_Main .customesearch').fadeIn();
+  });
+
+	$(document).on('click','.ct_viewmain .edituser', function(){
+		//Fill User data in Edit user form
+		customer = $('.ct_viewmain .ct_info .customer_data').val();
+		customer = JSON.parse(customer);
+	  console.log(customer.first_name);
+	  
+	  $('#edituser input[name=cid]').val(customer.id);
+	  $('#edituser input[name=first_name]').val(customer.first_name);
+	  $('#edituser input[name=last_name]').val(customer.last_name);
+	  $('#edituser input[name=email]').val(customer.email);
+	  $('#edituser input[name=phone]').val(customer.phone);
+	  $('#edituser input[name=entry_company]').val(customer.entry_company);
+	  $('#edituser input[name=entry_street_address]').val(customer.entry_street_address);
+	  $('#edituser input[name=entry_suburb]').val(customer.entry_suburb);
+	  $('#edituser input[name=entry_city]').val(customer.entry_city);
+	  $('#edituser input[name=entry_country_id]').val(customer.entry_country_id);
+	  $('#edituser input[name=entry_state]').val(customer.entry_state);
+	  $('#edituser input[name=entry_postcode]').val(customer.entry_postcode);
+	});
+
+
+var taxRate = 0.05;
+var shippingRate = 15.00; 
+var fadeTime = 300;
+
+/* Assign actions */
+$('.shopping-cart .product .product-quantity input').change( function(){
+  console.log('nabeel');
+  updateQuantity(this);
+});
+
+$('.shopping-cart .product .product-removal button').click( function() {
+  removeItem(this);
+});
+
+
+
+
+/* Recalculate cart */
+function recalculateCart()
+{
+  var subtotal = 0;
+  
+  /* Sum up row totals */
+  $('.shopping-cart .product').each(function () {
+    subtotal += parseFloat($(this).children('.shopping-cart .product-line-price').text());
+  });
+  
+  /* Calculate totals */
+  var tax = subtotal * taxRate;
+  var shipping = (subtotal > 0 ? shippingRate : 0);
+  var total = subtotal + tax + shipping;
+  
+  /* Update totals display */
+  $('.shopping-cart .totals-value').fadeOut(fadeTime, function() {
+    $('.shopping-cart #cart-subtotal').html(subtotal.toFixed(2));
+    $('.shopping-cart #cart-tax').html(tax.toFixed(2));
+    $('.shopping-cart #cart-shipping').html(shipping.toFixed(2));
+    $('.shopping-cart #cart-total').html(total.toFixed(2));
+    if(total == 0){
+      $('.shopping-cart .checkout').fadeOut(fadeTime);
+    }else{
+      $('.shopping-cart .checkout').fadeIn(fadeTime);
+    }
+    $('.shopping-cart .totals-value').fadeIn(fadeTime);
+  });
+}
+
+
+/* Update quantity */
+function updateQuantity(quantityInput)
+{
+  /* Calculate line price */
+  var productRow = $(quantityInput).parent().parent();
+  var price = parseFloat(productRow.children('.shopping-cart .product-price').text());
+  var quantity = $(quantityInput).val();
+  var linePrice = price * quantity;
+  
+  /* Update line price display and recalc cart totals */
+  productRow.children('.shopping-cart .product-line-price').each(function () {
+    $(this).fadeOut(fadeTime, function() {
+      $(this).text(linePrice.toFixed(2));
+      recalculateCart();
+      $(this).fadeIn(fadeTime);
+    });
+  });  
+}
+
+
+/* Remove item from cart */
+function removeItem(removeButton)
+{
+  /* Remove row from DOM and recalc cart total */
+  var productRow = $(removeButton).parent().parent();
+  productRow.slideUp(fadeTime, function() {
+    productRow.remove();
+    recalculateCart();
+  });
+}
+
+
+
+
 
 });

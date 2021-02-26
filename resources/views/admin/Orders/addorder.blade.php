@@ -24,12 +24,13 @@
                     <div class="box-body">
                         <div class="row">
                             <div class="col-xs-12 bg-style">
-                                <h3>Order details<span class="pull-right"><a href="#" data-toggle="modal" data-target="#customItem">Add custom item</a></span></h3>
+                                <h3>Order details<!-- <span class="pull-right"><a href="#" data-toggle="modal" data-target="#customItem">Add custom item</a></span> --></h3>
                                 <div class="search_productMain customesearch">
                                      <div class="form-group has-feedback has-search">
                                         <span class="glyphicon glyphicon-search form-control-feedback"></span>
                                         <input type="text" class="form-control" placeholder="Search" data-toggle="modal" data-target="#ordermodel">
-                                         <button type="submit" class="btn btn-primary pull-right">Browse products</button>
+                                         <button type="submit" class="btn btn-primary pull-right" data-toggle="modal" data-target="#ordermodel">Browse products</button>
+										 <input type="hidden" name="products_json" value="{{ $products }}" />
                                     </div>
                                 </div>
 
@@ -74,87 +75,7 @@
 
                                                 <div class="serachproductlist">
                                                     <div class="list-group">
-                                                      <!-- <input type="checkbox" name="CheckBoxInputName" value="Value1" id="CheckBox1" />
-                                                      <label class="list-group-item" for="CheckBox1">
-                                                          <div class="pdlistMain">
-                                                              <div class="pdtitlMain">
-                                                                  <span class="pd_img">
-                                                                      <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
-                                                                  </span>
-                                                                  <span class="pd_title">product title</span>
-                                                              </div>
-                                                              <div class="pdpricMain">
-                                                                  <span class="pd_stock">in Stock 100</span>
-                                                                  <span class="pd_price pull-right">$10</span>
-                                                              </div>
-                                                          </div>
-                                                      </label>
-
-                                                       <input type="checkbox" name="CheckBoxInputName" value="Value2" id="CheckBox2" />
-                                                      <label class="list-group-item" for="CheckBox2">
-                                                          <div class="pdlistMain">
-                                                              <div class="pdtitlMain">
-                                                                  <span class="pd_img">
-                                                                      <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
-                                                                  </span>
-                                                                  <span class="pd_title">product title</span>
-                                                              </div>
-                                                              <div class="pdpricMain">
-                                                                  <span class="pd_stock">in Stock 100</span>
-                                                                  <span class="pd_price pull-right">$10</span>
-                                                              </div>
-                                                          </div>
-                                                      </label>
-
-                                                       <input type="checkbox" name="CheckBoxInputName" value="Value3" id="CheckBox3" />
-                                                      <label class="list-group-item" for="CheckBox3">
-                                                          <div class="pdlistMain">
-                                                              <div class="pdtitlMain">
-                                                                  <span class="pd_img">
-                                                                      <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
-                                                                  </span>
-                                                                  <span class="pd_title">product title</span>
-                                                              </div>
-                                                              <div class="pdpricMain">
-                                                                  <span class="pd_stock">in Stock 100</span>
-                                                                  <span class="pd_price pull-right">$10</span>
-                                                              </div>
-                                                          </div>
-                                                      </label>
-
-                                                       <input type="checkbox" name="CheckBoxInputName" value="Value4" id="CheckBox4" />
-                                                      <label class="list-group-item" for="CheckBox4">
-                                                          <div class="pdlistMain">
-                                                              <div class="pdtitlMain">
-                                                                  <span class="pd_img">
-                                                                      <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
-                                                                  </span>
-                                                                  <span class="pd_title">product title</span>
-                                                              </div>
-                                                              <div class="pdpricMain">
-                                                                  <span class="pd_stock">in Stock 100</span>
-                                                                  <span class="pd_price pull-right">$10</span>
-                                                              </div>
-                                                          </div>
-                                                      </label>
-
-                                                       <input type="checkbox" name="CheckBoxInputName" value="Value5" id="CheckBox5" />
-                                                      <label class="list-group-item" for="CheckBox5">
-                                                          <div class="pdlistMain">
-                                                              <div class="pdtitlMain">
-                                                                  <span class="pd_img">
-                                                                      <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
-                                                                  </span>
-                                                                  <span class="pd_title">product title</span>
-                                                              </div>
-                                                              <div class="pdpricMain">
-                                                                  <span class="pd_stock">in Stock 100</span>
-                                                                  <span class="pd_price pull-right">$10</span>
-                                                              </div>
-                                                          </div>
-                                                      </label>
-                                                       -->
-                                                    
+													
                                                     </div>
                                                 </div>
                                              </div>
@@ -170,22 +91,8 @@
 
                                 <div class="shopping-cart">
                                   <div class="product">
-                                    <div class="product-image">
-                                      <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
-                                    </div>
-                                    <div class="product-details">
-                                      <div class="product-title"><a href="#">Dingo Dog Bones</a></div>
-                                    </div>
-                                    <div class="product-price">12.99</div>
-                                    <div class="product-quantity">
-                                      <input type="number" value="2" min="1">
-                                    </div>
-                                    <div class="product-removal">
-                                      <button class="remove-product">
-                                        X
-                                      </button>
-                                    </div>
-                                    <div class="product-line-price">25.98</div>
+									Search or Browser Products and Add here!
+                                    
                                   </div>
                                  
 
@@ -205,7 +112,7 @@
                                     </div>
                                     <div class="totals-item">
                                       <label>Subtotal</label>
-                                      <div class="totals-value" id="cart-subtotal">71.97</div>
+                                      <div class="totals-value" id="cart-subtotal">12.99</div>
                                     </div>
                                      <div class="totals-item">
                                       <label><a href="#" data-toggle="modal" data-target="#addShipping"> Add shipping</a></label>
@@ -218,9 +125,29 @@
                                    
                                     <div class="totals-item totals-item-total">
                                       <label>Total</label>
-                                      <div class="totals-value" id="cart-total">90.57</div>
+                                      <div class="totals-value" id="cart-total">31.59</div>
                                     </div>
                                   </div>
+
+                                <div class="invoiceMian">
+                                  <div class="col-md-6">
+                                    <i class="fa fa-file-text-o" aria-hidden="true"></i> <span>SEND INVOICE</span>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <button class="pull-right btn btn-default">Send invoice</button>
+                                  </div>
+                                </div>
+                                 <div class="makepaymentMian">
+                                  <div class="col-md-6">
+                                    <i class="fa fa-credit-card" aria-hidden="true"></i> <span>ACCEPT PAYMENT</span>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <button class="pull-right btn btn-default" data-toggle="modal" data-target="#paidorders">Mark as paid</button>
+                                    <button class="pull-right btn btn-default" data-toggle="modal" data-target="#pendingorders">Mark as pending</button>
+                                  </div>
+                                </div>
+
+
                                 </div>
                                 </div>
 
@@ -246,14 +173,12 @@
                                                 <div class="dropdown-menu customerlist  bg-style">
                                                     <a class="dropdown-item addnewcustomer" data-toggle="modal" data-target="#createuser" href="#"><i class="fa fa-plus" aria-hidden="true"></i> Create a new customer</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item detailsbox" href="#">
-                                                        <p>Test Account</p>
-                                                        <p class="ct_email">test@test.com</p>
+													@foreach($customers as $customer)
+                                                    <a class="dropdown-item detailsbox" href="#" data-customer='{{ $customer }}'>
+                                                        <p>{{ $customer->first_name }} {{ $customer->last_name }}</p>
+                                                        <p class="ct_email">{{ $customer->email }}</p>
                                                     </a>
-                                                   <a class="dropdown-item detailsbox" href="#">
-                                                        <p>Test Account</p>
-                                                        <p class="ct_email">test@test.com</p>
-                                                    </a>
+													@endforeach
                                                 </div>
                                             </div>
                                         </div>
@@ -270,18 +195,22 @@
                                                 </div>
                                             </div>
                                             <div class="ct_info">
-                                                    <p>Test Account</p>
-                                                    <p>test@test.com <a href="#" class="pull-right">Edit</a></p>
+                                                    <p class="ct_name">Test Account</p>
+                                                    <p class="ct_email"><span>test@test.com</span> <a href="#" class="pull-right edituser" data-toggle="modal" data-target="#edituser">Edit</a></p>
+													<input type="hidden" name="customer" value="" class="customer_id" data-customer=''/>
+													<input type="hidden" name="customer" value="" class="customer_data" data-customer=''/>
                                             </div>
                                             <div class="ct_shipping">
-                                                <h3>SHIPPING ADDRESS <a href="#" class="pull-right">Edit</a></h3>
+                                                <h3>SHIPPING ADDRESS <a href="#" class="pull-right edituser" data-toggle="modal" data-target="#edituser">Edit</a></h3>
+												<div>
                                                 <p>Test Account</p>
                                                 <p>139 Hunza</p>
                                                 <p>LHr Pakistan</p>
+												</div>
                                             </div>
 
                                              <div class="ct_billing">
-                                                <h3>SHIPPING ADDRESS <a href="#" class="pull-right">Edit</a> </h3>
+                                                <h3>BILLING ADDRESS <a href="#" class="pull-right edituser" data-toggle="modal" data-target="#edituser">Edit</a> </h3>
                                                 <p>Same as shipping address</p>
                                             </div>
                                         </div>
@@ -290,6 +219,13 @@
                             </div>
                     </div>
                 </div>
+				
+				<div class="col-md-12 submit-btnmain">
+                  <button class="pull-left btn btn-default">Delete draft order</button>
+                  <button class="pull-right btn btn-primary">Save draft order</button>
+                                    
+                </div>
+				
             </div>
 
 
@@ -581,6 +517,293 @@
 
 
 
+            <div class="modal fade" id="edituser" role="dialog">
+              <div class="modal-dialog">
+              
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit Customer</h4>
+					<input type="hidden" class="form-control" id="cid" name="cid">
+                  </div>
+                  <div class="modal-body">
+
+                     <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="first_name">First Name</label>
+                          <input type="text" class="form-control" placeholder="First Name" id="first_name" name="first_name">
+                        </div>
+                      </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" class="form-control" placeholder="Last Name" id="last_name" name="last_name">
+                          </div>
+                        </div>
+                       </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Email" name="email">
+                          </div>
+                        </div>
+                      </div>
+
+
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="entry_company">Company</label>
+          <input type="text" class="form-control" placeholder="Company" id="entry_company" name="entry_company">
+        </div>
+
+      </div>
+      <!--  col-md-6   -->
+
+      <div class="col-md-6">
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" class="form-control" id="phone" placeholder="Phone" name="phone">
+        </div>
+      </div>
+      <!--  col-md-6   -->
+    </div>
+    <!--  row   -->
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="entry_street_address">Address</label>
+          <input type="text" class="form-control" placeholder="Address" id="entry_street_address" name="entry_street_address">
+        </div>
+
+      </div>
+      <!--  col-md-6   -->
+
+      <div class="col-md-6">
+
+        <div class="form-group">
+          <label for="entry_suburb">Suburb (optional)</label>
+          <input type="tel" class="form-control" id="phone" placeholder="Suburb" name="entry_suburb">
+        </div>
+      </div>
+      <!--  col-md-6   -->
+    </div>
+    <!--  row   -->
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="entry_city">City</label>
+          <input type="text" class="form-control" placeholder="City" id="entry_city" id="entry_city">
+        </div>
+
+      </div>
+      <!--  col-md-6   -->
+
+      <div class="col-md-6">
+
+        <div class="form-group">
+          <label for="entry_country_id">Country/Region</label>
+          <input type="tel" class="form-control" id="entry_country_id" placeholder="entry_country_id" name="entry_country_id">
+        </div>
+      </div>
+      <!--  col-md-6   -->
+    </div>
+    <!--  row   -->
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="entry_state">State/territory</label>
+                <select class="form-control custom-select" id="entry_state" name="entry_state">
+                      <option class="text-white bg-warning">
+                        Pick a state
+                      </option>
+                      <option value="AL">
+                        Alabama
+                      </option>
+                      <option value="AK">
+                        Alaska
+                      </option>
+                      <option value="AZ">
+                        Arizona
+                      </option>
+                      <option value="AR">
+                        Arkansas
+                      </option>
+                      <option value="CA">
+                        California
+                      </option>
+                      <option value="CO">
+                        Colorado
+                      </option>
+                      <option value="CT">
+                        Connecticut
+                      </option>
+                      <option value="DE">
+                        Delaware
+                      </option>
+                      <option value="DC">
+                        District Of Columbia
+                      </option>
+                      <option value="FL">
+                        Florida
+                      </option>
+                      <option value="GA">
+                        Georgia
+                      </option>
+                      <option value="HI">
+                        Hawaii
+                      </option>
+                      <option value="ID">
+                        Idaho
+                      </option>
+                      <option value="IL">
+                        Illinois
+                      </option>
+                      <option value="IN">
+                        Indiana
+                      </option>
+                      <option value="IA">
+                        Iowa
+                      </option>
+                      <option value="KS">
+                        Kansas
+                      </option>
+                      <option value="KY">
+                        Kentucky
+                      </option>
+                      <option value="LA">
+                        Louisiana
+                      </option>
+                      <option value="ME">
+                        Maine
+                      </option>
+                      <option value="MD">
+                        Maryland
+                      </option>
+                      <option value="MA">
+                        Massachusetts
+                      </option>
+                      <option value="MI">
+                        Michigan
+                      </option>
+                      <option value="MN">
+                        Minnesota
+                      </option>
+                      <option value="MS">
+                        Mississippi
+                      </option>
+                      <option value="MO">
+                        Missouri
+                      </option>
+                      <option value="MT">
+                        Montana
+                      </option>
+                      <option value="NE">
+                        Nebraska
+                      </option>
+                      <option value="NV">
+                        Nevada
+                      </option>
+                      <option value="NH">
+                        New Hampshire
+                      </option>
+                      <option value="NJ">
+                        New Jersey
+                      </option>
+                      <option value="NM">
+                        New Mexico
+                      </option>
+                      <option value="NY">
+                        New York
+                      </option>
+                      <option value="NC">
+                        North Carolina
+                      </option>
+                      <option value="ND">
+                        North Dakota
+                      </option>
+                      <option value="OH">
+                        Ohio
+                      </option>
+                      <option value="OK">
+                        Oklahoma
+                      </option>
+                      <option value="OR">
+                        Oregon
+                      </option>
+                      <option value="PA">
+                        Pennsylvania
+                      </option>
+                      <option value="RI">
+                        Rhode Island
+                      </option>
+                      <option value="SC">
+                        South Carolina
+                      </option>
+                      <option value="SD">
+                        South Dakota
+                      </option>
+                      <option value="TN">
+                        Tennessee
+                      </option>
+                      <option value="TX">
+                        Texas
+                      </option>
+                      <option value="UT">
+                        Utah
+                      </option>
+                      <option value="VT">
+                        Vermont
+                      </option>
+                      <option value="VA">
+                        Virginia
+                      </option>
+                      <option value="WA">
+                        Washington
+                      </option>
+                      <option value="WV">
+                        West Virginia
+                      </option>
+                      <option value="WI">
+                        Wisconsin
+                      </option>
+                      <option value="WY">
+                        Wyoming
+                      </option>
+                    </select>
+        </div>
+
+      </div>
+      <!--  col-md-6   -->
+
+      <div class="col-md-6">
+
+        <div class="form-group">
+          <label for="entry_postcode">ZIP/Postal code</label>
+          <input type="tel" class="form-control" id="entry_postcode" placeholder="phone"  name="entry_postcode">
+        </div>
+      </div>
+      <!--  col-md-6   -->
+    </div>
+    <!--  row   -->
+
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-default save_customer" data-dismiss="modal">Save customer</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
 
             <div class="modal fade" id="customItem" role="dialog">
               <div class="modal-dialog">
@@ -699,6 +922,73 @@
               </div>
             </div>
 
+
+            <div class="modal fade" id="pendingorders" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Mark payment as pending.</h4>
+                  </div>
+                  <div class="modal-body">
+                     <div class="row">
+                        <div class="col-md-12">
+                          <p>This will create an order without payment. You will be able to collect payment of RM1.06 MYR later.</p>
+                         <div class="form-group">
+                            <label for="sel1">Expected payment method</label>
+                            <select class="form-control" id="sel1">
+                              <option>Others</option>
+                              <option>Cash on Delivery (COD)</option>
+                              
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+               
+               
+                  </div>
+                   <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn btn-primary" data-dismiss="modal">Create Order</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="modal fade" id="paidorders" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Mark as paid?</h4>
+                  </div>
+                  <div class="modal-body">
+                     <div class="row">
+                        <div class="col-md-12">
+                          <p>This will create an order. Mark this order as paid.</p>
+                         <div class="form-group">
+                            <label for="sel1">Type of payment received</label>
+                            <select class="form-control" id="sel1">
+                              <option>Others</option>
+                              <option>Cash on Delivery (COD)</option>
+                              
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+               
+               
+                  </div>
+                   <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn btn-primary" data-dismiss="modal">Create Order</button>
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
              <div class="modal fade" id="addShipping" role="dialog">

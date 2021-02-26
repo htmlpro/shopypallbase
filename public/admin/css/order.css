@@ -288,6 +288,7 @@
 .ct_viewmain h3 i{
   font-size: 14px;
   font-weight: 400;
+  cursor: pointer;
 }
 .ct_viewmain p{
   color:#8e8e8e;
@@ -309,4 +310,45 @@ h3 > span.pull-right > a{
 }
 .search_productMain{
   margin-top:25px;
+}
+.invoiceMian{
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    overflow: hidden;
+    padding: 15px 0px;
+}
+.invoiceMian{
+      clear: both;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    overflow: hidden;
+    padding: 15px 0px;
+}
+.invoiceMian i{
+      font-size: 22px;
+    margin-right: 10px;
+}
+.invoiceMian span{
+    font-size: 14px;
+    font-weight: bold;
+}
+.makepaymentMian{
+    overflow: hidden;
+    padding: 15px 0px;
+}
+.makepaymentMian i{
+      font-size: 22px;
+    margin-right: 10px;
+}
+.makepaymentMian span{
+    font-size: 14px;
+    font-weight: bold;
+}
+.makepaymentMian button{
+  margin-left:10px;
+}
+.submit-btnmain{
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+    margin-top: 10px;
 }
