@@ -2,18 +2,16 @@
 @section('content')
 
 <div class="content-wrapper">
-	<section class="content-header">
-    <h1>
-      <small>Settings</small>
-    </h1>
-     
-  </section>
+	 
   <section class="content">
   	<div class="row">
   		<div class="col-md-2">
   			
   		</div>
   		<div class="col-md-8">
+  			<h1 style="margin-top: 0">
+      			<small>Settings</small>
+    		</h1>
   			<div class="box box-danger border-top-none card">
 		  		<div class="row">
 		  			<a href="" class="col-md-4">

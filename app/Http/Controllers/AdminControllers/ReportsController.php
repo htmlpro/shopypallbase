@@ -904,7 +904,6 @@ class ReportsController extends Controller
         $inprocess[] = $orders_status_history->orders_id;
 
     }
-    
     $result['pending_orders'] = $pending_orders  ? $pending_orders : [];
     $result['completed_orders'] = $completed_orders ? $completed_orders : [];
     $result['cancelled_orders'] = $cancelled_orders ? $cancelled_orders : [];
