@@ -40,7 +40,7 @@ Route::group(['middleware' => ['installer']], function () {
         Route::get('/topoffer/display', 'ThemeController@topoffer');
         Route::post('/topoffer/update', 'ThemeController@updateTopOffer');
         
-
+        Route::get('/admin-settings','AdminController@admin_settings')->name('admin-settings');
         Route::get('/dashboard/{reportBase}', 'AdminController@dashboard');
         //add adddresses against customers
         Route::get('/addaddress/{id}/', 'CustomersController@addaddress')->middleware('add_customer');

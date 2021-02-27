@@ -1272,5 +1272,20 @@ class AdminController extends Controller
   		return redirect()->back()->withErrors([Lang::get("labels.AdminRemoveCategoryMessage")]);
   	}
 
+    public function admin_settings()
+    {
+      $title = array('pageTitle' => Lang::get("labels.AddCategoriesRoles"));
+      $result = array();
+      $language_id = 1;
+
+    //get function from other controller
+
+
+      $result['admins'] = DB::table('users')->where('role_id','!=','1')->get();
+
+      $result['commonContent'] = $this->Setting->commonContent();
+
+      return view('admin.admin_settings')->with('result', $result);
+    }
 
   }

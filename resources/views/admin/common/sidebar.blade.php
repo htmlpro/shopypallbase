@@ -102,6 +102,11 @@
           </ul>
         </li>
       <?php } ?>
+      <li class="treeview {{ Request::is('admin/admin-settings') ? 'active' : '' }}">
+          <a href="{{ URL::to('admin/admin-settings')}}">
+            <i class="fa fa-gear" aria-hidden="true"></i> <span>Settings</span>
+          </a>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
