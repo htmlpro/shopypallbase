@@ -44,8 +44,8 @@
                                         {!! Form::open(array('url' =>'admin/updateSetting', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
                                         <h4>{{ trans('labels.generalSetting') }}</h4>
                                         <hr>
-                                        <div class="form-group">
-                                       		<label class="col-sm-2 col-md-3 control-label" style="">{{ trans('labels.Web/App Environment') }}</label>
+                                        <div class="form-group environment-box">
+                                       		<label class="col-sm-2 control-label" style="">{{ trans('labels.Web/App Environment') }}</label>
                                             <div class="col-sm-10 col-md-4">
                                                 <label class=" control-label">
                                                       <input type="radio" name="environmentt" value="Maintenance" class="flat-red" @if($result['commonContent']['setting']['environmentt'] == 'Maintenance') checked @endif > &nbsp;{{ trans('labels.Maintenance') }}
@@ -61,8 +61,8 @@
                                             </div>
                                         </div>
                                         
-                                        <div class="form-group">
-                                       		<label class="col-sm-2 col-md-3 control-label" style="">{{ trans('labels.Inventory') }}</label>
+                                        <div class="form-group environment-box">
+                                       		<label class="col-sm-2 control-label" style="">{{ trans('labels.Inventory') }}</label>
                                             <div class="col-sm-10 col-md-4">
                                                 <label class=" control-label">
                                                       <input type="radio" name="Inventory" value="1" class="flat-red" @if($result['commonContent']['setting']['Inventory'] == '1') checked @endif > &nbsp;{{ trans('labels.Enabled') }}
@@ -74,7 +74,7 @@
                                             </div>
                                         </div>
 
-                                       
+                                    <div class="maintenance-box">
                                         <div class="form-group">
                                           <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Maintenance Text') }}</label>
                                           <div class="col-sm-10 col-md-4">
@@ -122,11 +122,12 @@
                                             </div>
                                         </div>
 
-                                        
+                                     </div>
 
                                         <hr>
                                         <h4>{{ trans('labels.InqueryEmails') }}</h4>
                                         <hr>
+                                        <div class="maintenance-box">
 
                                         <div class="form-group">
                                             <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ContactUsEmail') }}</label>
@@ -135,11 +136,12 @@
                                                     {{ trans('labels.ContactUsEmailText') }}</span>
                                             </div>
                                         </div>
+                                        </div>
 
                                         <hr>
                                         <h4>{{ trans('labels.OrderEmail') }}</h4>
                                         <hr>
-
+                                        <div class="maintenance-box">
                                         <div class="form-group">
                                             <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.OrderEmail') }}</label>
                                             <div class="col-sm-10 col-md-4">
@@ -147,12 +149,12 @@
                                                     {{ trans('labels.OrderEmailText') }}</span>
                                             </div>
                                         </div>
-
+                                        </div>
                                         <hr>
                                         <h4>{{ trans('labels.Orders') }}</h4>
                                         <hr>
                                         
-
+                                        <div class="maintenance-box">
                                         <div class="form-group">
                                             <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Min Order Price') }}</label>
                                             <div class="col-sm-10 col-md-4">
@@ -161,11 +163,11 @@
                                                     {{ trans('labels.Min Order Price Text') }}</span>
                                             </div>
                                         </div>
-
+                                        </div>
                                         <hr>
                                         <h4>{{ trans('labels.OurInfo') }}</h4>
                                         <hr>
-                                       
+                                        <div class="maintenance-box">
                                         <div class="form-group">
                                             <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.PhoneNumber') }}</label>
                                             <div class="col-sm-10 col-md-4">
@@ -232,7 +234,7 @@
                                     </div>
 
 
-
+                                    </div>
                                     <!-- /.box-body -->
                                     <div class="box-footer text-center">
                                         <button type="submit" class="btn btn-primary">{{ trans('labels.Submit') }}</button>

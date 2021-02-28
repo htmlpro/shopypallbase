@@ -228,7 +228,7 @@ left: 6%;
 }
 .skin-blue .sidebar-menu>li>.treeview-menu {
     background: none;
-    padding: 6px 3px;
+    padding: 6px 11px;
 }
 .skin-blue .treeview-menu>li>a {
     color: #6e768e;
@@ -289,7 +289,7 @@ left: 6%;
     color: #181c32;
 }
 .box-header {
-    padding: 20px 19px 8px 15px;
+    padding: 20px 19px 8px 10px;
     overflow: hidden;
 }
 .nav-tabs-custom {
@@ -750,6 +750,31 @@ table.table.table-hover.dt-responsive thead tr.first th {
 .box.box-danger h2 {
     font-size: 30px;
     font-weight: 600;
+}
+div#contact-form {
+    padding: 0;
+}
+.col-xs-12.text-right {
+    text-align: left;
+    padding-left: 0;
+}
+.form-group.environment-box .control-label {
+    text-align: left;
+}
+.maintenance-box label {
+    display: block;
+    width: 100%;
+    text-align: left !important;
+    margin-bottom: 3px !important;
+}
+.maintenance-box .col-sm-10.col-md-4 {
+    width: 100%;
+}
+.maintenance-box .form-group {
+    margin: 10px -15px;
+}
+.form-group.margin-no {
+    margin-top: -13px;
 }
 
 
