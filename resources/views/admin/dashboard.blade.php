@@ -14,7 +14,7 @@
   <!-- Main content -->
   <section class="content">
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-sm-6 col-md-6 col-lg-3">
         <div class="box box-danger border-top-none card transition total-price">
 
           <!-- /.box-header -->
@@ -45,7 +45,7 @@
 
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-sm-6 col-md-6 col-lg-3">
         <div class="box box-danger border-top-none card transition total-price">
           <div class="box-body padding-0 p-zeero">
             <div>
@@ -61,7 +61,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-sm-6 col-md-6 col-lg-3">
         <div class="box box-danger border-top-none card transition total-price">
           <div class="box-body padding-0 p-zeero">
             <div>
@@ -77,7 +77,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-sm-6 col-md-6 col-lg-3">
         <div class="box box-danger border-top-none card transition total-price">
           <div class="box-body padding-0 p-zeero">
             <div class="">
@@ -96,16 +96,29 @@
     </div>
     <div class="row">
       <div class="col-sm-4">
-        <div class="box box-danger border-top-none card transition">
+        <div class="box box-danger border-top-none card transition revenue-box">
           <div class="box-body padding-0">
-            <div class="col-md-6">
-              icon
+            <div class="col-md-12">
+              <h2>Total Revenue</h2>
+              <h3>Total sales made today</h3>
+              <h4>
+              $178
+              </h4>
+              <p>Traditional heading elements are designed to work best in the meat of your page content.</p>
+              <div class="row">
+                <div class="col-md-4">
+                    <p class="text-muted font-15 mb-1 text-truncate">Target</p>
+                    <h4><i class="fa fa-long-arrow-up" aria-hidden="true"></i>$7.8k</h4>
+                </div>
+                <div class="col-md-4">
+                    <p class="text-muted font-15 mb-1 text-truncate">Last week</p>
+                    <h4><i class="fa fa-long-arrow-up green" aria-hidden="true"></i>$1.4k</h4>
+                </div>
+                <div class="col-md-4">
+                    <p class="text-muted font-15 mb-1 text-truncate">Last Month</p>
+                    <h4><i class="fa fa-long-arrow-up" aria-hidden="true"></i>$15k</h4>
+                </div>
             </div>
-            <div class="col-md-6">
-              <h3>
-                78.41k
-              </h3>
-              <h4>Today's Visits</h4>
             </div>
             
           </div>

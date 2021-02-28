@@ -5,17 +5,17 @@
 	 
   <section class="content">
   	<div class="row">
-  		<div class="col-md-2">
+  		<div class="col-md-1">
   			
   		</div>
-  		<div class="col-md-8">
+  		<div class="col-md-10 settings-box">
   			<h1 style="margin-top: 0">
       			<small>Settings</small>
     		</h1>
   			<div class="box box-danger border-top-none card">
 		  		<div class="row">
 		  			<a href="" class="col-md-4">
-	  					<div class="col-md-2">
+	  					<div class="col-md-2 box-icon">
 	  						<i class="fa fa-gear" aria-hidden="true"></i>
 	  					</div>
 	  					<div class="col-md-10">
@@ -28,8 +28,8 @@
 	  					</div>
 		  		 	</a>
 		  		 	<a href="" class="col-md-4">
-	  					<div class="col-md-2">
-	  						<i class="fa fa-gear" aria-hidden="true"></i>
+	  					<div class="col-md-2 box-icon">
+						  <i class="fa fa-map-marker" aria-hidden="true"></i>
 	  					</div>
 	  					<div class="col-md-10">
 	  						<h4>
@@ -41,8 +41,8 @@
 	  					</div>
 		  		 	</a>
 		  		 	<a href="" class="col-md-4">
-	  					<div class="col-md-2">
-	  						<i class="fa fa-gear" aria-hidden="true"></i>
+	  					<div class="col-md-2 box-icon">
+						  <i class="fa fa-user" aria-hidden="true"></i>
 	  					</div>
 	  					<div class="col-md-10">
 	  						<h4>
@@ -54,8 +54,8 @@
 	  					</div>
 		  		 	</a>
 		  		 	<a href="" class="col-md-4">
-	  					<div class="col-md-2">
-	  						<i class="fa fa-gear" aria-hidden="true"></i>
+	  					<div class="col-md-2 box-icon">
+						  <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
 	  					</div>
 	  					<div class="col-md-10">
 	  						<h4>
@@ -67,8 +67,8 @@
 	  					</div>
 		  		 	</a>
 		  		 	<a href="" class="col-md-4">
-	  					<div class="col-md-2">
-	  						<i class="fa fa-gear" aria-hidden="true"></i>
+	  					<div class="col-md-2 box-icon">
+						  <i class="fa fa-bell" aria-hidden="true"></i>
 	  					</div>
 	  					<div class="col-md-10">
 	  						<h4>
@@ -80,8 +80,8 @@
 	  					</div>
 		  		 	</a>
 		  		 	<a href="" class="col-md-4">
-	  					<div class="col-md-2">
-	  						<i class="fa fa-gear" aria-hidden="true"></i>
+	  					<div class="col-md-2 box-icon">
+	  					<i class="fa fa-language" aria-hidden="true"></i>
 	  					</div>
 	  					<div class="col-md-10">
 	  						<h4>
@@ -93,8 +93,8 @@
 	  					</div>
 		  		 	</a>
 		  		 	<a href="" class="col-md-4">
-	  					<div class="col-md-2">
-	  						<i class="fa fa-gear" aria-hidden="true"></i>
+	  					<div class="col-md-2 box-icon">
+						  <i class="fa fa-shopping-cart" aria-hidden="true"></i>
 	  					</div>
 	  					<div class="col-md-10">
 	  						<h4>
@@ -106,8 +106,8 @@
 	  					</div>
 		  		 	</a>
 		  		 	<a href="" class="col-md-4">
-	  					<div class="col-md-2">
-	  						<i class="fa fa-gear" aria-hidden="true"></i>
+	  					<div class="col-md-2 box-icon">
+						  <i class="fa fa-gift" aria-hidden="true"></i>
 	  					</div>
 	  					<div class="col-md-10">
 	  						<h4>
@@ -119,8 +119,8 @@
 	  					</div>
 		  		 	</a>
 		  		 	<a href="" class="col-md-4">
-	  					<div class="col-md-2">
-	  						<i class="fa fa-gear" aria-hidden="true"></i>
+	  					<div class="col-md-2 box-icon">
+						  <i class="fa fa-usd" aria-hidden="true"></i>
 	  					</div>
 	  					<div class="col-md-10">
 	  						<h4>
@@ -132,8 +132,8 @@
 	  					</div>
 		  		 	</a>
 		  		 	<a href="" class="col-md-4">
-	  					<div class="col-md-2">
-	  						<i class="fa fa-gear" aria-hidden="true"></i>
+	  					<div class="col-md-2 box-icon">
+						  <i class="fa fa-truck" aria-hidden="true"></i>
 	  					</div>
 	  					<div class="col-md-10">
 	  						<h4>
@@ -145,8 +145,8 @@
 	  					</div>
 		  		 	</a>
 		  		 	<a href="" class="col-md-4">
-	  					<div class="col-md-2">
-	  						<i class="fa fa-gear" aria-hidden="true"></i>
+	  					<div class="col-md-2 box-icon">
+	  					<i class="fa fa-files-o" aria-hidden="true"></i>
 	  					</div>
 	  					<div class="col-md-10">
 	  						<h4>
@@ -158,8 +158,8 @@
 	  					</div>
 		  		 	</a>
 		  		 	<a href="" class="col-md-4">
-	  					<div class="col-md-2">
-	  						<i class="fa fa-gear" aria-hidden="true"></i>
+	  					<div class="col-md-2 box-icon">
+						  <i class="fa fa-gavel" aria-hidden="true"></i>
 	  					</div>
 	  					<div class="col-md-10">
 	  						<h4>
@@ -171,8 +171,8 @@
 	  					</div>
 		  		 	</a>
 		  		 	<a href="" class="col-md-4">
-	  					<div class="col-md-2">
-	  						<i class="fa fa-gear" aria-hidden="true"></i>
+	  					<div class="col-md-2 box-icon">
+	  					<i class="fa fa-percent" aria-hidden="true"></i>
 	  					</div>
 	  					<div class="col-md-10">
 	  						<h4>
@@ -184,8 +184,8 @@
 	  					</div>
 		  		 	</a>
 		  		 	<a href="" class="col-md-4">
-	  					<div class="col-md-2">
-	  						<i class="fa fa-gear" aria-hidden="true"></i>
+	  					<div class="col-md-2 box-icon">
+	  					<img style="width: 60%" src="http://127.0.0.1:8000/images/media/2021/01/icon-sales.png">
 	  					</div>
 	  					<div class="col-md-10">
 	  						<h4>
@@ -201,7 +201,7 @@
 		  	</div>
   		</div>
 
-  		<div class="col-md-2">
+  		<div class="col-md-1">
   			
   		</div>
   	</div>
