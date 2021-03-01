@@ -31,8 +31,8 @@
                     <label for="name">{{ trans('labels.Free Shipping On Min Order Price') }}</label>
                 </div>
                 <div class="box-body">
-                    <div class="form-group">
-                        <div class="col-md-4">
+                    <div class="form-group margin-no">
+                        <div class="col-md-12">
                             {!! Form::text('free_shipping_limit', $result['commonContent']['setting']['free_shipping_limit'], array('class'=>'form-control', 'id'=>'free_shipping_limit')) !!}<span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;margin-top: 0;">
                                 {{ trans('labels.Free Shipping On After Order Price Text') }}</span>
                         </div>

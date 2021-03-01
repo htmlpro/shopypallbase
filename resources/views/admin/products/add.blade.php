@@ -57,6 +57,7 @@
                                     {{ trans('labels.Product Type Text') }}.</span>
                             </div>
                         </div>
+
                     </div>
                     <br /><br />
                     <div class="form-group">
