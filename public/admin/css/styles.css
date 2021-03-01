@@ -776,8 +776,12 @@ div#contact-form {
 .form-group.margin-no {
     margin-top: -13px;
 }
-
-
+body.skin-blue.sidebar-mini.sidebar-collapse ul.sidebar-menu {
+    padding-top: 16px;
+}
+.sidebar-mini.sidebar-collapse .sidebar-menu>li>a {
+    padding: 13px 7px;
+}
 
 
 
