@@ -5,7 +5,7 @@ function serchfunction()
    $('.search-filter').hide();
     $('.serachproductlist').show();
 
-     var serchresult = [
+     var searchresult = [
       {
         id: 1,
         name: 'product 1',
@@ -36,22 +36,25 @@ function serchfunction()
       }
      ];
      var htmllist = '';
-	 searchresult = $("input[name=prodcuts_json]").val();
+	 console.log($('.products_json'));
+	 searchresult = $(".products_json").val();
+	 console.log(searchresult);
 	 searchresult = JSON.parse(searchresult);
      $.each(searchresult, function(i,e){
-        console.log(e.name);
-        htmllist += ' <input type="checkbox" name="CheckBoxInputName" value="'+e.products_id+'" id="CheckBox'+e.products_id+'" />\n\
-              <label class="list-group-item" for="CheckBox'+e.products_id+'">\n\
+        console.log(e);
+        htmllist += '<input type="checkbox" name="CheckBoxInputName" value="'+e.pid+'" id="CheckBox'+e.pid+'" />\n\
+              <label class="list-group-item" for="CheckBox'+e.pid+'">\n\
+					<input type="hidden" name="product_data'+e.pid+'" value=\''+JSON.stringify(e)+'\' id="product_data'+e.pid+'" class="product_data"/>\n\
                   <div class="pdlistMain">\n\
                       <div class="pdtitlMain">\n\
                           <span class="pd_img">\n\
-                              <img src="'+e.image+'">\n\
+                              <img src="/'+e.path+'">\n\
                           </span>\n\
-                          <span class="pd_title">'+e.name+'</span>\n\
+                          <span class="pd_title">'+e.products_name+'</span>\n\
                       </div>\n\
                       <div class="pdpricMain">\n\
-                          <span class="pd_stock">in Stock '+e.stock+'</span>\n\
-                          <span class="pd_price pull-right">$'+e.price+'</span>\n\
+                          <span class="pd_stock">in Stock '+e.products_quantity+'</span>\n\
+                          <span class="pd_price pull-right">$'+e.products_price+'</span>\n\
                       </div>\n\
                   </div>\n\
               </label>';
@@ -60,15 +63,42 @@ function serchfunction()
      $('.serachproductlist .list-group').html(htmllist);
 }
 
-
-
-
-
 $(document ).ready(function(){
-  $('.search-filter > li').click(function(){
+  $('.search-filter > li').click(function(e){
+	  e.preventDefault();
       serchfunction();
   });
 
+	$(document).on('click','.serachproductlist label.list-group-item', function(){
+			
+			product = $(this).find("input.product_data").val();
+			product = JSON.parse(product);
+			console.log(product);
+			htmllist = '<div class="product">\n\
+                                    <div class="product-image">\n\
+                                      <img src="/'+product.path+'">\n\
+                                    </div>\n\
+                                    <div class="product-details">\n\
+                                      <div class="product-title"><a href="#">'+product.products_name+'</a></div>\n\
+                                    </div>\n\
+                                    <div class="product-price">'+product.products_price+'</div>\n\
+                                    <div class="product-quantity">\n\
+                                      <input type="number" value="1" min="1">\n\
+                                    </div>\n\
+                                    <div class="product-removal">\n\
+                                      <button class="remove-product">\n\
+                                        X\n\
+                                      </button>\n\
+                                    </div>\n\
+                                    <div class="product-line-price">'+product.products_price+'</div>\n\
+                                </div>';
+			$('.cart-products').html(htmllist);
+			product = $('.cart-products .product input[type="number"]');
+			console.log(product[0]);
+			updateQuantity(product[0]);
+			
+	});
+								  
   $('.detailsbox').click(function(){
       $('.customerlist').fadeOut();
       $('.orderdetailMain > .sc_Main h3').hide();
@@ -125,16 +155,16 @@ $(document ).ready(function(){
 
 
 var taxRate = 0.05;
-var shippingRate = 15.00; 
+var shippingRate = 0.00; 
 var fadeTime = 300;
 
 /* Assign actions */
-$('.shopping-cart .product .product-quantity input').change( function(){
+$(document).on('change', '.shopping-cart .product .product-quantity input', function(){
   console.log('nabeel');
   updateQuantity(this);
 });
 
-$('.shopping-cart .product .product-removal button').click( function() {
+$(document).on('click', '.shopping-cart .product .product-removal button', function() {
   removeItem(this);
 });
 
@@ -180,7 +210,7 @@ function updateQuantity(quantityInput)
   var price = parseFloat(productRow.children('.shopping-cart .product-price').text());
   var quantity = $(quantityInput).val();
   var linePrice = price * quantity;
-  
+  console.log(linePrice);
   /* Update line price display and recalc cart totals */
   productRow.children('.shopping-cart .product-line-price').each(function () {
     $(this).fadeOut(fadeTime, function() {
@@ -203,8 +233,15 @@ function removeItem(removeButton)
   });
 }
 
+//Save Draft 
+$(document).on('click', '.save_draft', function() {
+	$(".messages span.message").text("Order Saved as Draft!");
+	setTimeout(function(){ $(".messages").show(); $(".delete_draft").removeAttr("disabled"); }, 1500);
+});
 
-
-
+$(document).on('click', '.apply_coupon', function() {
+	$(".coupon_messages span.message").text("Coupon is expired or doesn't exist!");
+	setTimeout(function(){ $(".coupon_messages").show(); }, 1500);
+});
 
 });

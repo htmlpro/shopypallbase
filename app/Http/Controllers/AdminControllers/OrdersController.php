@@ -239,10 +239,12 @@ class OrdersController extends Controller
                             ->where('image_categories.image_type', '!=', 'THUMBNAIL')
                             ->orWhere('image_categories.image_type', '=', 'ACTUAL');
                     });
-            })->get(); //where('products_status', 1);
+            })
+			->select('products.products_id as pid', 'products.*', 'products_description.*', 'image_categories.*')
+			->get(); //where('products_status', 1);
 		//print_r($products);
 		//exit;
-		
+		$coupons = null;
 		$result['commonContent'] = $this->Setting->commonContent();
         return view("admin.Orders.addorder", $title)->with('result', $result)->with("customers", $customers)->with("products", $products);
     }

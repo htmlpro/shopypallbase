@@ -14,8 +14,12 @@
     <!-- Main content -->
    
     <section class="content">
-
-
+			<div class="row messages" style="display: none;">
+				<div class="alert alert-success alert-dismissible" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<span class="message"></span>
+				</div>
+			</div>
             <div class="row">
                 <div class="col-md-8">
                     <!-- <div class="box-header">
@@ -30,7 +34,7 @@
                                         <span class="glyphicon glyphicon-search form-control-feedback"></span>
                                         <input type="text" class="form-control" placeholder="Search" data-toggle="modal" data-target="#ordermodel">
                                          <button type="submit" class="btn btn-primary pull-right" data-toggle="modal" data-target="#ordermodel">Browse products</button>
-										 <input type="hidden" name="products_json" value="{{ $products }}" />
+										 <input type="hidden" name="products_json" class="products_json" value="{{ $products }}" />
                                     </div>
                                 </div>
 
@@ -55,22 +59,6 @@
                                                         <a href="list-group-item list-group-item-action"> All products
                                                         <i class="fa fa-angle-right pull-right"></i></a>
                                                     </li>
-                                                    <li class="list-group-item">
-                                                        <a href="list-group-item list-group-item-action"> Popular products
-                                                        <i class="fa fa-angle-right pull-right"></i></a>
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <a href="list-group-item list-group-item-action"> Collections
-                                                        <i class="fa fa-angle-right pull-right"></i></a>
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <a href="list-group-item list-group-item-action"> Product Type
-                                                        <i class="fa fa-angle-right pull-right"></i></a>
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <a href="list-group-item list-group-item-action"> Tags
-                                                        <i class="fa fa-angle-right pull-right"></i></a>
-                                                    </li>
                                                 </ul>
 
                                                 <div class="serachproductlist">
@@ -90,15 +78,12 @@
 
 
                                 <div class="shopping-cart">
+								<div class="cart-products" >
                                   <div class="product">
 									Search or Browser Products and Add here!
-                                    
                                   </div>
-                                 
-
-
-
-                                 <div class="row">
+                                </div>
+                                <div class="row">
                                   <div class="col-md-6">
                                     <div class="form-group">
                                       <label for="notes">Notes</label>
@@ -112,20 +97,20 @@
                                     </div>
                                     <div class="totals-item">
                                       <label>Subtotal</label>
-                                      <div class="totals-value" id="cart-subtotal">12.99</div>
+                                      <div class="totals-value" id="cart-subtotal">0.00</div>
                                     </div>
                                      <div class="totals-item">
                                       <label><a href="#" data-toggle="modal" data-target="#addShipping"> Add shipping</a></label>
-                                      <div class="totals-value" id="cart-shipping">15.00</div>
+                                      <div class="totals-value" id="cart-shipping">00.00</div>
                                     </div>
                                     <div class="totals-item">
                                       <label><a href="#" data-toggle="modal" data-target="#addtaxes"> Taxes</a></label>
-                                      <div class="totals-value" id="cart-tax">3.60</div>
+                                      <div class="totals-value" id="cart-tax">0.00</div>
                                     </div>
                                    
                                     <div class="totals-item totals-item-total">
                                       <label>Total</label>
-                                      <div class="totals-value" id="cart-total">31.59</div>
+                                      <div class="totals-value" id="cart-total">00.00</div>
                                     </div>
                                   </div>
 
@@ -221,9 +206,8 @@
                 </div>
 				
 				<div class="col-md-12 submit-btnmain">
-                  <button class="pull-left btn btn-default">Delete draft order</button>
-                  <button class="pull-right btn btn-primary">Save draft order</button>
-                                    
+                  <button class="pull-left btn btn-default delete_draft" disabled>Delete draft order</button>
+                  <button class="pull-right btn btn-primary save_draft">Save draft order</button>
                 </div>
 				
             </div>
@@ -871,23 +855,21 @@
                      <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label for="company">Discount this order by</label>
+                            <label for="company">Coupon Code</label>
                             <input type="text" class="form-control" placeholder="" id="adDiscount">
                           </div>
                       </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label for="priceitem">Reason</label>
-                      <input type="tel" class="form-control" id="Reason" placeholder="">
-                    </div>
-                  </div>
-                </div>
-               
-               
+					</div>
+					<div class="row coupon_messages" style="display: none;">
+						<div class="alert alert-error alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+							<span class="message"></span>
+						</div>
+					</div>
                   </div>
                    <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Apply</button>
+                      <button type="button" class="btn btn-default apply_coupon" >Apply</button>
                   </div>
                 </div>
               </div>
@@ -999,8 +981,8 @@
                   <div class="modal-body">
                      <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <div class="alert alert-warning" role="alert">
-                      <strong>NOT SEEING ALL YOUR RATES?</strong> </br>
-                      Add a customer with a complete shipping address to select from calculated shipping rates
+                      <strong>SELECT A SHIPPING OPTION BELOW</strong> </br>
+                      
                     </div>
                      <div class="row">
                         <div class="col-md-12">
@@ -1008,21 +990,8 @@
                             <div class="radio">
                               <label><input type="radio" name="optradio" checked>Free shipping</label>
                             </div>
-                            <div class="radio">
-                              <label><input type="radio" name="optradio">Custom</label>
-                            </div>
                           </div>
                       </div>
-                  <div class="col-md-8">
-                    <div class="form-group">
-                      <input type="tel" class="form-control"id="customrate" placeholder="Custom rate name">
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <input type="tel" class="form-control" id="shippingcoust" placeholder="Cost">
-                    </div>
-                  </div>
                 </div>
                
                

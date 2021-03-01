@@ -262,8 +262,13 @@
 .pdpricMain{
     min-width: 130px;
 }
+.pdpricMain .pd_stock{
+	margin: 0px 20px;
+	color: #aaa;
+}
 .pd_img img{
       max-width: 25px;
+	  max-height: 30px;
 }
 .serachproductlist{
   display: none;
