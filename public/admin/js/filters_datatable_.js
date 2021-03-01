@@ -32,7 +32,7 @@ jQuery(function ($) {
 					console.log(column);
 					var select = $('<div class="dropdown filterDropdown-'+label[idx]+'">'
 								  +'<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu-f'+idx+'" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
-									+label[idx]
+									+label[idx]+
 									+'<span class="caret"></span>'
 								  +'</button>'
 								  +'<ul class="dropdown-menu sort-menu" aria-labelledby="dropdownMenu2">'
@@ -41,25 +41,17 @@ jQuery(function ($) {
 								+'</div>')
 					//var select = $('<label><select id="filter-'+label[idx]+'" class="form-control form-control-sm"><option value="">'+label[idx]+'</option></select></label>')
 						.appendTo( $("#example1_filter") )
-						.on( 'change', 'input', function () {
+						.on( 'change', 'select', function () {
 							var val = $.fn.dataTable.util.escapeRegex(
-									$(this).val()
-								);
-							if(this.checked) {
-								column
-									.search( val ? '^'+val+'$' : '', true, false )
-									.draw();
-								//Show the current selection pill:
-								$("#example1_wrapper .filters").append('<span class="badge" data-value="'+val+'">'+val+'</span>');
-								$(".saveViewDropDown .selected_filters").append('<span class="badge" data-value="'+val+'">'+val+'</span>');
-							}else {
-								$("#example1_wrapper .filters").find('span[data-value="'+val+'"]').remove();
-								$(".saveViewDropDown .selected_filters").find('span[data-value="'+val+'"]').remove();
-							}
+								$(this).val()
+							);
+							column
+								.search( val ? '^'+val+'$' : '', true, false )
+								.draw();
 						} );
 	 
 					column.data().unique().sort().each( function ( d, j ) {
-						select.find('ul').append( '<li value="'+d+'"><label class="radio-inline"><input type="checkbox" name="optradio" data-column="3" data-direction="desc" value="'+d+'">'+d+'</label></li>' )
+						select.find('ul').append( '<li value="'+d+'"><label class="radio-inline"><input type="checkbox" name="optradio" data-column="3" data-direction="desc" value="1">'+d+'</label></li>' )
 					} );
 
 					//Status Buttons Tabs & Saved Views
@@ -93,7 +85,7 @@ jQuery(function ($) {
             } );
 			
 			//More Filters
-			var moreFilters = $('<label class="more-filters"><button class="btn btn-default" type="button" id="more-filters" >More filters</button></label>')
+			var moreFilters = $('<label><button class="btn btn-default" type="button" id="more-filters" >More filters</button></label>')
 							//+'<aside id="morefilter-aside">'
 							//+'<button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
 							//+'<ul class="asideList"><li><a href="" class="asideAnchor">Link</a></li></ul></aside>')
@@ -124,6 +116,9 @@ jQuery(function ($) {
 									<div id="collapseOrderDate" class="" aria-labelledby="orderDate" data-parent="#accordionMoreFilters"> \
 									  <div class="card-body"> \
 										<div class="form-group selected_filters" data-filters=""> \
+											<span class="badge">Inprocess</span> \
+											<span class="badge">Website</span> \
+											<span class="badge">Cash on Delivery</span> \
 										</div> \
 									    <div class="form-group"> \
 										<label>View Name </label><input type="text" name="view_name" class="viewName"/> \

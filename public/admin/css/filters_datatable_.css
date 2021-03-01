@@ -2,17 +2,12 @@
 	position: absolute;
     margin: 7px;
 }
-#example1_filter .dropdown{
-	float: left;
-	margin-top: 20px;
-}
-#example1_filter .more-filters{
-	margin-top: 20px;
-}
 #example1_filter .saveViewDropDown{
 	display: inline-block;	
 }
-
+#example1_filter .saveViewDropDown .btn-default.dropdown-toggle{
+	margin-top: -4px;
+}
 #example1_filter .saveViewDropDown .saveViewDropDownBody{
 	width: 220px;
 	box-shadow: var(--p-modal-shadow,0 10px 10px 0 rgba(32,42,53,.2),0 2px 16px 0 rgba(32,42,54,.08));
@@ -26,27 +21,16 @@
     margin-top: 18px;
 }
 #example1_filter .btn-default{
-	background-color: #fff;	
-}
-#example1_filter .btn-default span{
-	margin: 5px;
+	background-color: #fff;
 }
 #example1_filter label:first-child{
 	width: 20%;
-	float: left;
+}
+#example1_filter #more-filters{
+	margin-top: -4px;
 }
 #example1_length select{
 	padding: 6px 2px;
-}
-#example1_filter .dropdown-menu{
-    box-shadow: var(--p-modal-shadow,0 31px 41px 0 rgba(32,42,53,.2),0 2px 16px 0 rgba(32,42,54,.08));
-}
-#example1_filter .dropdown-menu>li label.radio-inline{
-	padding: 5px;
-	width: 100%;
-}
-#example1_filter .dropdown-menu>li label.radio-inline input{
-	margin-right: 5px;
 }
 .dropdown-menu>li{
 	padding: 0px 10px;
@@ -59,13 +43,6 @@
     line-height: 1.42857143;
     color: #333;
     white-space: nowrap;
-}
-
-#example1_filter .sort-menu li{
-	margin-left: 10px;
-}
-#example1_filter .badge{
-	margin: 5px;
 }
 
 #filter-btn-row{
