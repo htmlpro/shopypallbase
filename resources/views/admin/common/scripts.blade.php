@@ -57,6 +57,7 @@
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/plug-ins/1.10.22/sorting/custom-data-source/dom-checkbox.js"></script>
 <script src="{!! asset('admin/js/filters_datatable.js') !!}"></script>
+<script src="{!! asset('admin/js/order.js') !!}"></script>
 
 <script type="text/javascript">
 
