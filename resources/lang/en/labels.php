@@ -193,7 +193,7 @@ return [
 	'link_total_purchased' => 'Total Purchased',
 	'link_products_liked' => 'Products Liked',
 	'link_Banners' => 'Banners',
-	'link_site_settings' => 'Settings (Website)',
+	'link_site_settings' => 'Store Front',
 	'link_order_status' => 'Order Status',
 	'link_setting' => 'Settings',
 	'link_store_setting' => 'Store Settings',
