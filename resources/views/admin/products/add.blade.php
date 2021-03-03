@@ -15,7 +15,7 @@
 
     <!-- Main content -->
 
-    <section class="content">
+    <section class="content padding">
 
         {!! Form::open(array('url' =>'admin/products/add', 'method'=>'post', 'class' => 'form-horizontal form-validate',
         'enctype'=>'multipart/form-data')) !!}
@@ -39,7 +39,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row first-row">
                 <div class="col-lg-8 col-md-8 col-12 first____sec">
                     <div class="row">
                         <div class="form-group">
@@ -61,7 +61,7 @@
                     </div>
                     <br /><br />
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 col-md-2 control-label">{{ trans('labels.Category') }}<span
+                        <label for="name" class="col-sm-2 col-md-2 control-label padding">{{ trans('labels.Category') }}<span
                                 style="color:red;">*</span></label>
                         <div class="col-sm-10 col-md-9">
                             <?php print_r($result['categories']); ?>

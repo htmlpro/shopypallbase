@@ -12,20 +12,20 @@
   </section>
   <!-- Main content -->
   <section class="content" style="max-width: 106rem; margin-left: 0;">
-    <div class="container first-content">
+    <div class="container first-content margin-padding">
 
       <br />
       <div class="first__content_row">
 
 
-        <div class="searc_______option1 col-md-4 col-sm-6">
+        <div class="searc_______option1 col-md-4 col-sm-6 box-search">
           <div class="form-group">
             <div class="icon-addon addon-md">
               <form action="{{url('admin/products/display')}}" method="get">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <input type="hidden" name="categories_id" value="null">
 
-                <input type="text" placeholder="Filter products" class="form-control" style="width: 60% !important;" name="product" id="parameter" @if(isset($product)) value="{{$product}}" @endif>
+                <input type="text" placeholder="Filter products" class="form-control" name="product" id="parameter" @if(isset($product)) value="{{$product}}" @endif>
 
                 <span><button id="submit" type="submit" class="btn btn-sm btn-default float right" style="height:34px;margin-left: -1px;">Search</button></span>
 
@@ -37,7 +37,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 col-sm-6" style="display: flex;">
+        <div class="col-md-4 col-sm-6 padding-none" style="display: flex;">
           <div class="btn-group grop___btn_first" role="group">
           <div class="btn-group" role="group">
             <button type="button" class="btn btn-default dropdown-toggle  btn____togle"
@@ -102,7 +102,7 @@
 
         </div>
         
-  <div class="col-md-4 col-sm-6">
+  <div class="col-md-4 col-sm-6 absolute-box">
       <a href="{{ URL::to('admin/products/add') }}">
         <button class="btn btn-success"
         style="float: right;font-weight:bold;">{{ trans('labels.AddNew') }}</button>

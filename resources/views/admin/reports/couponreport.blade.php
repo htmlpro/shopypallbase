@@ -49,7 +49,7 @@
                   </div>
                 </div>
                
-                <div class="col-xs-2" style="padding-top: 25px">                  
+                <div class="col-xs-2 padding-left" style="padding-top: 25px">                  
                   <div class="form-group">
                     <button class="btn btn-primary" id="submit" type="submit"><span class="glyphicon glyphicon-search"></span></button>
                     @if(app('request')->input('type') and app('request')->input('type') == 'all')  <a class="btn btn-danger " href="{{url('admin/couponreport')}}"><i class="fa fa-ban" aria-hidden="true"></i> </a>@endif

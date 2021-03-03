@@ -40,7 +40,7 @@
                             </div>  -->
                             
                             <div style="width:10%;float:left;justify-content: center;align-items: center;" >                  
-                              <button class="btn btn-primary" id="submit" type="submit" style="    position: absolute;top: 47%;left: 22%;"><span class="glyphicon glyphicon-search"></span></button>
+                              <button class="btn btn-primary" id="submit" type="submit" style="    position: absolute;top: 55%;left: 21%;"><span class="glyphicon glyphicon-search"></span></button>
                                 @if(app('request')->input('type') and app('request')->input('type') == 'all')  <a class="btn btn-danger " href="{{url('admin/salesreport')}}"><i class="fa fa-ban" aria-hidden="true"></i> </a>@endif
                             </div>
                             <div style="width:60%;float:left;" ></div> 

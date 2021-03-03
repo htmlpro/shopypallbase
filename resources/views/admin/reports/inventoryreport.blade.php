@@ -58,7 +58,7 @@
                   </div>
                 </div>
                
-                <div class="col-xs-2" style="padding-top: 25px">                  
+                <div class="col-xs-2 padding-none" style="padding-top: 25px">                  
                   <div class="form-group">
                     <button class="btn btn-primary" id="submit" type="submit"><span class="glyphicon glyphicon-search"></span></button>
                     @if(app('request')->input('type') and app('request')->input('type') == 'all')  <a class="btn btn-danger " href="{{url('admin/inventoryreport')}}"><i class="fa fa-ban" aria-hidden="true"></i> </a>@endif

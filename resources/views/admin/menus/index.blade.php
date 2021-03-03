@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="box">
-                    <div class="box-header">
+                    <div class="box-header header">
                         <h3 class="box-title">{{ trans('labels.Menus') }} </h3>
                         <div class="box-tools pull-right" style="top: 15px;">
                             <a href="{{ URL::to('admin/catalogmenu') }}" style="display: inline" type="button" class="btn btn-block btn-success">{{ trans('labels.GenerateCatalog') }}</a>
