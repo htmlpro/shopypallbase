@@ -183,19 +183,7 @@
 		  					</p>
 	  					</div>
 		  		 	</a>
-		  		 	<a href="" class="col-md-4">
-	  					<div class="col-md-2 box-icon">
-	  					<img style="width: 60%" src="http://127.0.0.1:8000/images/media/2021/01/icon-sales.png">
-	  					</div>
-	  					<div class="col-md-10">
-	  						<h4>
-		  						Sales channels
-		  					</h4>
-		  					<p>
-		  						Manage the channels you use to sell your products and services
-		  					</p>
-	  					</div>
-		  		 	</a>
+		  		 	
 		  		 	
 			    </div>
 		  	</div>
