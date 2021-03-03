@@ -1318,7 +1318,7 @@ return [
 	'PageType'=>'Page Type',
 	'PageTypeText'=>'Choose page type website or app.',
 	'StatusPageText'=>'Choose \'active\' to show page.',
-	'content_pages'=>'Content Pages',
+	'content_pages'=>'Pages',
 	'link_app_settings'=>'Settings (Application)',
 	'WebLogo'=>'Website Logo',
 	'WebLogoText'=>'Upload website/admin logo.',
