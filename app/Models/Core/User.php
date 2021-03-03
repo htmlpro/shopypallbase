@@ -65,7 +65,7 @@ class User extends Authenticatable
             'password'   => Hash::make($data['password'])
         ]);
     }
-    public static function getCustomers(){
+    public static function getCustomers($query = null){
       $user = User::sortable(['id'=>'ASC'])
           ->LeftJoin('user_to_address', 'user_to_address.user_id' ,'=', 'users.id')
           ->LeftJoin('address_book','address_book.address_book_id','=', 'user_to_address.address_book_id')

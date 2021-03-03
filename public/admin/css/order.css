@@ -37,11 +37,11 @@
 
 /* Global "table" column settings */
 .product-image { float: left; width: 15%; }
-.product-details { float: left; width: 30%; }
+.product-details { float: left; width: 32%; }
 .product-price { float: left; width: 12%; }
-.product-quantity { float: left; width: auto; }
-.product-removal { float: left; width: 9%; }
-.product-line-price { float: left; width: 12%; text-align: right; }
+.product-quantity { float: left; width: auto; max-width: 18%; }
+.product-removal { float: right; width: auto; }
+.product-line-price { float: left; width: 12%; text-align: left; }
 
 
 /* This is used as the traditional .clearfix class */
@@ -118,6 +118,44 @@
     background-color: #a44;
   }
 
+  .customerlist{
+    width: 100%;
+    padding: 15px;
+    margin-top:10px;
+  }
+  .customerlist > a.dropdown-item{
+    color: #202223;
+    padding:10px 15px;
+    display: block;
+    border-radius: 3px;
+    transition: all 0.5s;
+  }
+  .customerlist > a.dropdown-item:hover{
+    background-color:#f7f7f7;
+
+  }
+  .customerlist > a.addnewcustomer{
+    padding:10px;
+    font-size: 16px;
+  }
+  .customerlist > a.addnewcustomer i{
+    font-weight: normal;
+    font-size: 12px;
+    margin-right: 5px;
+  }
+  .customerlist .dropdown-divider{
+        height: 1px;
+    background-color: #eee;
+    margin: 5px -15px;
+  }
+  .customerlist > a.dropdown-item p{
+    margin-bottom: 0px;
+  }
+  .customerlist > a.dropdown-item p.ct_email{
+    margin-top:5px;
+    font-size: 13px;
+    color:#8e8e8e;
+  }
 
 
 /* Totals section */
@@ -131,7 +169,7 @@
    .totals .totals-item label {
       float: left;
       clear: both;
-      width: 79%;
+      width: 60%;
       text-align: right;
     }
     
@@ -140,3 +178,182 @@
       width: 21%;
       text-align: right;
     }
+    .search-filter li{
+      cursor: pointer;
+    }
+    .search-filter li > a{
+      color:#111;
+    }
+
+
+
+.serachproductlist .list-group-item {
+  user-select: none;
+}
+
+.serachproductlist .list-group input[type="checkbox"] {
+  display: none;
+}
+
+.serachproductlist .list-group input[type="checkbox"] + .list-group-item {
+  cursor: pointer;
+}
+
+.serachproductlist .list-group input[type="checkbox"] + .list-group-item:before {
+  content: "\2713";
+  color: transparent;
+  font-weight: bold;
+  margin-right: 1em;
+}
+
+.serachproductlist .list-group input[type="checkbox"]:checked + .list-group-item {
+  background-color: #0275D8;
+  color: #FFF;
+}
+
+.serachproductlist .list-group input[type="checkbox"]:checked + .list-group-item:before {
+  color: inherit;
+}
+
+.serachproductlist .list-group input[type="radio"] {
+  display: none;
+}
+
+.serachproductlist .list-group input[type="radio"] + .list-group-item {
+  cursor: pointer;
+}
+
+.serachproductlist .list-group input[type="radio"] + .list-group-item:before {
+  content: "\2022";
+  color: transparent;
+  font-weight: bold;
+  margin-right: 1em;
+}
+
+.serachproductlist .list-group input[type="radio"]:checked + .list-group-item {
+  background-color: #0275D8;
+  color: #FFF;
+}
+
+.serachproductlist .list-group input[type="radio"]:checked + .list-group-item:before {
+  color: inherit;
+}
+.pdlistMain{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 95%;
+    float: right;
+}
+.pdtitlMain{
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 0%;
+    -ms-flex: 1 1 0%;
+    flex: 1 1 0%;
+}
+.pdpricMain{
+    min-width: 130px;
+}
+.pdpricMain .pd_stock{
+	margin: 0px 20px;
+	color: #aaa;
+}
+.pd_img img{
+      max-width: 25px;
+	  max-height: 30px;
+}
+.serachproductlist{
+  display: none;
+}
+
+
+/**** customer info ***/
+
+
+.image_and_orders{
+  overflow: hidden;
+  margin-top:20px;
+  margin-bottom: 10px;
+}
+.image_and_orders .ordercount{
+  margin-top:25px;
+}
+.ct_viewmain h3{
+  font-size: 16px;
+  font-weight: 600;
+}
+.ct_viewmain h3 i{
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+}
+.ct_viewmain p{
+  color:#8e8e8e;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+.ct_viewmain h3 a{
+  font-weight: normal;
+  font-size: 14px;
+}
+.ct_header{
+  padding: 5px 10px;
+}
+.ct_viewmain{
+  display: none;
+}
+h3 > span.pull-right > a{
+  font-size: 16px;
+}
+.search_productMain{
+  margin-top:25px;
+}
+.invoiceMian{
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    overflow: hidden;
+    padding: 15px 0px;
+}
+.invoiceMian{
+      clear: both;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    overflow: hidden;
+    padding: 15px 0px;
+}
+.invoiceMian i{
+      font-size: 22px;
+    margin-right: 10px;
+}
+.invoiceMian span{
+    font-size: 14px;
+    font-weight: bold;
+}
+.makepaymentMian{
+    overflow: hidden;
+    padding: 15px 0px;
+}
+.makepaymentMian i{
+      font-size: 22px;
+    margin-right: 10px;
+}
+.makepaymentMian span{
+    font-size: 14px;
+    font-weight: bold;
+}
+.makepaymentMian button{
+  margin-left:10px;
+}
+.submit-btnmain{
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+    margin-top: 10px;
+}

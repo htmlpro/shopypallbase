@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminControllers;
 
 use App\Http\Controllers\AdminControllers\SiteSettingController;
+use App\Http\Controllers\AdminControllers\ProductController;
 use App\Http\Controllers\Controller;
 use App\Models\Core\Setting;
 use Illuminate\Http\Request;
@@ -10,6 +11,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Lang;
 use App\Models\Core\Order;
 use App\Models\Core\User;
+use App\Models\Core\Products;
+use App\Models\Core\Coupon;
+use App\Models\Core\Tax_class;
 use DataTables;
 
 class OrdersController extends Controller
@@ -219,7 +223,29 @@ class OrdersController extends Controller
 	public function addOrder(Request $request)
     {
 		$title = array('pageTitle' => Lang::get("labels.NewOrder"));
+		$customers = User::getCustomers();
+		$products = Products::find(1)->leftJoin('products_description', 'products_description.products_id', '=', 'products.products_id')
+            ->LeftJoin('manufacturers', function ($join) {
+                $join->on('manufacturers.manufacturers_id', '=', 'products.manufacturers_id');
+            })
+
+            ->LeftJoin('specials', function ($join) {
+                $join->on('specials.products_id', '=', 'products.products_id')->where('specials.status', '=', '1');
+            })
+            ->LeftJoin('image_categories', function ($join) {
+                $join->on('image_categories.image_id', '=', 'products.products_image')
+                    ->where(function ($query) {
+                        $query->where('image_categories.image_type', '=', 'THUMBNAIL')
+                            ->where('image_categories.image_type', '!=', 'THUMBNAIL')
+                            ->orWhere('image_categories.image_type', '=', 'ACTUAL');
+                    });
+            })
+			->select('products.products_id as pid', 'products.*', 'products_description.*', 'image_categories.*')
+			->get(); //where('products_status', 1);
+		//print_r($products);
+		//exit;
+		$coupons = null;
 		$result['commonContent'] = $this->Setting->commonContent();
-        return view("admin.Orders.addorder", $title)->with('result', $result);
+        return view("admin.Orders.addorder", $title)->with('result', $result)->with("customers", $customers)->with("products", $products);
     }
 }
