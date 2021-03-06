@@ -37,7 +37,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 col-sm-6 padding-none" style="display: flex;">
+        <div class="col-md-8 col-sm-6 padding-none" style="display: flex;">
           <div class="btn-group grop___btn_first" role="group">
           <div class="btn-group" role="group">
             <button type="button" class="btn btn-default dropdown-toggle  btn____togle"
