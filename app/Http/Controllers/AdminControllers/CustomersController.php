@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\AdminControllers;
 
+use App\Exports\CustomerExports;
 use App\Models\Core\Customers;
 use App\Models\Core\Images;
 use App\Models\Core\Setting;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Exception;
 use Kyslik\ColumnSortable\Sortable;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CustomersController extends Controller
 {
@@ -270,4 +272,10 @@ class CustomersController extends Controller
 
       return view("admin.customers.index",$title)->with('result', $result)->with('customers', $customerData)->with('filter',$filter)->with('parameter',$parameter);
     }
+
+  public function export_customer()
+  {
+    return Excel::download(new CustomerExports, 'customers.xlsx');
+    // return (new CustomerExports)->download('customers.csv', \Maatwebsite\Excel\Excel::CSV);
+  }
 }
