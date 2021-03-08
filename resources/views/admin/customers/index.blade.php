@@ -62,7 +62,9 @@
                                     </form>
                                     <div class="col-lg-4 form-inline" id="contact-form12"></div>
                                 </div>
-                                <div class="box-tools pull-right">
+                                <div class="box-tools pull-right" style="display: flex;">
+                                    <a href="{{ url('admin/customers/export-customers')}}" type="button"
+                                        class="btn btn-block btn-primary" style="margin-right: 4px;margin-top: 5px;">Export</a>
                                     <a href="{{ url('admin/customers/add')}}" type="button"
                                         class="btn btn-block btn-primary">{{ trans('labels.AddNew') }}</a>
                                 </div>
