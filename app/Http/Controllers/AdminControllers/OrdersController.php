@@ -58,6 +58,39 @@ class OrdersController extends Controller
 		}
         
     }
+	
+	//Display Draft Order listing.
+	public function draft(Request $request)
+    {
+        $title = array('pageTitle' => Lang::get("labels.ListingDraftOrders"));        
+
+        $message = array();
+        $errorMessage = array();        
+        
+		if ($request->ajax()) {
+			$data = $this->Order->orders_datatable(true);
+			//print_r($data);
+			return Datatables::of($data)
+					->addIndexColumn()
+					->addColumn('action', function($row){
+						$actionBtn = '<a data-toggle="tooltip" data-placement="bottom" title="" href="vieworder/'.$row->orders_id.'" class="badge bg-light-blue" data-original-title="View Order"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+									<a data-toggle="tooltip" data-placement="bottom" title="Delete Order" id="deleteOrdersId" orders_id="'.$row->orders_id.'" class="badge bg-red"><i class="fa fa-trash" aria-hidden="true"></i></a>';
+						return $actionBtn;
+					})
+					->rawColumns(['action'])
+					->make(true);
+		}else {
+			$ordersData['orders'] = $this->Order->paginator();
+			$ordersData['message'] = $message;
+			$ordersData['errorMessage'] = $errorMessage;
+			$ordersData['currency'] = $this->myVarsetting->getSetting();
+			$ordersData['savedViews'] = User::find(1)->savedOrderViews;
+			//print_r($ordersData['savedViews']);
+			$result['commonContent'] = $this->Setting->commonContent();
+			return view("admin.Orders.index", $title)->with('listingOrders', $ordersData)->with('result', $result);
+		}
+        
+    }
 
     //view order detail
     public function vieworder(Request $request)
@@ -224,7 +257,7 @@ class OrdersController extends Controller
     {
 		$title = array('pageTitle' => Lang::get("labels.NewOrder"));
 		$customers = User::getCustomers();
-		$products = Products::find(1)->leftJoin('products_description', 'products_description.products_id', '=', 'products.products_id')
+		$products = DB::table('products')->leftJoin('products_description', 'products_description.products_id', '=', 'products.products_id')
             ->LeftJoin('manufacturers', function ($join) {
                 $join->on('manufacturers.manufacturers_id', '=', 'products.manufacturers_id');
             })
@@ -244,8 +277,14 @@ class OrdersController extends Controller
 			->get(); //where('products_status', 1);
 		//print_r($products);
 		//exit;
-		$coupons = null;
+		$coupons = DB::table('coupons')->get();
+		$tax_class = DB::table('tax_class')->get();
 		$result['commonContent'] = $this->Setting->commonContent();
-        return view("admin.Orders.addorder", $title)->with('result', $result)->with("customers", $customers)->with("products", $products);
+        return view("admin.Orders.addorder", $title)
+					->with('result', $result)
+					->with("customers", $customers)
+					->with("products", $products)
+					->with("coupons", $coupons)
+					->with("tax_class", $tax_class);
     }
 }
