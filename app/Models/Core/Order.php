@@ -54,11 +54,21 @@ class Order extends Model
         return $orders;
     }
 
-	public function orders_datatable(){
+	public function orders_datatable($draft = false){
 
         $language_id = '1';
         $orders = DB::table('orders')->orderBy('created_at', 'DESC')
-            ->where('customers_id', '!=', '')->get();
+            ->where('customers_id', '!=', '');
+		
+		if($draft){ //Only Draft Orders
+			$orders->LeftJoin('orders_status_history', 'orders_status_history.orders_id', '=', 'orders.orders_id');
+			$orders->where('orders_status_history.orders_status_id', '=', '12');
+		}else {
+			$orders->LeftJoin('orders_status_history', 'orders_status_history.orders_id', '=', 'orders.orders_id');
+			$orders->where('orders_status_history.orders_status_id', '!=', '12');
+			$orders->groupBy('orders.orders_id');
+		}
+		$orders = $orders->get();
 
         $index = 0;
         $total_price = array();
