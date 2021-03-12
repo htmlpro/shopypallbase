@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdminControllers;
 use App;
 use App\Http\Controllers\Controller;
 use App\Models\Core\Menus;
+use App\Models\Core\FooterMenu;
 use Illuminate\Http\Request;
 use App\Models\Core\Setting;
 use App\Models\Core\Categories;
@@ -32,10 +33,11 @@ class MenusController extends Controller
     {
         $language_id =  1;
         $title = array('pageTitle' => Lang::get("labels.addmenus"));
-        $result = Menus::addmenus();          
+        $result = Menus::addmenus();        
         $result['categories'] = $this->Categories->getterParent($language_id);
         $result['products'] = $this->Products->getter($language_id);
         $result['commonContent'] = $this->Setting->commonContent();
+        $result['footer_menu'] = FooterMenu::all();
         return view("admin.menus.add", $title)->with('result', $result);
     }
 
@@ -89,5 +91,22 @@ class MenusController extends Controller
         return redirect()->back()->withErrors([$message]);
     }    
     
+    public function addnewfootermenu(Request $request)
+    {
+        $this->validate($request,[
+            'menuName' => 'required',
+            'menu_link' => 'required',
+        ]);
 
+        $footer_menu = new FooterMenu;
+        $footer_menu->menu_name = $request->menuName;
+        $footer_menu->link = $request->menu_link;
+        $footer_menu->status = $request->status;
+        $footer_menu->position = $request->position;
+        $footer_menu->menu_column = $request->menu_column;
+        $footer_menu->save();
+
+        $message = Lang::get("labels.MenuAddedMessage");
+        return redirect()->back()->withErrors([$message]);
+    }
 }

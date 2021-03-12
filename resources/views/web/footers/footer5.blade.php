@@ -24,23 +24,35 @@
                 <div class="single-footer single-footer-left">
                   <h5>@lang('website.Our Services')</h5>
                   <ul class="links-list pl-0 mb-0">
-                    <li> <a href="{{ URL::to('/')}}"><i class="fa fa-angle-right"></i>@lang('website.Home')</a> </li>
+                    @foreach($result['commonContent']['footer_menu'] as $footer_menu)
+                    @if($footer_menu->menu_column == '2')
+                    <li><a href="{{ $footer_menu->link }}"><i class="fa fa-angle-right"></i>{{ $footer_menu->menu_name }}</a> </li>
+    <!--                 <li> <a href="{{ URL::to('/')}}"><i class="fa fa-angle-right"></i>@lang('website.Home')</a> </li>
                     <li> <a href="{{ URL::to('/shop')}}"><i class="fa fa-angle-right"></i>@lang('website.Shop')</a> </li>
                     <li> <a href="{{ URL::to('/orders')}}"><i class="fa fa-angle-right"></i>@lang('website.Orders')</a> </li>
                     <li> <a href="{{ URL::to('/viewcart')}}"><i class="fa fa-angle-right"></i>@lang('website.Shopping Cart')</a> </li>
-                    <li> <a href="{{ URL::to('/wishlist')}}"><i class="fa fa-angle-right"></i>@lang('website.Wishlist')</a> </li>           
+                    <li> <a href="{{ URL::to('/wishlist')}}"><i class="fa fa-angle-right"></i>@lang('website.Wishlist')</a> </li> -->
+                    @endif
+                    @endforeach        
                   </ul>
                 </div>
           </div>
           <div class="col-12 col-md-6 col-lg-4">
             <h5>@lang('website.Information')</h5>
             <ul class="links-list pl-0 mb-0">
-              @if(count($result['commonContent']['pages']))
+              @foreach($result['commonContent']['footer_menu'] as $footer_menu)
+                @if($footer_menu->menu_column == '3')
+                  <li><a href="{{ $footer_menu->link }}"><i class="fa fa-angle-right"></i>{{ $footer_menu->menu_name }}</a> </li>
+                @endif
+              @endforeach
+
+             {{-- @if(count($result['commonContent']['pages']))
                   @foreach($result['commonContent']['pages'] as $page)
                       <li> <a href="{{ URL::to('/page?name='.$page->slug)}}"><i class="fa fa-angle-right"></i>{{$page->name}}</a> </li>
                   @endforeach
               @endif
                   <li> <a href="{{ URL::to('/contact')}}"><i class="fa fa-angle-right"></i>@lang('website.Contact Us')</a> </li>
+                   --}}
             </ul>
           </div>
           <div class="col-12 col-lg-5">

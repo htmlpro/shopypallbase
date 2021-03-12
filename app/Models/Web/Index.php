@@ -4,6 +4,7 @@ namespace App\Models\Web;
 
 use App;
 use App\Models\Core\Categories;
+use App\Models\Core\FooterMenu;
 use App\Models\Web\Cart;
 use App\Models\Web\News;
 use DB;
@@ -102,6 +103,7 @@ class Index extends Model
 
     public function commonContent()
     {
+
         $languages = DB::table('languages')
             ->leftJoin('image_categories', 'languages.image', 'image_categories.image_id')
             ->select('languages.*', 'image_categories.path as image_path')
@@ -307,6 +309,7 @@ class Index extends Model
             ->get();
 
         $result['homepagebanners'] = $homepagebanners;
+        $result['footer_menu'] = FooterMenu::all();
         return $result;
     }
 

@@ -38,6 +38,7 @@ class IndexController extends Controller
 
     public function index()
     {
+        
         $title = array('pageTitle' => Lang::get("website.Home"));
         $final_theme = $this->theme->theme();
 /*********************************************************************/
