@@ -76,7 +76,6 @@ class AdminController extends Controller
 		$result['inprocess'] = $inprocess ? $inprocess : [];
 		$result['total_orders'] = $total_orders ? $total_orders : [];
 
-
 		// dd($pending_orders,'-',$cancelled_orders,'-',$completed_orders,'-',$refunded_orders);
 		//recently order placed
 		$orders = DB::table('orders')

@@ -885,7 +885,7 @@ return [
 	'AddBannerText' => 'With whome do you want to associate this banner?',
 	'ImageBannerText' => 'Upload banner.',
 	'BannerTitletext' => 'Enter banner title.',
-	'Categories' => 'Categories',
+	'Categories' => 'Collections',
 	'Type' => 'Type',
 
 	'ListingOrderStatus' => 'Listing All The Order Statuses',

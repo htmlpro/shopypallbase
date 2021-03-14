@@ -108,15 +108,15 @@
               <div class="row">
                 <div class="col-md-4">
                     <p class="text-muted font-15 mb-1 text-truncate">Target</p>
-                    <h4><i class="fa fa-long-arrow-up" aria-hidden="true"></i>$7.8k</h4>
+                    <h4><i class="fa fa-long-arrow-up" aria-hidden="true"></i>$7.8</h4>
                 </div>
                 <div class="col-md-4">
                     <p class="text-muted font-15 mb-1 text-truncate">Last week</p>
-                    <h4><i class="fa fa-long-arrow-up green" aria-hidden="true"></i>$1.4k</h4>
+                    <h4><i class="fa fa-long-arrow-up green" aria-hidden="true"></i>$1.4</h4>
                 </div>
                 <div class="col-md-4">
                     <p class="text-muted font-15 mb-1 text-truncate">Last Month</p>
-                    <h4><i class="fa fa-long-arrow-up" aria-hidden="true"></i>$15k</h4>
+                    <h4><i class="fa fa-long-arrow-up" aria-hidden="true"></i>$15</h4>
                 </div>
             </div>
             </div>
