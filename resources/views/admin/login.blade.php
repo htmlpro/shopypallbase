@@ -32,7 +32,7 @@
     font-weight: bold;
 }
 .login-page{
-  background-image: url(http://127.0.0.1:8000/images/media/2021/01/login-bg.png) !important;
+  background-image: url({{asset('images/media/2021/01/login-bg.png')}}) !important;
     background-size: 100% 100% !important;
 }
 .Shopypall-logo {
@@ -49,20 +49,12 @@
     border-color: #008060 !important;
 }
 
-
-
-
-
-
-
 @media only screen and (max-width: 768px) {
 
 .login-page {
     background-size: cover !important;
     background-position: right!important;
 }
-
-
 
 }
 
@@ -76,13 +68,7 @@
     width: 100% !important;
 }
 
-
-
 }
-
-
-
-
 
 </style>
 <div class="login-box">
@@ -104,7 +90,7 @@
   <!-- /.login-logo -->
   <div class="login-box-body">
     <div class="Shopypall-logo">
-    <img src="http://127.0.0.1:8000/images/media/2021/01/Shopypall-logo.png">
+    <img src="{{asset('images/media/2021/01/Shopypall-logo.png')}}">
     </div>
   <div style="font-size: 22px;">
       <b> {{ trans('labels.welcome_message') }}</b>{{ trans('labels.welcome_message_to') }}</div>
