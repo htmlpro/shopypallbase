@@ -18,7 +18,7 @@ class CreateFooterMenusTable extends Migration
             $table->string('menu_name', 255);
             $table->string('link', 255)->default('#');
             $table->integer('status')->default(0);
-            $table->integer('position')->default(0);
+            $table->integer('position')->default(0)->nullable();;
             $table->string('menu_column',255)->nullable();
             $table->timestamps();
         });

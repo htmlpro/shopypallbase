@@ -257,10 +257,19 @@
                                      
                                     <div class="box-body">
 
-                                        <div class="col-xs-6">
-                                          <h4>Our Services</h3>
+                                        <div class="col-xs-12">
                                           {!! Form::open(array('url' =>'admin/addnewfootermenu', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                                            <input type="hidden" name="menu_column" value="2">
+                                           <div class="form-group">
+                                            <label for="name" class="col-sm-2 col-md-3 control-label">Under<span style="color:red;">*</span> </label>
+                                            <div class="col-sm-10 col-md-4">
+                                              <select name="menu_column" class="form-control" required>
+                                                <option value="2">Our Services</option>
+                                                <option value="3">Information</option>
+                                              </select>
+                                               
+                                            </div>
+                                          </div>
                                           <div class="form-group">
                                             <label for="name" class="col-sm-2 col-md-3 control-label">Name<span style="color:red;">*</span> </label>
                                             <div class="col-sm-10 col-md-4">
@@ -315,64 +324,7 @@
                                           <!-- /.box-footer -->
                                           {!! Form::close() !!}
                                         </div>
-                                        <div class="col-xs-6">
-                                          <h4>Information</h3>
-                                          {!! Form::open(array('url' =>'admin/addnewfootermenu', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
-                                          <input type="hidden" name="menu_column" value="3">
-                                          <div class="form-group">
-                                            <label for="name" class="col-sm-2 col-md-3 control-label">Name<span style="color:red;">*</span> </label>
-                                            <div class="col-sm-10 col-md-4">
-                                              <input required name="menuName" class="form-control menu">
-                                               
-                                                <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
-                                            </div>
-                                          </div>
-
-                                          <div class="form-group">
-                                            <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Link') }}<span style="color:red;">*</span> </label>
-                                            <div class="col-sm-10 col-md-4">
-                                              <input required name="menu_link" class="form-control menu">
-                                               
-                                                <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
-                                            </div>
-                                          </div>
-                                          {{--
-                                          <div class="form-group">
-                                            <label for="name" class="col-sm-2 col-md-3 control-label">Position<span style="color:red;">*</span> </label>
-                                            <div class="col-sm-10 col-md-4">
-                                              <select name="position" class="form-control" required>
-                                                <option value="0">Top</option>
-                                                @foreach($result['footer_menu'] as $footer)
-                                                  
-                                                  @if($footer->menu_column == '3')
-                                                  <option value="{{$footer->id}}">After {{$footer->menu_name}}</option>
-                                                  @endif
-                                                @endforeach
-                                              </select>
-                                                <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
-                                            </div>
-                                          </div>
-                                          --}}
-                                          <div class="form-group">
-                                            <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Status') }} </label>
-                                            <div class="col-sm-10 col-md-4">
-                                              <select class="form-control" name="status">
-                                                    <option value="1">{{ trans('labels.Active') }}</option>
-                                                    <option value="0">{{ trans('labels.Inactive') }}</option>
-                                              </select>
-                                            <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
-                                            {{ trans('labels.GeneralStatusText') }}</span>
-                                            </div>
-                                          </div>
-
-                                          <!-- /.box-body -->
-                                          <div class="box-footer text-center">
-                                              <button type="submit" class="btn btn-primary">{{ trans('labels.Submit') }}</button>
-                                              <a href="{{ URL::to('admin/menus')}}" type="button" class="btn btn-default">{{ trans('labels.back') }}</a>
-                                          </div>
-                                          <!-- /.box-footer -->
-                                          {!! Form::close() !!}
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
