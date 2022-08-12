@@ -72,8 +72,7 @@
                 0.00%
               </h3>
               <h4>Conversion</h4>
-            </div>
-            
+            </div>            
           </div>
         </div>
       </div>
@@ -85,7 +84,7 @@
             </div>
             <div>
               <h3>
-                0k
+                0
               </h3>
               <h4>Today's Visits</h4>
             </div>
@@ -95,7 +94,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-4">
+
+      <div class="col-sm-4" style="display: none;">
         <div class="box box-danger border-top-none card transition revenue-box">
           <div class="box-body padding-0">
             <div class="col-md-12">
@@ -119,12 +119,12 @@
                     <h4><i class="fa fa-long-arrow-up" aria-hidden="true"></i>$15</h4>
                 </div>
             </div>
-            </div>
-            
+            </div>            
           </div>
         </div>
       </div>
-      <div class="col-sm-8">
+
+      <div class="col-sm-12">
         <div class="nav-tabs-custom">
           <div class="box-header with-border">
             <h3 class="box-title"> {{ trans('labels.addedSaleReport') }}</h3>
